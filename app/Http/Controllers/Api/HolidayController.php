@@ -16,6 +16,11 @@ use App\Http\Resources\Holiday\WeeklyHolidayResource;
 use App\Http\Resources\PaginationResource;
 use App\Services\Holiday\HolidayService;
 
+/**
+ * @group Holidays
+ *
+ * APIs for managing Holidays
+ */
 class HolidayController extends Controller
 {
     public function __construct(private HolidayService $holidayService)

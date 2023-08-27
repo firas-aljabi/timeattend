@@ -18,10 +18,11 @@ class NationalitiesSeeder extends Seeder
         DB::table('nationalities')->delete();
 
         $nationals = [
-
-
-            'أفغانستاني', 'جزائري', 'أرجنتيني', 'بحريني', 'بنغلاديشي', 'روسي', 'بلجيكي', 'مصري',   'هندي', 'عراقي',
-            'إيرلندي',    'إيطالي', 'أردني', 'كويتي', 'ليبي', 'مغربي', 'باكستاني', 'بالاوي', 'فلسطيني', 'فلبيني', 'بيتكيرني', 'بوليني', 'برتغالي', 'قطري', 'روماني', 'روسي', 'سنغافوري', 'صومالي', 'سوداني', 'سويدي', 'سويسري', 'سوري', 'تايواني', 'طاجيكستاني', 'تايلندي', 'تونسي', 'تركي', 'أوكراني', 'إماراتي', 'بريطاني', 'أمريكي', 'أورغواي', 'أوزباكستاني', 'فنزويلي', 'يمني'
+            'Saudi Arabian', 'Syrian', 'Afghan', 'Algerian', 'Argentinian', 'Bahraini', 'Bangladeshi', 'Belarusian', 'Belgian', 'Egyptian',   'Indian', 'Iraqi',
+            'Irish',    'Italian', 'Jordanian', 'Kuwaiti', 'Libyan', 'Moroccan', 'Pakistani', 'Palestinian', 'Filipino',
+            'Polish', 'Portuguese', 'Portuguese', 'Romanian', 'Qatari', 'Russian', 'Singaporean', 'Somali', 'Sudanese', 'Swedish', 'Swiss', 'Taiwanese',
+            'Tajikistani', 'Thai', 'Tunisian', 'Turkish', 'Ukrainian', 'Emirati', 'British', 'American', 'Uruguayan', 'Uzbek', 'Venezuelan',
+            'Yemeni', 'South African', 'Serbian', 'Panamanian', 'Omani', 'Norwegian', 'Nigerian', 'Dutch', 'Mexican', 'Mauritanian', 'Malaysian', 'Japanese'
         ];
 
         foreach ($nationals as $n) {

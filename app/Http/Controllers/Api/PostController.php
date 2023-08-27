@@ -19,6 +19,13 @@ use App\Http\Resources\Posts\PostResource;
 use App\Http\Resources\Posts\ShareResource;
 use App\Services\Posts\PostService;
 
+
+/**
+ * @group Posts
+ *
+ * APIs for managing Posts
+ */
+
 class PostController extends Controller
 {
     public function __construct(private PostService $postService)

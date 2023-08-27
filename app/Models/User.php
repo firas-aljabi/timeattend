@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Statuses\VacationRequestStatus;
+use App\Statuses\DepositStatus;
+use App\Statuses\RequestStatus;
+use App\Statuses\RequestType;
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,12 +26,12 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password', 'work_email', 'mobile', 'phone', 'serial_number', 'nationalitie_id',
-        'birthday_date', 'marital_status', 'address', 'guarantor', 'position', 'branch', 'departement', 'gender', 'type', 'status', 'skills',
+        'birthday_date', 'material_status', 'address', 'guarantor', 'position', 'branch', 'departement', 'gender', 'type', 'status', 'skills',
         'start_job_contract', 'end_job_contract', 'image', 'id_photo', 'biography',
         'employee_sponsorship', 'end_employee_sponsorship', 'visa', 'end_visa',
         'passport', 'end_passport', 'municipal_card', 'end_municipal_card', 'health_insurance', 'end_health_insurance',
         'basic_salary', 'company_id', 'permission_to_entry', 'permission_to_leave', 'employee_residence', 'end_employee_residence',
-        'code', 'expired_at'
+        'code', 'expired_at', 'entry_time', 'leave_time'
     ];
 
     /**
@@ -87,12 +88,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function vacationRequests()
     {
-        return $this->hasMany(VacationRequest::class);
+        return $this->hasMany(Request::class);
     }
 
     public function justifyRequests()
     {
-        return $this->hasMany(JustifyRequest::class);
+        return $this->hasMany(Request::class);
     }
 
 
@@ -108,14 +109,13 @@ class User extends Authenticatable implements JWTSubject
 
     public function vacationRequestsApproved()
     {
-        return $this->hasMany(VacationRequest::class)->where('status', VacationRequestStatus::APPROVED);
+        return $this->hasMany(Request::class)->where('type', RequestType::VACATION)->where('status', RequestStatus::APPROVEED);
     }
 
     public function shifts()
     {
         return $this->hasMany(Shift::class);
     }
-
 
     public function company()
     {
@@ -126,20 +126,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Nationalitie::class, 'nationalitie_id');
     }
 
-
     public function deposits()
     {
-        return $this->hasMany(Deposit::class);
+        return $this->hasMany(Deposit::class)->where('status', DepositStatus::APPROVED);
     }
     public function contract()
     {
         return $this->hasOne(Contract::class);
     }
 
-    public function employeesRequests()
-    {
-        return $this->hasMany(EmployeeRequest::class);
-    }
 
     public function generate_code()
     {

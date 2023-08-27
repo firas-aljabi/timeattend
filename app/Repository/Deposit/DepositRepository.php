@@ -2,7 +2,8 @@
 
 namespace App\Repository\Deposit;
 
-
+use App\Filter\Deposit\DepositFilter;
+use App\Http\Trait\UploadImage;
 use App\Models\Deposit;
 
 use App\Repository\BaseRepositoryImplementation;
@@ -12,18 +13,12 @@ use App\Statuses\UserTypes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-
 
 class DepositRepository extends BaseRepositoryImplementation
 {
+    use UploadImage;
     public function getFilterItems($filter)
     {
-        $records = Deposit::query();
-        $records->when(isset($filter->orderBy), function ($records) use ($filter) {
-            $records->orderBy($filter->getOrderBy(), $filter->getOrder());
-        });
-        return $records->paginate($filter->per_page);
     }
 
     public function create_deposit($data)
@@ -48,13 +43,8 @@ class DepositRepository extends BaseRepositoryImplementation
 
                     if (Arr::has($data, 'car_image')) {
                         $file = Arr::get($data, 'car_image');
-                        $extention = $file->getClientOriginalExtension();
-                        $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                        $file->move(public_path('images'), $file_name);
-                        $image_file_path = public_path('images/' . $file_name);
-                        $image_data = file_get_contents($image_file_path);
-                        $base64_image = base64_encode($image_data);
-                        $deposit->car_image = $base64_image;
+                        $file_name = $this->uploadEmployeeDepositsAttachment($file, $deposit->user_id);
+                        $deposit->car_image = $file_name;
                     }
                 } elseif ($data['type'] == DepositType::LAPTOP) {
                     $deposit->type = DepositType::LAPTOP;
@@ -64,13 +54,8 @@ class DepositRepository extends BaseRepositoryImplementation
 
                     if (Arr::has($data, 'laptop_image')) {
                         $file = Arr::get($data, 'laptop_image');
-                        $extention = $file->getClientOriginalExtension();
-                        $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                        $file->move(public_path('images'), $file_name);
-                        $image_file_path = public_path('images/' . $file_name);
-                        $image_data = file_get_contents($image_file_path);
-                        $base64_image = base64_encode($image_data);
-                        $deposit->laptop_image = $base64_image;
+                        $file_name = $this->uploadEmployeeDepositsAttachment($file, $deposit->user_id);
+                        $deposit->laptop_image = $file_name;
                     }
                 } elseif ($data['type'] == DepositType::MOBILE) {
                     $deposit->type = DepositType::MOBILE;
@@ -79,13 +64,8 @@ class DepositRepository extends BaseRepositoryImplementation
 
                     if (Arr::has($data, 'mobile_image')) {
                         $file = Arr::get($data, 'mobile_image');
-                        $extention = $file->getClientOriginalExtension();
-                        $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                        $file->move(public_path('images'), $file_name);
-                        $image_file_path = public_path('images/' . $file_name);
-                        $image_data = file_get_contents($image_file_path);
-                        $base64_image = base64_encode($image_data);
-                        $deposit->mobile_image = $base64_image;
+                        $file_name = $this->uploadEmployeeDepositsAttachment($file, $deposit->user_id);
+                        $deposit->mobile_image = $file_name;
                     }
                 }
 
@@ -106,8 +86,60 @@ class DepositRepository extends BaseRepositoryImplementation
         }
     }
 
+    public function my_deposits($filter)
+    {
+        if (auth()->user()->type == UserTypes::EMPLOYEE) {
+            $records = Deposit::query()->where('company_id', auth()->user()->company_id)->where('user_id', auth()->user()->id)->where('extra_status', null);
+            if ($filter instanceof DepositFilter) {
 
+                $records->when(isset($filter->status), function ($records) use ($filter) {
+                    $records->where('status', $filter->getStatus());
+                });
+                $records->when(isset($filter->orderBy), function ($records) use ($filter) {
+                    $records->orderBy($filter->getOrderBy(), $filter->getOrder());
+                });
 
+                $deposits = $records->paginate($filter->per_page);
+                return ['success' => true, 'data' => $deposits];
+            }
+            $deposits = $records->paginate($filter->per_page);
+            return ['success' => true, 'data' => $deposits];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
+    public function list_of_deposits($filter)
+    {
+        if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
+            $records = Deposit::query()->where('company_id', auth()->user()->company_id);
+            if ($filter instanceof DepositFilter) {
+
+                $records->when(isset($filter->status), function ($records) use ($filter) {
+                    $records->where('status', $filter->getStatus());
+                });
+                $records->when(isset($filter->orderBy), function ($records) use ($filter) {
+                    $records->orderBy($filter->getOrderBy(), $filter->getOrder());
+                });
+
+                $deposits = $records->with('user')->get();
+                return ['success' => true, 'data' => $deposits];
+            }
+            $deposits = $records->with('user')->get();
+            return ['success' => true, 'data' => $deposits];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
+    public function list_of_clearance_deposits()
+    {
+        if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
+            $records = Deposit::query()->where('company_id', auth()->user()->company_id)->where('status', DepositStatus::APPROVED)->where('extra_status', DepositStatus::UN_PAID);
+            $deposits = $records->with('user')->get();
+            return ['success' => true, 'data' => $deposits];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
 
     public function model()
     {

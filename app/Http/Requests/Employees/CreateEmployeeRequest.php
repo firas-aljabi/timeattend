@@ -4,6 +4,8 @@ namespace App\Http\Requests\Employees;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Statuses\EmployeeStatus;
+use App\Statuses\GenderStatus;
+use App\Statuses\MaterialStatus;
 use App\Statuses\PermissionType;
 use App\Statuses\UserTypes;
 use Illuminate\Validation\Rule;
@@ -27,7 +29,7 @@ class CreateEmployeeRequest extends FormRequest
             'phone' => 'sometimes|unique:users,phone',
             'nationalitie_id' => 'required|exists:nationalities,id',
             'birthday_date' => 'required|date',
-            'marital_status' => 'nullable|in:single,married',
+            'material_status' => ['nullable', Rule::in(MaterialStatus::$statuses)],
             'departement' => 'nullable|string',
             'position' => 'nullable|string',
             'address' => 'nullable|string',
@@ -35,7 +37,7 @@ class CreateEmployeeRequest extends FormRequest
             'branch' => 'nullable|string',
             'skills' => 'nullable|string',
             'serial_number' => 'required|unique:users,serial_number',
-            'gender' => 'nullable|in:male,female',
+            "gender" => ["nullable", Rule::in(GenderStatus::$statuses)],
             'status' => [Rule::in(EmployeeStatus::$statuses)],
             'start_job_contract' => 'required|date',
             'end_job_contract' => 'required|date',
@@ -45,16 +47,18 @@ class CreateEmployeeRequest extends FormRequest
             'end_health_insurance' => 'nullable|date',
             'end_employee_residence' => 'nullable|date',
             'permission_to_leave' => [Rule::in(PermissionType::$statuses), 'nullable'],
+            'leave_time' => 'required_if:permission_to_leave,1',
             'permission_to_entry' => [Rule::in(PermissionType::$statuses), 'nullable'],
+            'entry_time' => 'required_if:permission_to_entry,1',
             'end_passport' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'id_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            "biography" => "nullable|mimes:pdf|max:2048",
+            'biography' => "nullable|mimes:pdf|max:2048",
             'visa' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'municipal_card' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'employee_residence' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'health_insurance' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'passport' => 'nullable|image|mimes:jpeg,png,jpg,pdf|max:2048',
+            'passport' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'employee_sponsorship' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'basic_salary' => 'required',
             'number_of_shifts' => 'nullable|integer|min:1',

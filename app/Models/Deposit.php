@@ -9,9 +9,9 @@ class Deposit extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'type', 'status', 'user_id', 'company_id', 'car_number', 'car_model', 'manufacturing_year',
+        'type', 'status', 'extra_status', 'user_id', 'company_id', 'car_number', 'car_model', 'manufacturing_year',
         'Mechanic_card_number', 'car_image', 'laptop_type', 'serial_laptop_number', 'laptop_color',
-        'laptop_image', 'serial_mobile_number', 'mobile_color', 'mobile_image', 'reason_reject'
+        'laptop_image', 'serial_mobile_number', 'mobile_color', 'mobile_image', 'reason_reject', 'reason_clearance_reject'
     ];
 
 

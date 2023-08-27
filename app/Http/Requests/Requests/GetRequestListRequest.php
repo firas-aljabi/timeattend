@@ -34,8 +34,8 @@ class GetRequestListRequest extends FormRequest
         $requestFilter = new RequestFilter();
 
 
-        if ($this->filled('request_type')) {
-            $requestFilter->setRequestType($this->input('request_type'));
+        if ($this->filled('type')) {
+            $requestFilter->setRequestType($this->input('type'));
         }
         if ($this->filled('order_by')) {
             $requestFilter->setOrderBy($this->input('order_by'));

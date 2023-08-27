@@ -6,17 +6,17 @@ use App\Filter\OthersBaseFilter;
 
 class RequestFilter extends OthersBaseFilter
 {
-    public ?int $request_type = null;
+    public ?int $type = null;
 
 
     public function getRequestType(): int
     {
-        return $this->request_type;
+        return $this->type;
     }
 
 
-    public function setRequestType(int $request_type): void
+    public function setRequestType(int $type): void
     {
-        $this->request_type = $request_type;
+        $this->type = $type;
     }
 }

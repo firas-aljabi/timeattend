@@ -13,6 +13,12 @@ use App\Models\User;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\Request;
 
+/**
+ * @group Messages
+ *
+ * APIs for managing Messages
+ */
+
 class MessageController extends Controller
 {
     public function __construct(private AdminService $adminService)

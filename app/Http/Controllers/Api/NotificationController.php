@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Notifications
+ *
+ * APIs for managing Notifications
+ */
 class NotificationController extends Controller
 {
     public function __construct()

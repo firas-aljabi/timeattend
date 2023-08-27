@@ -24,7 +24,7 @@ class RejectVacationRequest extends FormRequest
     public function rules()
     {
         return [
-            'vacation_request_id' => 'required|exists:vacation_requests,id',
+            'request_id' => 'required|exists:requests,id',
             'reject_reason' => 'required'
         ];
     }

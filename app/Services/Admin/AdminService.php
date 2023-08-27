@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Filter\Attendance\AttendanceFilter;
+use App\Filter\Contract\ContractFilter;
 use App\Filter\Employees\EmployeeFilter;
 use App\Filter\Nationalalities\NationalFilter;
 use App\Filter\Salary\SalaryFilter;
@@ -31,6 +32,11 @@ class AdminService implements AdminServiceInterface
     {
         return $this->adminRepository->create_employee($data);
     }
+    public function update_employee($data)
+    {
+        return $this->adminRepository->update_employee($data);
+    }
+
     public function create_hr($data)
     {
         return $this->adminRepository->create_hr($data);
@@ -62,10 +68,9 @@ class AdminService implements AdminServiceInterface
     }
 
 
-
-    public function reward_adversaries_salary($data)
+    public function reward_adversaries_allowance_salary($data)
     {
-        return $this->adminRepository->reward_adversaries_salary($data);
+        return $this->adminRepository->reward_adversaries_allowance_salary($data);
     }
 
     public function update_salary($data)
@@ -127,6 +132,15 @@ class AdminService implements AdminServiceInterface
             return $this->adminRepository->paginate();
     }
 
+    public function get_contract_expiration(ContractFilter $contractFilter = null)
+    {
+        if ($contractFilter != null)
+            return $this->adminRepository->get_contract_expiration($contractFilter);
+        else
+            return $this->adminRepository->paginate();
+    }
+
+
     public function list_of_nationalities(NationalFilter $nationalFilter = null)
     {
         if ($nationalFilter != null)
@@ -139,85 +153,7 @@ class AdminService implements AdminServiceInterface
 
     public function showEmployee(int $id)
     {
-        return $this->adminRepository->getById($id)->load(['salaries', 'availableTime', 'vacationRequestsApproved', 'attendancesMonthly', 'nationalitie']);
-        // $currentMonth = date('m');
-        // $currentYear = date('Y');
-        // $currentDay = date('d');
-
-
-
-        // $userSalary = User::findOrFail($id)->basic_salary;
-
-        // $holidays = Holiday::where(function ($query) use ($currentMonth, $currentYear) {
-        //     $query->whereMonth('start_date', $currentMonth)
-        //         ->whereYear('start_date', $currentYear);
-
-        //     $query->orWhere(function ($query) use ($currentMonth, $currentYear) {
-        //         $query->whereMonth('end_date', $currentMonth)
-        //             ->whereYear('end_date', $currentYear);
-        //     });
-
-        //     $query->orWhere(function ($query) use ($currentMonth, $currentYear) {
-        //         $query->whereMonth('date', $currentMonth)
-        //             ->whereYear('date', $currentYear);
-        //     });
-        // })->get();
-
-
-
-        // // dd($holidays);
-
-        // $workingDays = 0;
-        // $period = CarbonPeriod::create($currentYear . '-' . $currentMonth . '-01', '1 day', $currentYear . '-' . $currentMonth . '-31');
-        // foreach ($period as $date) {
-        //     if ($date->day <= $currentDay) {
-        //         $isHoliday = $holidays->contains(function ($holiday, $key) use ($date) {
-        //             return $holiday->date == $date->toDateString();
-        //         });
-        //         if (!$isHoliday) {
-        //             $workingDays++;
-        //         }
-        //     }
-        // }
-
-        // dd($workingDays);
-
-        // $dailySalary = $userSalary / $workingDays;
-
-        // $daysWorked = 0;
-
-        // $attendances = Attendance::whereYear('date', $currentYear)
-        //     ->whereMonth('date', $currentMonth)
-        //     ->where('status', 1)
-        //     ->orderBy('date')
-        //     ->orderBy('login_time')
-        //     ->get();
-
-        // foreach ($attendances as $attendance) {
-        //     $firstAttendance = Attendance::where('user_id', $attendance->user_id)
-        //         ->whereDate('date', $attendance->date)
-        //         ->orderBy('login_time')
-        //         ->first();
-
-        //     if ($attendance->id == $firstAttendance->id && $attendance->date <= $currentDay) {  // consider only days until the current day
-        //         $daysWorked++;
-        //     }
-        // }
-
-        // $salaryAmount = ceil($daysWorked * $dailySalary);
-
-        // dd($salaryAmount);
-
-        // $salary = Salary::firstOrCreate([
-        //     'user_id' => $id,
-        //     'month' => $currentMonth,
-        //     'year' => $currentYear,
-        // ]);
-
-        // $salary->amount = $salaryAmount;
-        // $salary->save();
-
-        // return $salary;
+        return $this->adminRepository->getById($id)->load(['salaries', 'availableTime', 'vacationRequestsApproved', 'attendancesMonthly', 'nationalitie', 'deposits', 'shifts']);
     }
 
 

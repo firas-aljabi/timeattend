@@ -15,6 +15,7 @@ class ComapnyResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'commercial_record' => $this->commercial_record ? asset($this->commercial_record) : null,
             'start_commercial_record' => $this->start_commercial_record,
             'end_commercial_record' => $this->end_commercial_record,
             'locations' => LocationResource::collection($this->whenLoaded('locations')),

@@ -8,29 +8,41 @@ use App\ApiHelper\Result;
 use App\ApiHelper\SuccessResult;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contract\TerminateContractRequest;
+use App\Http\Requests\Employees\AdminUpdateEmployeeRequest;
 use App\Http\Requests\Employees\CheckInAttendanceRequest;
 use App\Http\Requests\Employees\CheckOutAttendanceRequest;
 use App\Http\Requests\Employees\CreateAdminRequest;
 use App\Http\Requests\Employees\CreateEmployeeRequest;
 use App\Http\Requests\Employees\DetermineWorkingHoursRequest;
+use App\Http\Requests\Employees\GetContractExpirationList;
 use App\Http\Requests\Employees\GetEmployeesAttendancesListRequest;
 use App\Http\Requests\Employees\GetEmployeesListRequest;
 use App\Http\Requests\Employees\GetEmployeesSalariesListRequest;
 use App\Http\Requests\Employees\RewerdsAdversriesSalaryRequest;
 use App\Http\Requests\Employees\UpdateEmployeeContractRequest;
+use App\Http\Requests\Employees\UpdateEmployeeRequest;
+use App\Http\Requests\Employees\UpdateEmployeeShift;
 use App\Http\Requests\Employees\UpdateSalaryRequest;
 use App\Http\Requests\Nationalitie\GetNationalitiesRequest;
 use App\Http\Resources\Admin\DashboardDataResource;
 use App\Http\Resources\Admin\EmployeeResource;
 use App\Http\Resources\Contract\ContractResource;
+use App\Http\Resources\Contract\UserContractResource;
 use App\Http\Resources\Employees\AttendanceResource;
 use App\Http\Resources\Employees\EmployeeAvailableTimeResource;
 use App\Http\Resources\Employees\SalaryResource;
 use App\Http\Resources\Nationalitie\NationalitiesRrsource;
 use App\Http\Resources\PaginationResource;
+use App\Http\Resources\Shifts\ShiftRersource;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Admin Operations
+ *
+ * APIs for managing Admin Operations
+ */
 class AdminController extends Controller
 {
 
@@ -38,6 +50,46 @@ class AdminController extends Controller
     {
     }
 
+    /**
+     * Add Employee to the Company
+     *
+     * This endpoint is used to Add Employee to the Company.
+     *
+     * @authenticated
+     *
+     * @bodyParam name string required The name of the employee must be required Example:mouaz alkhateeb.
+     *
+     * @bodyParam email string required The email of the employee,
+     *                                 The email must have a maximum length of 255 characters.
+     *                                 It should follow the pattern of having 16 letters before the @ symbol.
+     *                                 Example: mouaz@gmail.com
+     *
+     * @bodyParam password string required The password of the employee. Must not be greater than 24 characters and should contain both numbers and characters.
+     *                                    Example: Abc071096904038
+     *
+     * @bodyParam work_email email The email work of the employee,
+     *                                 The work_email must have a maximum length of 255 characters.
+     *                                 It should follow the pattern of having 16 letters before the @ symbol. Example:mouazalkhateeb@goma.com.
+     *
+     * @bodyParam image file Must not be greater than 2048 kilobytes, Example:`image.png`.
+     *
+     * @bodyParam id_photo file Must not be greater than 2048 kilobytes Example: image.pdf.
+     *
+     * @bodyParam biography file  Must not be greater than 2048 kilobytes Example: image.png.
+     *
+     * @bodyParam visa file Must not be greater than 2048 kilobytes Example: image.png.
+     *
+     * @bodyParam municipal_card file Must not be greater than 2048 kilobytes Example: image.png.
+     *
+     * @bodyParam health_insurance file Must not be greater than 2048 kilobytes Example: image.png.
+     * 
+     * @bodyParam passport  file Must not be greater than 2048 kilobytes Example: image.png.
+     *
+     *@response 201 scenario="Add a Product"{
+     * "data": {
+     * }
+     *}
+     */
     public function store(CreateEmployeeRequest $request)
     {
         $createdData =  $this->adminService->create_employee($request->validated());
@@ -52,8 +104,6 @@ class AdminController extends Controller
             return ['message' => $createdData['message']];
         }
     }
-
-
 
 
 
@@ -86,6 +136,37 @@ class AdminController extends Controller
             return ['message' => $createdData['message']];
         }
     }
+    // public function admin_update_employee(AdminUpdateEmployeeRequest $request)
+    // {
+    //     $createdData =  $this->adminService->create_employee($request->validated());
+    //     if ($createdData['success']) {
+    //         $newData = $createdData['data'];
+    //         $returnData = EmployeeResource::make($newData);
+
+    //         return ApiResponseHelper::sendResponse(
+    //             new Result($returnData, "Done")
+    //         );
+    //     } else {
+    //         return ['message' => $createdData['message']];
+    //     }
+    // }
+    public function update_employee(UpdateEmployeeRequest $request)
+    {
+        $createdData =  $this->adminService->update_employee($request->validated());
+        if ($createdData['success']) {
+            $newData = $createdData['data'];
+            $returnData = EmployeeResource::make($newData);
+
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "Done")
+            );
+        } else {
+            return ['message' => $createdData['message']];
+        }
+    }
+
+
+
     public function determine_working_hours(DetermineWorkingHoursRequest $request)
     {
         $createdData =  $this->adminService->determine_working_hours($request->validated());
@@ -114,9 +195,6 @@ class AdminController extends Controller
             return ['message' => $createdData['message']];
         }
     }
-
-
-
     public function update_salary(UpdateSalaryRequest $request)
     {
         $createdData =  $this->adminService->update_salary($request->validated());
@@ -191,9 +269,9 @@ class AdminController extends Controller
             return ['message' => $createdData['message']];
         }
     }
-    public function reward_adversaries_salary(RewerdsAdversriesSalaryRequest $request)
+    public function reward_adversaries_allowance_salary(RewerdsAdversriesSalaryRequest $request)
     {
-        $createdData =  $this->adminService->reward_adversaries_salary($request->validated());
+        $createdData =  $this->adminService->reward_adversaries_allowance_salary($request->validated());
         if ($createdData['success']) {
             $newData = $createdData['data'];
             $returnData = SalaryResource::make($newData);
@@ -231,9 +309,8 @@ class AdminController extends Controller
     {
         $data = $this->adminService->getEmployees($request->generateFilter());
         $returnData = EmployeeResource::collection($data);
-        $pagination = PaginationResource::make($data);
-        return ApiResponseHelper::sendResponseWithPagination(
-            new Result($returnData, $pagination, "DONE")
+        return ApiResponseHelper::sendResponse(
+            new Result($returnData, "DONE")
         );
     }
     public function employees_salaries(GetEmployeesSalariesListRequest $request)
@@ -243,9 +320,8 @@ class AdminController extends Controller
         if ($data['success']) {
             $newData = $data['data'];
             $returnData = SalaryResource::collection($newData);
-            $pagination = PaginationResource::make($data['data']);
-            return ApiResponseHelper::sendResponseWithPagination(
-                new Result($returnData, $pagination, "DONE")
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "DONE")
             );
         } else {
             return ['message' => $data['message']];
@@ -259,9 +335,21 @@ class AdminController extends Controller
         if ($data['success']) {
             $newData = $data['data'];
             $returnData = AttendanceResource::collection($newData);
-            $pagination = PaginationResource::make($data['data']);
-            return ApiResponseHelper::sendResponseWithPagination(
-                new Result($returnData, $pagination, "DONE")
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "DONE")
+            );
+        } else {
+            return ['message' => $data['message']];
+        }
+    }
+    public function get_contract_expiration(GetContractExpirationList $request)
+    {
+        $data = $this->adminService->get_contract_expiration($request->generateFilter());
+        if ($data['success']) {
+            $newData = $data['data'];
+            $returnData = ContractResource::collection($newData);
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "DONE")
             );
         } else {
             return ['message' => $data['message']];
@@ -289,9 +377,8 @@ class AdminController extends Controller
     {
         $data = $this->adminService->list_of_nationalities($request->generateFilter());
         $returnData = NationalitiesRrsource::collection($data);
-        $pagination = PaginationResource::make($data);
-        return ApiResponseHelper::sendResponseWithPagination(
-            new Result($returnData, $pagination, "DONE")
+        return ApiResponseHelper::sendResponse(
+            new Result($returnData, "DONE")
         );
     }
 }

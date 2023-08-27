@@ -3,7 +3,8 @@
 namespace App\Http\Requests\Employees;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Statuses\EmployeeStatus;
+use App\Statuses\GenderStatus;
+use App\Statuses\MaterialStatus;
 use Illuminate\Validation\Rule;
 
 class CreateAdminRequest extends FormRequest
@@ -27,11 +28,12 @@ class CreateAdminRequest extends FormRequest
             'date_employee' => 'required|date',
             'nationalitie_id' => 'required|exists:nationalities,id',
             'birthday_date' => 'required|date',
-            'marital_status' => 'nullable|in:single,married',
+            'material_status' => ['nullable', Rule::in(MaterialStatus::$statuses)],
             'address' => 'nullable|string',
             'serial_number' => 'required|unique:users,serial_number',
-            'gender' => 'nullable|in:male,female',
-            'branch' => 'nullable'
+            "gender" => ["nullable", Rule::in(GenderStatus::$statuses)],
+            'branch' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 }

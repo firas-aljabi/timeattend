@@ -2,6 +2,7 @@
 
 use App\Statuses\EmployeeStatus;
 use App\Statuses\PermissionType;
+use App\Statuses\TimeSelect;
 use App\Statuses\UserTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -31,13 +32,13 @@ return new class extends Migration
             $table->bigInteger('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->date('birthday_date')->nullable();
-            $table->enum('marital_status', ['single', 'married'])->nullable();
+            $table->tinyInteger('material_status')->nullable();
+            $table->tinyInteger('gender')->nullable();
             $table->string('address')->nullable();
             $table->string('guarantor')->nullable();
             $table->string('branch')->nullable();
             $table->string('departement')->nullable();
             $table->string('position')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
             $table->tinyInteger('type')->default(UserTypes::EMPLOYEE);
             $table->tinyInteger('status')->default(EmployeeStatus::ON_DUTY);
             $table->longText('skills')->nullable();
@@ -60,7 +61,9 @@ return new class extends Migration
             $table->date('end_health_insurance')->nullable();
             $table->decimal('basic_salary', 8, 2)->default(0);
             $table->tinyInteger('permission_to_entry')->default(PermissionType::FALSE);
+            $table->tinyInteger('entry_time')->nullable();
             $table->tinyInteger('permission_to_leave')->default(PermissionType::FALSE);
+            $table->tinyInteger('leave_time')->nullable();
             $table->string('code')->nullable();
             $table->dateTime('expired_at')->nullable();
             $table->rememberToken();

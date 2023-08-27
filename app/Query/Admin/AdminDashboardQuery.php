@@ -61,34 +61,49 @@ class AdminDashboardQuery
     {
         $onDutyEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->where('status', EmployeeStatus::ON_DUTY)->count();
         $allEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->count();
-        $femaleEmployeePercentage = ($onDutyEmployeesCount / $allEmployeesCount) * 100;
-
-        return  $femaleEmployeePercentage;
+        if ($allEmployeesCount != 0) {
+            $onDutyEmployeePercentage = ($onDutyEmployeesCount / $allEmployeesCount) * 100;
+            return number_format($onDutyEmployeePercentage);
+        } else {
+            return 0;
+        }
     }
     private function getOnVacationEmployeesPercentage()
     {
-        $onDutyEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->where('status', EmployeeStatus::ON_VACATION)->count();
+        $onVacationEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->where('status', EmployeeStatus::ON_VACATION)->count();
         $allEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->count();
-        $femaleEmployeePercentage = ($onDutyEmployeesCount / $allEmployeesCount) * 100;
 
-        return  $femaleEmployeePercentage;
+        if ($allEmployeesCount != 0) {
+            $onVacationEmployeePercentage = ($onVacationEmployeesCount / $allEmployeesCount) * 100;
+            return number_format($onVacationEmployeePercentage);
+        } else {
+            return 0;
+        }
     }
 
     private function getMaleEmployeesPercentage()
     {
         $maleEmployeeCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->where('gender', 'male')->count();
         $allEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->count();
-        $femaleEmployeePercentage = ($maleEmployeeCount / $allEmployeesCount) * 100;
 
-        return  $femaleEmployeePercentage;
+        if ($allEmployeesCount != 0) {
+            $maleEmployeePercentage = ($maleEmployeeCount / $allEmployeesCount) * 100;
+            return number_format($maleEmployeePercentage);
+        } else {
+            return 0;
+        }
     }
     private function getFemaleEmployeesPercentage()
     {
         $femaleEmployeeCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->where('gender', 'female')->count();
         $allEmployeesCount = User::where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id)->count();
-        $femaleEmployeePercentage = ($femaleEmployeeCount / $allEmployeesCount) * 100;
 
-        return  $femaleEmployeePercentage;
+        if ($allEmployeesCount != 0) {
+            $femaleEmployeePercentage = ($femaleEmployeeCount / $allEmployeesCount) * 100;
+            return number_format($femaleEmployeePercentage);
+        } else {
+            return 0;
+        }
     }
 
     private function getOnVacationEmployees()
@@ -107,9 +122,12 @@ class AdminDashboardQuery
 
         $attendancesCount = Attendance::where('status', 1)->where('company_id', auth()->user()->company_id)->whereMonth('date', Carbon::now()->month)->count();
 
-        $attendanceRate = ($attendancesCount / $daysOfMonth) * 100;
-
-        return $attendanceRate;
+        if ($attendancesCount != 0) {
+            $attendanceRate = ($attendancesCount / $daysOfMonth) * 100;
+            return number_format($attendanceRate);
+        } else {
+            return 0;
+        }
     }
 
     public function getNationalatiesRate()
@@ -124,20 +142,21 @@ class AdminDashboardQuery
             ->where('company_id', auth()->user()->company_id)
             ->count();
 
-        $nationalityPercents = $nationalityCounts->map(function ($count, $nationalityId) use ($totalEmployees) {
+        $nationalityWithMostEmployees = $nationalityCounts->map(function ($count, $nationalityId) use ($totalEmployees) {
             $nationality = Nationalitie::find($nationalityId);
             return [
                 'nationality_id' => $nationalityId,
                 'nationality_name' => $nationality->Name,
                 'percent' => round(($count / $totalEmployees) * 100, 2)
             ];
-        });
-
-        $nationalityPercents = $nationalityPercents->sortByDesc('percent');
-        $nationalityWithMostEmployees = $nationalityPercents->take(5);
+        })
+            ->sortByDesc('percent')
+            ->take(4)
+            ->values();
 
         return $nationalityWithMostEmployees;
     }
+
 
     public function getContractExpirationPercentage()
     {
@@ -148,9 +167,12 @@ class AdminDashboardQuery
             ->where('end_job_contract', '<=', Carbon::now()->addMonth())
             ->count();
 
-        $percentApproachingExpiration = round(($approachingExpirationEmployees / $totalEmployees) * 100, 2);
-
-        return $percentApproachingExpiration;
+        if ($approachingExpirationEmployees != 0) {
+            $percentApproachingExpiration = round(($approachingExpirationEmployees / $totalEmployees) * 100, 2);
+            return number_format($percentApproachingExpiration);
+        } else {
+            return 0;
+        }
     }
 
     public function getExpiredPassportsPercentage()
@@ -161,10 +183,12 @@ class AdminDashboardQuery
             ->whereNotNull('end_passport')
             ->where('end_passport', '<=', Carbon::now()->addMonth())
             ->count();
-
-        $percentExpirationPassport = round(($passportExpirationEmployees / $totalEmployees) * 100, 2);
-
-        return $percentExpirationPassport;
+        if ($passportExpirationEmployees != 0) {
+            $percentExpirationPassport = round(($passportExpirationEmployees / $totalEmployees) * 100, 2);
+            return number_format($percentExpirationPassport);
+        } else {
+            return 0;
+        }
     }
 
     public function getContractExpiration()
@@ -181,7 +205,7 @@ class AdminDashboardQuery
         $approachingExpirationEmployees = User::where('type', UserTypes::EMPLOYEE)
             ->whereNotNull('end_passport')
             ->where('end_passport', '<=', Carbon::now()->addMonth())
-            ->get(['id', 'name', 'start_passport', 'end_passport']);
+            ->get(['id', 'name', 'end_passport']);
         return $approachingExpirationEmployees;
     }
 }

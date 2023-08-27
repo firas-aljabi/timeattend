@@ -5,6 +5,7 @@ namespace App\Repository\Posts;
 use App\Events\AddCommentEvent;
 use App\Events\AddLikeEvent;
 use App\Events\AddLikeToCommentEvent;
+use App\Http\Trait\UploadImage;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
@@ -19,6 +20,7 @@ use Illuminate\Support\Str;
 
 class PostRepository extends BaseRepositoryImplementation
 {
+    use UploadImage;
     public function getFilterItems($filter)
     {
         $records = Post::query()->with(['user', 'comments.user', 'likes.user', 'shares.user', 'comments.likes']);
@@ -44,21 +46,13 @@ class PostRepository extends BaseRepositoryImplementation
         try {
 
             $post = new Post();
-
-            if (Arr::has($data, 'image')) {
-                $file = Arr::get($data, 'image');
-                $extention = $file->getClientOriginalExtension();
-                $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                $file->move(public_path('images'), $file_name);
-
-                $image_file_path = public_path('images/' . $file_name);
-                $image_data = file_get_contents($image_file_path);
-                $base64_image = base64_encode($image_data);
-                $post->image = $base64_image;
-            }
             $post->user_id = Auth::id();
             $post->content = $data['content'];
-
+            if (Arr::has($data, 'image')) {
+                $file = Arr::get($data, 'image');
+                $file_name = $this->uploadPostsAttachment($file);
+                $post->image = $file_name;
+            }
             $post->save();
 
 

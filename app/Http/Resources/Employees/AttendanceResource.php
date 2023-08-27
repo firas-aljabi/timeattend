@@ -12,8 +12,8 @@ class AttendanceResource extends JsonResource
         return [
             'id' => $this->id,
             'Date' => $this->date,
-            'Login Time' => $this->login_time,
-            'Logout Time' => $this->logout_time,
+            'login_time' => $this->login_time,
+            'logout_time' => $this->logout_time,
             'user' => $this->whenLoaded('user', function () {
                 return [
                     'id' => $this->user->id,

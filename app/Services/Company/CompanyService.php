@@ -4,8 +4,10 @@
 namespace App\Services\Company;
 
 use App\Interfaces\Comapny\CompanyServiceInterface;
+use App\Models\Company;
 use App\Repository\Company\CompanyRepository;
 use App\Statuses\UserTypes;
+use ParagonIE\Sodium\Compat;
 
 class CompanyService implements CompanyServiceInterface
 {
@@ -24,22 +26,42 @@ class CompanyService implements CompanyServiceInterface
         return $this->companyRepository->update_company($data);
     }
 
-
-    public function update_company_location($data)
-    {
-        return $this->companyRepository->update_company_location($data);
-    }
-
-
-
-
-
-
     public function show($id)
     {
         if (auth()->user()->type == UserTypes::ADMIN && auth()->user()->company_id == $id || auth()->user()->type == UserTypes::SUPER_ADMIN) {
 
             return ['success' => true, 'data' => $this->companyRepository->with('admin')->getById($id)];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
+
+    public function show_percenatge_company()
+    {
+        if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
+            $company = Company::where('id', auth()->user()->company_id)->first();
+            return ['success' => true, 'data' => $company];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
+
+
+    public function update_percentage()
+    {
+        $company = Company::where('id', auth()->user()->company_id)->first();
+        if (auth()->user()->type == UserTypes::ADMIN  || auth()->user()->type == UserTypes::HR && $company->id == auth()->user()->company_id) {
+
+            if ($company->percentage == false) {
+                $company->update([
+                    'percentage' => true
+                ]);
+            } else {
+                $company->update([
+                    'percentage' => false
+                ]);
+            }
+            return ['success' => true, 'data' =>  $company];
         } else {
             return ['success' => false, 'message' => "Unauthorized"];
         }

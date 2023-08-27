@@ -1,0 +1,78 @@
+name: Shifts
+description: |-
+
+  APIs for managing Shifts
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/update_employee_shift
+    metadata:
+      groupName: Shifts
+      groupDescription: |-
+
+        APIs for managing Shifts
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      shift_id:
+        name: shift_id
+        description: ''
+        required: true
+        example: labore
+        type: string
+        enumValues: []
+        custom: []
+      start_time:
+        name: start_time
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      end_time:
+        name: end_time
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      start_break_hour:
+        name: start_break_hour
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      end_break_hour:
+        name: end_break_hour
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      shift_id: labore
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

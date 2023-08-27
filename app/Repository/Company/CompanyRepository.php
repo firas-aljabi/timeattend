@@ -2,7 +2,7 @@
 
 namespace App\Repository\Company;
 
-
+use App\Http\Trait\UploadImage;
 use App\Models\Company;
 use App\Models\Location;
 use App\Repository\BaseRepositoryImplementation;
@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
 
 class CompanyRepository extends BaseRepositoryImplementation
 {
+    use UploadImage;
+
     public function getFilterItems($filter)
     {
         $records = Company::query();
@@ -34,13 +36,8 @@ class CompanyRepository extends BaseRepositoryImplementation
                 $company = new Company();
                 if (Arr::has($data, 'commercial_record')) {
                     $file = Arr::get($data, 'commercial_record');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $company->commercial_record = $base64_image;
+                    $file_name = $this->uploadCompanyAttachment($file);
+                    $company->commercial_record = $file_name;
                 }
                 $company->name = $data['name'];
                 $company->email = $data['email'];
@@ -78,14 +75,8 @@ class CompanyRepository extends BaseRepositoryImplementation
                 $company = $this->updateById($data['company_id'], $data);
                 if (Arr::has($data, 'commercial_record')) {
                     $file = Arr::get($data, 'commercial_record');
-                    $extension = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extension;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $company->commercial_record = $base64_image;
-                    $company->save();
+                    $file_name = $this->uploadCompanyAttachment($file);
+                    $company->commercial_record = $file_name;
                 }
                 DB::commit();
                 if ($company === null) {
@@ -102,38 +93,7 @@ class CompanyRepository extends BaseRepositoryImplementation
         }
     }
 
-    // public function update_company_location($data)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         if (auth()->user()->type == UserTypes::SUPER_ADMIN) {
-    //             $company = $this->updateById($data['company_id'], $data);
 
-    //             if (Arr::has($data, 'commercial_record')) {
-    //                 $file = Arr::get($data, 'commercial_record');
-    //                 $extension = $file->getClientOriginalExtension();
-    //                 $file_name = Str::uuid() . date('Y-m-d') . '.' . $extension;
-    //                 $file->move(public_path('images'), $file_name);
-    //                 $image_file_path = public_path('images/' . $file_name);
-    //                 $image_data = file_get_contents($image_file_path);
-    //                 $base64_image = base64_encode($image_data);
-    //                 $company->commercial_record = $base64_image;
-    //                 $company->save();
-    //             }
-    //             DB::commit();
-    //             if ($company === null) {
-    //                 return ['success' => false, 'message' => "Company was not Updated"];
-    //             }
-    //             return ['success' => true, 'data' => $company->load('admin')];
-    //         } else {
-    //             return ['success' => false, 'message' => "Unauthorized"];
-    //         }
-    //     } catch (\Exception $e) {
-    //         DB::rollback();
-    //         Log::error($e->getMessage());
-    //         return ['success' => false, 'message' => $e->getMessage()];
-    //     }
-    // }
 
 
     public function model()

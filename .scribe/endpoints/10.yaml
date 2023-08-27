@@ -1,0 +1,318 @@
+name: Companies
+description: |-
+
+  APIs for managing Companies
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/create_company
+    metadata:
+      groupName: Companies
+      groupDescription: |-
+
+        APIs for managing Companies
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: dicta
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: brooks.zulauf@example.org
+        type: string
+        enumValues: []
+        custom: []
+      start_commercial_record:
+        name: start_commercial_record
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-08-26T16:59:43'
+        type: string
+        enumValues: []
+        custom: []
+      end_commercial_record:
+        name: end_commercial_record
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-08-26T16:59:43'
+        type: string
+        enumValues: []
+        custom: []
+      commercial_record:
+        name: commercial_record
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: similique
+        type: string
+        enumValues: []
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        custom: []
+      radius:
+        name: radius
+        description: ''
+        required: true
+        example: qui
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: dicta
+      email: brooks.zulauf@example.org
+      start_commercial_record: '2023-08-26T16:59:43'
+      end_commercial_record: '2023-08-26T16:59:43'
+      longitude: similique
+      latitude: et
+      radius: qui
+    fileParameters:
+      commercial_record: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/company/{id}'
+    metadata:
+      groupName: Companies
+      groupDescription: |-
+
+        APIs for managing Companies
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the company.'
+        required: true
+        example: molestiae
+        type: string
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: molestiae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/update_comapny
+    metadata:
+      groupName: Companies
+      groupDescription: |-
+
+        APIs for managing Companies
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      company_id:
+        name: company_id
+        description: ''
+        required: true
+        example: natus
+        type: string
+        enumValues: []
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: false
+        example: et
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: false
+        example: carole.huels@example.org
+        type: string
+        enumValues: []
+        custom: []
+      start_commercial_record:
+        name: start_commercial_record
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-08-26T16:59:43'
+        type: string
+        enumValues: []
+        custom: []
+      end_commercial_record:
+        name: end_commercial_record
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-08-26T16:59:43'
+        type: string
+        enumValues: []
+        custom: []
+      commercial_record:
+        name: commercial_record
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      company_id: natus
+      name: et
+      email: carole.huels@example.org
+      start_commercial_record: '2023-08-26T16:59:43'
+      end_commercial_record: '2023-08-26T16:59:43'
+    fileParameters:
+      commercial_record: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/show_percenatge_company
+    metadata:
+      groupName: Companies
+      groupDescription: |-
+
+        APIs for managing Companies
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/update_percentage
+    metadata:
+      groupName: Companies
+      groupDescription: |-
+
+        APIs for managing Companies
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -6,6 +6,7 @@ use App\Filter\Attendance\AttendanceFilter;
 use App\Filter\Employees\EmployeeFilter;
 use App\Filter\Nationalalities\NationalFilter;
 use App\Filter\Salary\SalaryFilter;
+use App\Http\Trait\UploadImage;
 use App\Models\Attendance;
 use App\Models\Contract;
 use App\Models\Deposit;
@@ -21,6 +22,7 @@ use App\Statuses\AdversariesType;
 use App\Statuses\DepositStatus;
 use App\Statuses\HolidayTypes;
 use App\Statuses\RewardsType;
+use App\Statuses\TerminateTime;
 use App\Statuses\UserTypes;
 use Carbon\Carbon;
 use DateTime;
@@ -34,6 +36,7 @@ use Illuminate\Support\Str;
 
 class AdminRepository extends BaseRepositoryImplementation
 {
+    use UploadImage;
     public function getFilterItems($filter)
     {
         $records = User::query()->where('type', UserTypes::EMPLOYEE)->where('company_id', auth()->user()->company_id);
@@ -48,9 +51,9 @@ class AdminRepository extends BaseRepositoryImplementation
             });
 
 
-            return $records->paginate($filter->per_page);
+            return $records->get();
         }
-        return $records->paginate($filter->per_page);
+        return $records->get();
     }
 
     public function getSalaryFilterItems($filter)
@@ -63,10 +66,10 @@ class AdminRepository extends BaseRepositoryImplementation
                     $records->orderBy($filter->getOrderBy(), $filter->getOrder());
                 });
 
-                $salaries = $records->with('user')->paginate($filter->per_page);
+                $salaries = $records->with('user')->get();
                 return ['success' => true, 'data' => $salaries];
             }
-            $salaries = $records->with('user')->paginate($filter->per_page);
+            $salaries = $records->with('user')->get();
             return ['success' => true, 'data' => $salaries];
         } else {
             return ['success' => false, 'message' => "Unauthorized"];
@@ -77,7 +80,7 @@ class AdminRepository extends BaseRepositoryImplementation
     {
         if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
             $records = Nationalitie::query();
-            return $records->paginate(50);
+            return $records->get();
         } else {
             return ['success' => false, 'message' => "Unauthorized"];
         }
@@ -87,7 +90,6 @@ class AdminRepository extends BaseRepositoryImplementation
         if (auth()->user()->type == UserTypes::ADMIN) {
 
             $records = User::query()->where('type', UserTypes::HR)->where('company_id', auth()->user()->company_id);
-            return $records->paginate();
             $records = Attendance::query()->whereMonth('date', Carbon::now()->month);
             if ($filter instanceof AttendanceFilter) {
 
@@ -100,6 +102,15 @@ class AdminRepository extends BaseRepositoryImplementation
             }
             $attendances = $records->with('user')->paginate($filter->per_page);
             return ['success' => true, 'data' => $attendances];
+        } else {
+            return ['success' => false, 'message' => "Unauthorized"];
+        }
+    }
+    public function get_contract_expiration($filter)
+    {
+        if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
+            $records = Contract::where('end_contract_date', '<=', Carbon::now()->addMonth())->whereNotNull('end_contract_date')->get();
+            return ['success' => true, 'data' => $records->load('user')];
         } else {
             return ['success' => false, 'message' => "Unauthorized"];
         }
@@ -119,104 +130,6 @@ class AdminRepository extends BaseRepositoryImplementation
 
             if (auth()->user()->type == UserTypes::HR || auth()->user()->type == UserTypes::ADMIN) {
                 $user = new User();
-                if (Arr::has($data, 'image')) {
-                    $file = Arr::get($data, 'image');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->image = $base64_image;
-                }
-                if (Arr::has($data, 'id_photo')) {
-                    $file = Arr::get($data, 'id_photo');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->id_photo = $base64_image;
-                }
-                if (Arr::has($data, 'biography')) {
-                    $file = Arr::get($data, 'biography');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->biography = $base64_image;
-                }
-                if (Arr::has($data, 'visa')) {
-                    $file = Arr::get($data, 'visa');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->visa = $base64_image;
-                }
-                if (Arr::has($data, 'municipal_card')) {
-                    $file = Arr::get($data, 'municipal_card');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->municipal_card = $base64_image;
-                }
-                if (Arr::has($data, 'health_insurance')) {
-                    $file = Arr::get($data, 'health_insurance');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->health_insurance = $base64_image;
-                }
-                if (Arr::has($data, 'passport')) {
-                    $file = Arr::get($data, 'passport');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->passport = $base64_image;
-                }
-                if (Arr::has($data, 'employee_sponsorship')) {
-                    $file = Arr::get($data, 'employee_sponsorship');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->employee_sponsorship = $base64_image;
-                }
-                if (Arr::has($data, 'employee_residence')) {
-                    $file = Arr::get($data, 'employee_residence');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->employee_residence = $base64_image;
-                }
 
                 $user->name = $data['name'];
                 $user->email = $data['email'];
@@ -232,12 +145,59 @@ class AdminRepository extends BaseRepositoryImplementation
                 $user->mobile = $data['mobile'];
                 $user->nationalitie_id = $data['nationalitie_id'];
                 $user->birthday_date = $data['birthday_date'];
-                $user->marital_status = $data['marital_status'];
+                $user->material_status = $data['material_status'];
                 $user->address = $data['address'];
                 $user->guarantor = $data['guarantor'];
                 $user->branch = $data['branch'];
                 $user->start_job_contract = $data['start_job_contract'];
                 $user->end_job_contract = $data['end_job_contract'];
+
+                if (Arr::has($data, 'image')) {
+                    $file = Arr::get($data, 'image');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->image = $file_name;
+                }
+
+                if (Arr::has($data, 'id_photo')) {
+                    $file = Arr::get($data, 'id_photo');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->id_photo = $file_name;
+                }
+                if (Arr::has($data, 'biography')) {
+                    $file = Arr::get($data, 'biography');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->biography = $file_name;
+                }
+                if (Arr::has($data, 'visa')) {
+                    $file = Arr::get($data, 'visa');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->visa = $file_name;
+                }
+                if (Arr::has($data, 'municipal_card')) {
+                    $file = Arr::get($data, 'municipal_card');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->municipal_card = $file_name;
+                }
+                if (Arr::has($data, 'health_insurance')) {
+                    $file = Arr::get($data, 'health_insurance');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->health_insurance = $file_name;
+                }
+                if (Arr::has($data, 'passport')) {
+                    $file = Arr::get($data, 'passport');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->passport = $file_name;
+                }
+                if (Arr::has($data, 'employee_sponsorship')) {
+                    $file = Arr::get($data, 'employee_sponsorship');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->employee_sponsorship = $file_name;
+                }
+                if (Arr::has($data, 'employee_residence')) {
+                    $file = Arr::get($data, 'employee_residence');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->employee_residence = $file_name;
+                }
 
                 if (isset($data['end_visa'])) {
                     $user->end_visa = $data['end_visa'];
@@ -264,8 +224,20 @@ class AdminRepository extends BaseRepositoryImplementation
                 }
                 $user->basic_salary = $data['basic_salary'];
                 $user->type = UserTypes::EMPLOYEE;
-                $user->permission_to_leave = $data['permission_to_leave'];
-                $user->permission_to_entry = $data['permission_to_entry'];
+
+                if (isset($data['permission_to_entry'])) {
+                    $user->permission_to_entry = $data['permission_to_entry'];
+                }
+                if (isset($data['leave_time'])) {
+                    $user->permission_to_leave = $data['permission_to_leave'];
+                }
+
+                if (isset($data['entry_time'])) {
+                    $user->entry_time = $data['entry_time'];
+                }
+                if (isset($data['leave_time'])) {
+                    $user->leave_time = $data['leave_time'];
+                }
                 $user->save();
                 Salary::create([
                     'user_id' => $user->id,
@@ -307,7 +279,41 @@ class AdminRepository extends BaseRepositoryImplementation
                 return ['success' => false, 'message' => "User was not created"];
             }
 
-            return ['success' => true, 'data' => $user->load('nationalitie', 'shifts')];
+            return ['success' => true, 'data' => $user->load('nationalitie', 'shifts', 'deposits')];
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            return ['success' => false, 'message' => $e->getMessage()];
+        }
+    }
+
+    public function update_employee($data)
+    {
+        DB::beginTransaction();
+        $user = $this->getById(auth()->user()->id);
+
+        try {
+
+            if (auth()->user()->type == UserTypes::EMPLOYEE || auth()->user()->id == $user->id) {
+
+                $newData = $this->updateById(auth()->user()->id, $data);
+
+                if (Arr::has($data, 'image')) {
+                    $file = Arr::get($data, 'image');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $newData->image = $file_name;
+                }
+                $newData->save();
+            } else {
+                return ['success' => false, 'message' => "Unauthorized"];
+            }
+            DB::commit();
+
+            if ($newData === null) {
+                return ['success' => false, 'message' => "User was not Updated"];
+            }
+
+            return ['success' => true, 'data' => $newData->load('nationalitie', 'shifts', 'deposits')];
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
@@ -321,96 +327,6 @@ class AdminRepository extends BaseRepositoryImplementation
         try {
             if (auth()->user()->type == UserTypes::ADMIN) {
                 $user = new User();
-                if (Arr::has($data, 'image')) {
-                    $file = Arr::get($data, 'image');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->image = $base64_image;
-                }
-                if (Arr::has($data, 'id_photo')) {
-                    $file = Arr::get($data, 'id_photo');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->id_photo = $base64_image;
-                }
-                if (Arr::has($data, 'biography')) {
-                    $file = Arr::get($data, 'biography');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->biography = $base64_image;
-                }
-                if (Arr::has($data, 'visa')) {
-                    $file = Arr::get($data, 'visa');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->visa = $base64_image;
-                }
-                if (Arr::has($data, 'municipal_card')) {
-                    $file = Arr::get($data, 'municipal_card');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->municipal_card = $base64_image;
-                }
-                if (Arr::has($data, 'health_insurance')) {
-                    $file = Arr::get($data, 'health_insurance');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->health_insurance = $base64_image;
-                }
-                if (Arr::has($data, 'passport')) {
-                    $file = Arr::get($data, 'passport');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->passport = $base64_image;
-                }
-                if (Arr::has($data, 'employee_sponsorship')) {
-                    $file = Arr::get($data, 'employee_sponsorship');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->employee_sponsorship = $base64_image;
-                }
-                if (Arr::has($data, 'employee_residence')) {
-                    $file = Arr::get($data, 'employee_residence');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->employee_residence = $base64_image;
-                }
                 $user->name = $data['name'];
                 $user->email = $data['email'];
                 $user->password = Hash::make($data['password']);
@@ -424,12 +340,58 @@ class AdminRepository extends BaseRepositoryImplementation
                 $user->mobile = $data['mobile'];
                 $user->nationalitie_id = $data['nationalitie_id'];
                 $user->birthday_date = $data['birthday_date'];
-                $user->marital_status = $data['marital_status'];
+                $user->material_status = $data['material_status'];
                 $user->address = $data['address'];
                 $user->guarantor = $data['guarantor'];
                 $user->branch = $data['branch'];
                 $user->start_job_contract = $data['start_job_contract'];
                 $user->end_job_contract = $data['end_job_contract'];
+                if (Arr::has($data, 'image')) {
+                    $file = Arr::get($data, 'image');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->image = $file_name;
+                }
+
+                if (Arr::has($data, 'id_photo')) {
+                    $file = Arr::get($data, 'id_photo');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->id_photo = $file_name;
+                }
+                if (Arr::has($data, 'biography')) {
+                    $file = Arr::get($data, 'biography');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->biography = $file_name;
+                }
+                if (Arr::has($data, 'visa')) {
+                    $file = Arr::get($data, 'visa');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->visa = $file_name;
+                }
+                if (Arr::has($data, 'municipal_card')) {
+                    $file = Arr::get($data, 'municipal_card');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->municipal_card = $file_name;
+                }
+                if (Arr::has($data, 'health_insurance')) {
+                    $file = Arr::get($data, 'health_insurance');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->health_insurance = $file_name;
+                }
+                if (Arr::has($data, 'passport')) {
+                    $file = Arr::get($data, 'passport');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->passport = $file_name;
+                }
+                if (Arr::has($data, 'employee_sponsorship')) {
+                    $file = Arr::get($data, 'employee_sponsorship');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->employee_sponsorship = $file_name;
+                }
+                if (Arr::has($data, 'employee_residence')) {
+                    $file = Arr::get($data, 'employee_residence');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->employee_residence = $file_name;
+                }
 
                 if (isset($data['end_visa'])) {
                     $user->end_visa = $data['end_visa'];
@@ -492,36 +454,6 @@ class AdminRepository extends BaseRepositoryImplementation
         try {
             if (auth()->user()->type == UserTypes::SUPER_ADMIN) {
                 $user = new User();
-                if (Arr::has($data, 'image')) {
-                    $file = Arr::get($data, 'image');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->image = $base64_image;
-                }
-                if (Arr::has($data, 'id_photo')) {
-                    $file = Arr::get($data, 'id_photo');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->id_photo = $base64_image;
-                }
-                if (Arr::has($data, 'biography')) {
-                    $file = Arr::get($data, 'biography');
-                    $extention = $file->getClientOriginalExtension();
-                    $file_name = Str::uuid() . date('Y-m-d') . '.' . $extention;
-                    $file->move(public_path('images'), $file_name);
-                    $image_file_path = public_path('images/' . $file_name);
-                    $image_data = file_get_contents($image_file_path);
-                    $base64_image = base64_encode($image_data);
-                    $user->biography = $base64_image;
-                }
                 $user->name = $data['name'];
                 $user->email = $data['email'];
                 $user->password = Hash::make($data['password']);
@@ -533,10 +465,16 @@ class AdminRepository extends BaseRepositoryImplementation
                 $user->mobile = $data['mobile'];
                 $user->nationalitie_id = $data['nationalitie_id'];
                 $user->birthday_date = $data['birthday_date'];
-                $user->marital_status = $data['marital_status'];
+                $user->material_status = $data['material_status'];
                 $user->address = $data['address'];
                 $user->branch = $data['branch'];
                 $user->type = UserTypes::ADMIN;
+
+                if (Arr::has($data, 'image')) {
+                    $file = Arr::get($data, 'image');
+                    $file_name = $this->uploadEmployeeAttachment($file, $user->id);
+                    $user->image = $file_name;
+                }
                 $user->save();
             } else {
                 return ['success' => false, 'message' => "Unauthorized"];
@@ -625,9 +563,11 @@ class AdminRepository extends BaseRepositoryImplementation
         $user = User::findOrFail($data['user_id']);
         $contract = Contract::where('user_id', $data['user_id'])->first();
 
-        $hasUnpaidDeposits = $user->deposits()->where('status', DepositStatus::UN_PAID)->whereHas('user', function ($query) use ($user) {
-            $query->where('id', $user->id);
-        })->exists();
+        $hasUnpaidDeposits = $user->deposits()->where('status', DepositStatus::UN_PAID)
+            ->orWhere('extra_status', DepositStatus::UN_PAID_REJECTED)
+            ->whereHas('user', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            })->exists();
 
         DB::beginTransaction();
         try {
@@ -636,30 +576,50 @@ class AdminRepository extends BaseRepositoryImplementation
                 if (!$hasUnpaidDeposits) {
 
                     $date = \Carbon\Carbon::create($user->end_job_contract);
+
+
+                    $newDateThreeMonth = $date->copy()->addMonths(3)->format('Y-m-d');
+                    $newDateThreeMonthString = \Carbon\Carbon::createFromFormat('Y-m-d', $newDateThreeMonth);
+
+
                     $newDateSixMonth = $date->copy()->addMonths(6)->format('Y-m-d');
                     $newDateSixMonthString = \Carbon\Carbon::createFromFormat('Y-m-d', $newDateSixMonth);
 
                     $newDateYear = $date->copy()->addMonths(12)->format('Y-m-d');
                     $newDateYearString = \Carbon\Carbon::createFromFormat('Y-m-d', $newDateYear);
 
-                    $diffMonths = $newDateSixMonthString->diff($date)->format('%m months, %d days');
+
+
+                    $diffThreeMonths = $newDateThreeMonthString->diff($date)->format('%m months, %d days');
+                    $diffSixMonths = $newDateSixMonthString->diff($date)->format('%m months, %d days');
                     $diffYears = $newDateYearString->diff($date)->format('%y years,%m months, %d days');
 
-                    if (isset($data['contract_termination_period']) && $data['contract_termination_period'] == 1) {
+
+
+
+
+                    if (isset($data['contract_termination_period']) && $data['contract_termination_period'] == TerminateTime::THREE_MONTH) {
+                        $contract->update([
+                            'end_contract_date' => $newDateThreeMonth,
+                            "contract_termination_date" => date('Y-m-d'),
+                            "contract_termination_period" => $diffThreeMonths,
+                            "contract_termination_reason" => $data['contract_termination_reason'],
+                        ]);
+                    } elseif (isset($data['contract_termination_period']) && $data['contract_termination_period'] == TerminateTime::SIX_MONTH) {
                         $contract->update([
                             'end_contract_date' => $newDateSixMonth,
                             "contract_termination_date" => date('Y-m-d'),
-                            "contract_termination_period" => $diffMonths,
+                            "contract_termination_period" => $diffSixMonths,
                             "contract_termination_reason" => $data['contract_termination_reason'],
                         ]);
-                    } elseif (isset($data['contract_termination_period']) && $data['contract_termination_period'] == 2) {
+                    } elseif (isset($data['contract_termination_period']) && $data['contract_termination_period'] == TerminateTime::ONE_YEAR) {
                         $contract->update([
                             'end_contract_date' => $newDateYear,
                             "contract_termination_date" => date('Y-m-d'),
                             "contract_termination_period" => $diffYears,
                             "contract_termination_reason" => $data['contract_termination_reason'],
                         ]);
-                    } else {
+                    } elseif (isset($data['contract_termination_period']) && $data['contract_termination_period'] == TerminateTime::OPEN_TERM) {
                         $contract->update([
                             'end_contract_date' => date('Y-m-d'),
                             "contract_termination_date" => date('Y-m-d'),
@@ -668,7 +628,7 @@ class AdminRepository extends BaseRepositoryImplementation
                         ]);
                     }
                 } else {
-                    return ['success' => false, 'message' => "You Cannot Terminate This Employee Because This Employee Have Deposit Unpaided."];
+                    return ['success' => false, 'message' => "You Cannot Terminate This Employee Because This Employee Have Deposit Unpaided Or UN PAID REJECTED."];
                 }
             } else {
                 return ['success' => false, 'message' => "Unauthorized"];
@@ -816,15 +776,25 @@ class AdminRepository extends BaseRepositoryImplementation
         try {
             $employeeAvailableTime =  EmployeeAvailableTime::where('user_id', $data['user_id'])->first();
             if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR && auth()->user()->company_id == $employeeAvailableTime->company_id) {
-                // $employeeAvailableTime = new EmployeeAvailableTime();
 
+                if (isset($data['hours_daily']) && isset($data['days_annual'])) {
 
-                // $employeeAvailableTime->user_id = $data['user_id'];
-                // $employeeAvailableTime->hours_daily = $data['hours_daily'];
-                // $employeeAvailableTime->days_annual = $data['days_annual'];
-                // $employeeAvailableTime->company_id = auth()->user()->company_id;
+                    $employeeAvailableTime->update([
+                        'hours_daily' => $data['hours_daily'],
+                        'days_annual' => $data['days_annual']
+                    ]);
+                } elseif (isset($data['hours_daily'])) {
 
-                // $employeeAvailableTime->save();
+                    $employeeAvailableTime->update([
+                        'hours_daily' => $data['hours_daily']
+                    ]);
+                } elseif (isset($data['days_annual'])) {
+                    $employeeAvailableTime->update([
+                        'days_annual' => $data['days_annual']
+                    ]);
+                } else {
+                    $employeeAvailableTime->update();
+                }
             } else {
                 return ['success' => false, 'message' => "Unauthorized"];
             }
@@ -842,9 +812,7 @@ class AdminRepository extends BaseRepositoryImplementation
         }
     }
 
-
-
-    public function reward_adversaries_salary($data)
+    public function reward_adversaries_allowance_salary($data)
     {
         $salary = Salary::where('user_id', $data['user_id'])->first();
         if (isset($data['rewards_type']) && $data['rewards_type'] == RewardsType::NUMBER) {
@@ -884,6 +852,13 @@ class AdminRepository extends BaseRepositoryImplementation
                 'salary' => $totalSalary,
                 'date' => date('Y-m-d'),
             ]);
+        } elseif (isset($data['housing_allowance']) && isset($data['transportation_allowance'])) {
+            $salary->update([
+                'transportation_allowance' => $data['transportation_allowance'],
+                'housing_allowance' => $data['housing_allowance'],
+                'salary' =>  $salary->salary + $data['transportation_allowance'] + $data['housing_allowance'],
+                'date' => date('Y-m-d'),
+            ]);
         } elseif (isset($data['housing_allowance'])) {
             $salary->update([
                 'housing_allowance' => $data['housing_allowance'],
@@ -904,7 +879,7 @@ class AdminRepository extends BaseRepositoryImplementation
 
     public function profile()
     {
-        return User::where('id', Auth::id())->with(['salaries', 'availableTime', 'vacationRequestsApproved', 'attendancesMonthly'])->first();
+        return User::where('id', Auth::id())->with(['salaries', 'availableTime', 'vacationRequestsApproved', 'attendancesMonthly', 'deposits'])->first();
     }
 
     public function model()

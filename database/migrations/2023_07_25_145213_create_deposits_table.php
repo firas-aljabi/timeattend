@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('type')->nullable();
             $table->tinyInteger('status')->default(DepositStatus::PENDING)->nullable();
+            $table->tinyInteger('extra_status')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('company_id')->unsigned()->nullable();
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->string('mobile_color')->nullable();
             $table->longText('mobile_image')->nullable();
             $table->text('reason_reject')->nullable();
+            $table->text('reason_clearance_reject')->nullable();
             $table->timestamps();
         });
     }

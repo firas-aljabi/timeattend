@@ -14,31 +14,40 @@ class DepositResource extends JsonResource
             return [
                 "id" => $this->id,
                 "type" => $this->type,
-                "Status" => $this->status == 2 ? 'Un Paid' : "Paid",
-                "Car Number" => $this->car_number,
-                "Car Model" => $this->car_model,
-                "Manufacturing Year" => $this->manufacturing_year,
-                "Mechanic Card Number" => $this->Mechanic_card_number,
-                "Car Image" => $this->car_image,
+                "status" => $this->status,
+                "extra_status" => $this->extra_status,
+                "car_number" => $this->car_number,
+                "car_model" => $this->car_model,
+                "manufacturing_year" => $this->manufacturing_year,
+                "mechanic_card_number" => $this->Mechanic_card_number,
+                'car_image' => $this->car_image ? asset($this->car_image) : null,
+                'reason_reject' => $this->reason_reject,
+                'reason_clearance_reject' => $this->reason_clearance_reject
             ];
         } elseif ($this->type == DepositType::LAPTOP) {
             return [
                 "id" => $this->id,
                 "type" => $this->type,
-                "Status" => $this->status == 2 ? 'Un Paid' : "Paid",
-                "Laptop Type" => $this->laptop_type,
-                "Serial Laptop Number" => $this->serial_laptop_number,
-                "Laptop Color" => $this->laptop_color,
-                "Laptop Image" => $this->laptop_image,
+                "status" => $this->status,
+                "extra_status" => $this->extra_status,
+                "laptop_type" => $this->laptop_type,
+                "Serial_laptop_number" => $this->serial_laptop_number,
+                "laptop_color" => $this->laptop_color,
+                'laptop_image' => $this->laptop_image ? asset($this->laptop_image) : null,
+                'reason_reject' => $this->reason_reject,
+                'reason_clearance_reject' => $this->reason_clearance_reject
             ];
-        } else {
+        } elseif ($this->type == DepositType::MOBILE) {
             return [
                 "id" => $this->id,
                 "type" => $this->type,
-                "Status" => $this->status == 2 ? 'Un Paid' : "Paid",
-                "Serial Mobile Mumber" => $this->serial_mobile_number,
-                "Mobile Color" => $this->mobile_color,
-                "Mobile Image" => $this->mobile_image,
+                "status" => $this->status,
+                "extra_status" => $this->extra_status,
+                "serial_mobile_number" => $this->serial_mobile_number,
+                "mobile_color" => $this->mobile_color,
+                'mobile_image' => $this->mobile_image ? asset($this->mobile_image) : null,
+                'reason_reject' => $this->reason_reject,
+                'reason_clearance_reject' => $this->reason_clearance_reject
             ];
         }
     }

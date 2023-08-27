@@ -26,7 +26,7 @@ class AlertCron extends Command
         $passportExpirationEmployees = User::where('type', UserTypes::EMPLOYEE)
             ->whereNotNull('end_passport')
             ->where('end_passport', '<=', Carbon::now()->addMonth())
-            ->get(['id', 'name', 'start_passport', 'end_passport']);
+            ->get(['id', 'name', 'end_passport']);
 
 
 

@@ -1,0 +1,108 @@
+name: Alerts
+description: |-
+
+  APIs for managing Alert Operations
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/add_alert
+    metadata:
+      groupName: Alerts
+      groupDescription: |-
+
+        APIs for managing Alert Operations
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      content:
+        name: content
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: rokqmimed
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: paucek.alan@example.com
+        type: string
+        enumValues: []
+        custom: []
+      type:
+        name: type
+        description: ''
+        required: true
+        example: '3'
+        type: string
+        enumValues:
+          - '1'
+          - '2'
+          - '3'
+        custom: []
+    cleanBodyParameters:
+      content: rokqmimed
+      email: paucek.alan@example.com
+      type: '3'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/get_my_alert
+    metadata:
+      groupName: Alerts
+      groupDescription: |-
+
+        APIs for managing Alert Operations
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

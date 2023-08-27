@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Contract;
 
+use App\Statuses\TerminateTime;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TerminateContractRequest extends FormRequest
 {
@@ -21,7 +23,7 @@ class TerminateContractRequest extends FormRequest
     {
         return [
             "user_id" => "required|exists:users,id",
-            "contract_termination_period" => "required",
+            'contract_termination_period' => ['required', Rule::in(TerminateTime::$statuses)],
             "contract_termination_reason" => "required"
         ];
     }

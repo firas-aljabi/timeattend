@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('commercial_record')->nullable();
             $table->date('start_commercial_record')->nullable();
             $table->date('end_commercial_record')->nullable();
+            $table->boolean('percentage')->default(false);
             $table->timestamps();
         });
     }

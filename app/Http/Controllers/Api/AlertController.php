@@ -12,6 +12,12 @@ use App\Http\Resources\PaginationResource;
 use App\Services\Alerts\AlertService;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Alerts
+ *
+ * APIs for managing Alert Operations
+ */
 class AlertController extends Controller
 {
     public function __construct(private AlertService $alertService)

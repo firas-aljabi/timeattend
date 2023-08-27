@@ -9,8 +9,15 @@ use App\Http\Requests\Company\CreateComapnyRequest;
 use App\Http\Requests\Company\UpdateCompanyLocationRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Resources\Company\ComapnyResource;
+use App\Http\Resources\Company\CompanyPercentageResource;
 use App\Services\Company\CompanyService;
 
+
+/**
+ * @group Companies
+ *
+ * APIs for managing Companies
+ */
 class CompanyController extends Controller
 {
 
@@ -49,27 +56,41 @@ class CompanyController extends Controller
             return ['message' => $company['message']];
         }
     }
+    public function show_percenatge_company()
+    {
+        $company = $this->companyService->show_percenatge_company();
 
+        if ($company['success']) {
+            $data = $company['data'];
+            $returnData = CompanyPercentageResource::make($data);
+
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "Done")
+            );
+        } else {
+            return ['message' => $company['message']];
+        }
+    }
+    public function update_percentage()
+    {
+        $company = $this->companyService->update_percentage();
+
+        if ($company['success']) {
+            $alert = $company['data'];
+            $returnData = CompanyPercentageResource::make($alert);
+
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "Done")
+            );
+        } else {
+            return ['message' => $company['message']];
+        }
+    }
 
 
     public function update_comapny(UpdateCompanyRequest $request)
     {
         $createdData =  $this->companyService->update_company($request->validated());
-
-        if ($createdData['success']) {
-            $newData = $createdData['data'];
-            $returnData = ComapnyResource::make($newData);
-            return ApiResponseHelper::sendResponse(
-                new Result($returnData, "Done")
-            );
-        } else {
-            return ['message' => $createdData['message']];
-        }
-    }
-
-    public function update_company_location(UpdateCompanyLocationRequest $request)
-    {
-        $createdData =  $this->companyService->update_company_location($request->validated());
 
         if ($createdData['success']) {
             $newData = $createdData['data'];

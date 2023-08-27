@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Requests;
 
-use App\Statuses\JustifyStatus;
 use App\Statuses\JustifyTypes;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -28,10 +27,11 @@ class CreateJustifyRequest extends FormRequest
     {
         return [
             "reason" => "required|string",
-            "type" => ["required", Rule::in(JustifyTypes::$statuses)],
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date',
-            "medical_report_file" => "nullable|mimes:pdf|max:2048"
+            'date' => 'nullable|date',
+            'start_date' => 'nullable|required_if:date,null|date',
+            'end_date' => 'nullable|required_if:date,null|date',
+            'justify_type' => ['required', Rule::in(JustifyTypes::$statuses)],
+            "attachments" => "nullable|mimes:pdf|max:2048"
         ];
     }
 }
