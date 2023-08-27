@@ -104,8 +104,8 @@ class AuthController extends Controller
                 //     return response()->json(['message' => 'You Should Verfiy Your Code..!']);
                 // }
                 $rules = [
-                    "email" => "required|email|max:255|regex:/^[a-zA-Z0-9._%+-]{1,16}[^*]{0,}@[^*]+$/",
-                    "password" => "required|min:8|max:24|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,24}$/",
+                    "email" => "required",
+                    "password" => "required",
                 ];
                 $validator = Validator::make($request->only(['email', 'password']), $rules);
 

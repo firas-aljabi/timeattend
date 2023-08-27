@@ -38,9 +38,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('create_employee', [AdminController::class, 'store']);
     Route::post('create_hr', [AdminController::class, 'store_hr']);
     Route::post('create_admin', [AdminController::class, 'store_admin']);
-    Route::delete('employee/{id}', [AdminController::class, 'destroyEmployee']);
     Route::post('update_employee', [AdminController::class, 'update_employee']);
-    // Route::post('admin_update_employee', [AdminController::class, 'admin_update_employee']);
+    Route::delete('employee/{id}', [AdminController::class, 'destroyEmployee']);
     Route::post('determine_working_hours', [AdminController::class, 'determine_working_hours']);
     Route::post('update_working_hours', [AdminController::class, 'update_working_hours']);
     Route::post('reward_adversaries_allowance_salary', [AdminController::class, 'reward_adversaries_allowance_salary']);
@@ -121,6 +120,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('create_company', [CompanyController::class, 'store']);
     Route::get('company/{id}', [CompanyController::class, 'show']);
     Route::post('update_comapny', [CompanyController::class, 'update_comapny']);
-    Route::get('show_percenatge_company', [CompanyController::class, 'show_percenatge_company']);
-    Route::put('update_percentage', [CompanyController::class, 'update_percentage']);
+    // Route::get('show_percenatge_company', [CompanyController::class, 'show_percenatge_company']);
+    // Route::put('update_percentage', [CompanyController::class, 'update_percentage']);
 });

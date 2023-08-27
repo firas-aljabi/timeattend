@@ -16,7 +16,6 @@ class CheckInAttendanceRequest extends FormRequest
     {
         return [
             'check_in' => 'required',
-
         ];
     }
 }

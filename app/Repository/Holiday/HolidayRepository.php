@@ -107,7 +107,7 @@ class HolidayRepository extends BaseRepositoryImplementation
     {
         if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
             $records = Holiday::query()->where('company_id', auth()->user()->company_id);
-            return $records->paginate(100);
+            return $records->get();
         } else {
             return ['success' => false, 'message' => "Unauthorized"];
         }

@@ -10,23 +10,23 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "16b88e31-1c13-4a3d-b5f2-4650a84fc02e",
+        "_postman_id": "5b0bd040-60c6-4194-b92f-3d1250a7d62f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
             "name": "Admin Operations",
-            "description": "\nAPIs for managing Admin Operations",
+            "description": "",
             "item": [
                 {
-                    "name": "POST api\/create_hr",
+                    "name": "Add Employee to the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/create_hr",
+                            "path": "api\/create_employee",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/create_hr"
+                            "raw": "{{baseUrl}}\/api\/create_employee"
                         },
                         "method": "POST",
                         "header": [
@@ -44,183 +44,219 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "omnis",
+                                    "value": "mouaz alkhateeb.",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "The name of the employee must be required"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "howell.emile@example.com",
+                                    "value": "mouaz@gmail.com",
                                     "type": "text",
-                                    "description": "Must be a valid email address. Must match the regex \/^[a-zA-Z0-9._%+-]{1,16}[^*]{0,}@[^*]+$\/. Must not be greater than 255 characters."
+                                    "description": "The email of the employee, The email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
                                 },
                                 {
                                     "key": "password",
-                                    "value": "ma`]cP>ZpWuaFk7uVg5G",
+                                    "value": "Abc071096904038",
                                     "type": "text",
-                                    "description": "Must match the regex \/^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,24}$\/. Must be at least 8 characters. Must not be greater than 24 characters."
+                                    "description": "The password of the employee. Must not be greater than 24 characters and should contain both numbers and characters."
                                 },
                                 {
                                     "key": "work_email",
-                                    "value": "ibogisich@example.org",
+                                    "value": "mouazalkhateeb@goma.com.",
                                     "type": "text",
-                                    "description": "Must be a valid email address. Must match the regex \/^[a-zA-Z0-9._%+-]{1,16}[^*]{0,}@[^*]+$\/. Must not be greater than 255 characters."
+                                    "description": "The email work of the employee, The work_email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
                                 },
                                 {
                                     "key": "nationalitie_id",
-                                    "value": "voluptate",
+                                    "value": 15,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Must be from 1 to 56"
                                 },
                                 {
                                     "key": "birthday_date",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "material_status",
-                                    "value": "3",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The material status of the user. Must be one of the following values:\n- `1`: single status.\n- `2`: married status.\n- `3`: divorced status. Custom"
                                 },
                                 {
                                     "key": "departement",
-                                    "value": "quia",
+                                    "value": "It",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "position",
-                                    "value": "perspiciatis",
+                                    "value": "Developer",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "address",
-                                    "value": "quaerat",
+                                    "value": "Damascus",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "guarantor",
-                                    "value": "sequi",
+                                    "value": "Mouaz Alkhateeb",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "branch",
-                                    "value": "deleniti",
+                                    "value": "Syria",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "skills",
-                                    "value": "iusto",
+                                    "value": "Drwaing",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "serial_number",
-                                    "value": "nulla",
+                                    "value": 101122,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "gender",
-                                    "value": "2",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The gender of the user. Must be one of the following values:\n- `1`: male.\n- `2`: female. Custom"
                                 },
                                 {
                                     "key": "status",
-                                    "value": "1",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The status of the user. Must be one of the following values:\n- `1`: on duty.\n- `2`: on vacation. Custom"
                                 },
                                 {
                                     "key": "start_job_contract",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_job_contract",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_visa",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_employee_sponsorship",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_municipal_card",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_health_insurance",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_employee_residence",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "permission_to_leave",
-                                    "value": "0",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The permission to leave of the user. Must be one of the following values:\n- `1`: True.\n- `2`: False. Custom"
+                                },
+                                {
+                                    "key": "leave_time",
+                                    "value": 60,
+                                    "type": "text",
+                                    "description": "require if permission_to_leave equal 1. Must be one of the following values:\n- 30.\n- 60.\n- 90  Custom"
                                 },
                                 {
                                     "key": "permission_to_entry",
-                                    "value": "1",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The permission to entry of the user. Must be one of the following values:\n- `1`: True.\n- `2`: False. Custom"
+                                },
+                                {
+                                    "key": "entry_time",
+                                    "value": 90,
+                                    "type": "text",
+                                    "description": "require if permission_to_entry equal 1. Must be one of the following values:\n- 30.\n- 60.\n- 90  Custom"
                                 },
                                 {
                                     "key": "end_passport",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27T21:51:43",
                                     "type": "text",
                                     "description": "Must be a valid date."
                                 },
                                 {
-                                    "key": "biography",
-                                    "value": "bysukbfccevztgrbtdkluvvh",
-                                    "type": "text",
-                                    "description": "Must not be greater than 2048 characters."
-                                },
-                                {
                                     "key": "basic_salary",
-                                    "value": "dolores",
+                                    "value": 250000,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "number_of_shifts",
-                                    "value": 53,
+                                    "value": 3,
                                     "type": "text",
-                                    "description": "Must be at least 1."
+                                    "description": "Must be at least 1 Custom"
                                 },
                                 {
                                     "key": "shifts[0]",
-                                    "value": "aut",
+                                    "value": "quam",
                                     "type": "text",
                                     "description": ""
+                                },
+                                {
+                                    "key": "user_id",
+                                    "value": 8,
+                                    "type": "text",
+                                    "description": "optional The ID of the user That Exists in users Table."
+                                },
+                                {
+                                    "key": "start_time",
+                                    "value": "09:00:00.",
+                                    "type": "text",
+                                    "description": "The start time of the shift in the format `HH:MM:SS` Custom"
+                                },
+                                {
+                                    "key": "end_time",
+                                    "value": "09:00:00.",
+                                    "type": "text",
+                                    "description": "The end time of the shift in the format `HH:MM:SS` Custom"
+                                },
+                                {
+                                    "key": "start_break_hour",
+                                    "value": "09:00:00.",
+                                    "type": "text",
+                                    "description": "The start time of the break in the format `HH:MM:SS` Custom"
+                                },
+                                {
+                                    "key": "end_break_hour",
+                                    "value": "09:00:00.",
+                                    "type": "text",
+                                    "description": "The end time of the break in the format `HH:MM:SS` Custom"
                                 },
                                 {
                                     "key": "image",
@@ -229,6 +265,11 @@
                                 },
                                 {
                                     "key": "id_photo",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "biography",
                                     "src": [],
                                     "type": "file"
                                 },
@@ -264,15 +305,274 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Add Employee to the Company and Just Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": {\n\"id\": 4,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": \"1\",\n\"type\": 4,\n\"gender\": \"1\",\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": \"1\",\n\"entry_time\": \"30\",\n\"permission_to_leave\": \"1\",\n\"leave_time\": \"60\",\n\"nationalitie\": {\n  \"name\": \"Syrian\"\n},\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"shifts\": [\n  {\n     \"id\": 3,\n    \"start_time\": \"09:00:00\",\n   \"end_time\": \"15:00:00\",\n  \"start_break_hour\": \"12:30:00\",\n  \"end_break_hour\": \"13:00:00\"\n},\n{\n  \"id\": 4,\n  \"start_time\": \"16:00:00\",\n \"end_time\": \"22:00:00\",\n \"start_break_hour\": \"20:30:00\",\n \"end_break_hour\": \"21:00:00\"\n}\n],\n\"deposits\": []\n}\n}",
+                            "name": "Add a Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/create_admin",
+                    "name": "Add Hr to the Company",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/create_hr",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/create_hr"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "mouaz alkhateeb.",
+                                    "type": "text",
+                                    "description": "The name of the employee must be required"
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "mouaz@gmail.com",
+                                    "type": "text",
+                                    "description": "The email of the employee, The email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "Abc071096904038",
+                                    "type": "text",
+                                    "description": "The password of the employee. Must not be greater than 24 characters and should contain both numbers and characters."
+                                },
+                                {
+                                    "key": "work_email",
+                                    "value": "mouazalkhateeb@goma.com.",
+                                    "type": "text",
+                                    "description": "The email work of the employee, The work_email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
+                                },
+                                {
+                                    "key": "nationalitie_id",
+                                    "value": 3,
+                                    "type": "text",
+                                    "description": "Must be from 1 to 56"
+                                },
+                                {
+                                    "key": "birthday_date",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "material_status",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "optional The material status of the user. Must be one of the following values:\n- `1`: single status.\n- `2`: married status.\n- `3`: divorced status. Custom"
+                                },
+                                {
+                                    "key": "departement",
+                                    "value": "It",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "position",
+                                    "value": "Developer",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "address",
+                                    "value": "Damascus",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "guarantor",
+                                    "value": "Mouaz Alkhateeb",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "branch",
+                                    "value": "Syria",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "skills",
+                                    "value": "Drwaing",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "serial_number",
+                                    "value": 101122,
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "gender",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "optional The gender of the user. Must be one of the following values:\n- `1`: male.\n- `2`: female. Custom"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "optional The status of the user. Must be one of the following values:\n- `1`: on duty.\n- `2`: on vacation. Custom"
+                                },
+                                {
+                                    "key": "start_job_contract",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_job_contract",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_visa",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_employee_sponsorship",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_municipal_card",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_health_insurance",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "end_employee_residence",
+                                    "value": "2023-08-27",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "permission_to_leave",
+                                    "value": "1",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "permission_to_entry",
+                                    "value": "1",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "end_passport",
+                                    "value": "2023-08-27T21:51:43",
+                                    "type": "text",
+                                    "description": "Must be a valid date."
+                                },
+                                {
+                                    "key": "basic_salary",
+                                    "value": 250000,
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "number_of_shifts",
+                                    "value": 89,
+                                    "type": "text",
+                                    "description": "Must be at least 1."
+                                },
+                                {
+                                    "key": "shifts[0]",
+                                    "value": "voluptate",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "id_photo",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "biography",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "visa",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "municipal_card",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "employee_residence",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "health_insurance",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "passport",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "employee_sponsorship",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "This endpoint is used to Add Hr to the Company and Just Admin Can Access To This Api."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": {\n\"id\": 5,\n\"name\": \"Hamza Fawaz\",\n\"email\": \"hamzafawaz123@gmail.com\",\n\"work_email\": \"hamzafawaz122@gmail.com\",\n\"status\": \"1\",\n\"type\": 3,\n\"gender\": \"1\",\n\"mobile\": \"0969010781\",\n\"phone\": \"0935461184\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000003\",\n\"birthday_date\": \"1998-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-06-01\",\n\"end_job_contract\": \"2023-09-01\",\n\"end_visa\": null,\n\"end_passport\": null,\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": null,\n\"end_health_insurance\": null,\n\"end_employee_residence\": null,\n\"image\": null,\n\"id_photo\": null,\n\"biography\": null,\n\"employee_sponsorship\": null,\n\"visa\": null,\n\"passport\": null,\n\"municipal_card\": null,\n\"health_insurance\": null,\n\"employee_residence\": null,\n\"permission_to_entry\": null,\n\"entry_time\": null,\n\"permission_to_leave\": null,\n\"leave_time\": null,\n\"percentage\": \"0\",\n\"basic_salary\": 200000\n}",
+                            "name": "Add a Hr"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Admin to the System",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -296,75 +596,81 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "magni",
+                                    "value": "Firas Aljabi.",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "The name of the admin must be required"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "EV0%ZYMvb1Vs@!c[f^$*",
+                                    "value": "mouaz@gmail.com",
                                     "type": "text",
-                                    "description": "Must be a valid email address. Must match the regex \/^[a-zA-Z0-9._%+-]{1,16}@(?!.*\\*)\/."
+                                    "description": "The email of the admin, The email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
                                 },
                                 {
                                     "key": "password",
-                                    "value": "p*(mcO'nt+oM+",
+                                    "value": "Abc071096904038",
                                     "type": "text",
-                                    "description": "Must match the regex \/^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,24}$\/. Must be at least 8 characters. Must not be greater than 24 characters."
+                                    "description": "The password of the admin. Must not be greater than 24 characters and should contain both numbers and characters."
                                 },
                                 {
                                     "key": "work_email",
-                                    "value": "3nulTnIsf@!0*)",
+                                    "value": "mouazalkhateeb@goma.com.",
                                     "type": "text",
-                                    "description": "Must be a valid email address. Must match the regex \/^[a-zA-Z0-9._%+-]{1,16}@(?!.*\\*)\/."
+                                    "description": "The email work of the employee, The work_email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
                                 },
                                 {
                                     "key": "company_id",
-                                    "value": "est",
+                                    "value": "minus",
                                     "type": "text",
                                     "description": ""
-                                },
-                                {
-                                    "key": "date_employee",
-                                    "value": "2023-08-26T16:59:43",
-                                    "type": "text",
-                                    "description": "Must be a valid date."
                                 },
                                 {
                                     "key": "nationalitie_id",
-                                    "value": "et",
+                                    "value": 3,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Must be from 1 to 56"
                                 },
                                 {
                                     "key": "birthday_date",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "material_status",
-                                    "value": "2",
+                                    "value": "3",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "address",
-                                    "value": "voluptates",
+                                    "value": "Damascus",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "serial_number",
-                                    "value": "unde",
+                                    "value": 101122,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "gender",
-                                    "value": "1",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "optional The gender of the admin. Must be one of the following values:\n- `1`: male.\n- `2`: female. Custom"
+                                },
+                                {
+                                    "key": "branch",
+                                    "value": "Syria",
+                                    "type": "text",
+                                    "description": "Custom"
+                                },
+                                {
+                                    "key": "comapny_id",
+                                    "value": 19,
+                                    "type": "text",
+                                    "description": "Must be exists in companies table."
                                 },
                                 {
                                     "key": "image",
@@ -373,51 +679,19 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Add Admin to the System and Just Super Admin Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n \"data\": {\n    \"id\": 6,\n    \"name\": \"Firas Jabi\",\n    \"email\": \"firassaljabi1232@gmail.com\",\n   \"work_email\": \"firassaljabi1237@goma.com\",\n    \"status\": null,\n    \"type\": 2,\n    \"gender\": \"1\",\n    \"mobile\": \"0969040342\",\n    \"phone\": \"0935463111\",\n    \"departement\": null,\n    \"address\": \"Damascus\",\n   \"position\": null,\n    \"skills\": null,\n   \"serial_number\": \"00011\",\n    \"birthday_date\": \"1998-11-26\",\n   \"marital_status\": null,\n   \"guarantor\": null,\n    \"branch\": \"syria branch\",\n    \"start_job_contract\": null,\n    \"end_job_contract\": null,\n    \"end_visa\": null,\n    \"end_passport\": null,\n    \"end_employee_sponsorship\": null,\n    \"end_municipal_card\": null,\n    \"end_health_insurance\": null,\n    \"end_employee_residence\": null,\n    \"image\": null,\n    \"id_photo\": null,\n    \"biography\": null,\n    \"employee_sponsorship\": null,\n    \"visa\": null,\n    \"passport\": null,\n    \"municipal_card\": null,\n    \"health_insurance\": null,\n    \"employee_residence\": null,\n    \"permission_to_entry\": null,\n    \"entry_time\": null,\n    \"permission_to_leave\": null,\n    \"leave_time\": null,\n    \"percentage\": \"0\",\n    \"basic_salary\": 0\n}\n}",
+                            "name": "Add a Admin"
+                        }
+                    ]
                 },
                 {
-                    "name": "DELETE api\/employee\/{id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/employee\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/employee\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "temporibus",
-                                    "description": "The ID of the employee."
-                                }
-                            ]
-                        },
-                        "method": "DELETE",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "POST api\/update_employee",
+                    "name": "Updated Employee in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -441,15 +715,15 @@
                             "formdata": [
                                 {
                                     "key": "email",
-                                    "value": "herminia53@example.com",
+                                    "value": "mouaz@gmail.com",
                                     "type": "text",
-                                    "description": "Must be a valid email address. Must match the regex \/^[a-zA-Z0-9._%+-]{1,16}[^*]{0,}@[^*]+$\/. Must not be greater than 255 characters."
+                                    "description": "The email of the employee, The email must have a maximum length of 255 characters. It should follow the pattern of having 16 letters before the @ symbol."
                                 },
                                 {
                                     "key": "address",
-                                    "value": "tenetur",
+                                    "value": "Damascus",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "image",
@@ -458,15 +732,59 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Update Employee in the Company and Just Same Employee Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": {\n\"id\": 4,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": \"1\",\n\"type\": 4,\n\"gender\": \"1\",\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": \"1\",\n\"entry_time\": \"30\",\n\"permission_to_leave\": \"1\",\n\"leave_time\": \"60\",\n\"nationalitie\": {\n  \"name\": \"Syrian\"\n},\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"shifts\": [\n  {\n     \"id\": 3,\n    \"start_time\": \"09:00:00\",\n   \"end_time\": \"15:00:00\",\n  \"start_break_hour\": \"12:30:00\",\n  \"end_break_hour\": \"13:00:00\"\n},\n{\n  \"id\": 4,\n  \"start_time\": \"16:00:00\",\n \"end_time\": \"22:00:00\",\n \"start_break_hour\": \"20:30:00\",\n \"end_break_hour\": \"21:00:00\"\n}\n],\n\"deposits\": []\n}\n}",
+                            "name": "Add a Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/determine_working_hours",
+                    "name": "Delete Employee From the Company",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/employee\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/employee\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "13",
+                                    "description": "Must Be Exists In Users Table"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint is used to Delete Employee From the Company and Admin Or Hr Can Access To This Api."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\n}",
+                            "name": "Delete a Employee"
+                        }
+                    ]
+                },
+                {
+                    "name": "Determine Vacation Hours For Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -487,17 +805,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"ipsa\"}"
+                            "raw": "{\"user_id\":5,\"hours_daily\":5,\"hours_annual\":17}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to DDetermine Vacation Hours For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"user_id\": 8,\n\"hours_daily\": 10,\n\"hours_annual\": 25\n}",
+                            "name": "Determine Working Hours For Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/update_working_hours",
+                    "name": "Update Vacation Hours For Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -518,17 +840,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"molestias\"}"
+                            "raw": "{\"user_id\":10,\"hours_daily\":7,\"hours_annual\":9}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Update Vacation Hours For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"id\": 2,\n\"user_id\": 8,\n\"hours_daily\": 30,\n\"hours_annual\": 80\n}",
+                            "name": "Determine Working Hours For Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/reward_adversaries_allowance_salary",
+                    "name": "Add Reward Adversaries allowance For Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -549,17 +875,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"ut\",\"rewards_type\":\"2\",\"adversaries_type\":\"2\"}"
+                            "raw": "{\"user_id\":17,\"rewards_type\":1,\"adversaries_type\":1,\"rewards\":5,\"adversaries\":3,\"housing_allowance\":100000,\"transportation_allowance\":80000}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Add Reward Adversaries allowance For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"Net_Salary\": 220000,\n\"Rewards\": 10,\n\"Adversaries\": 0,\n\"Housing allowance\": 0,\n\"Transportation Allowance\": 0,\n\"date\": \"2023-08-27\",\n\"user\": {\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\"\n}\n}",
+                            "name": "Add Reward Adversaries allowance For Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/get_dashboard_data",
+                    "name": "Get Data Dashboard Statics in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -579,41 +909,32 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Data In Dashboard in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"all_employees_count\": \"1\",\n\"attendance_rate\": \"0\",\n\"on_duty_employees_count\": \"1\",\n\"on_vacation_employees_count\": \"0\",\n\"on_duty_employees_percentage\": \"100\",\n\"on_vacation_employees_percentage\": \"0\",\n\"male_employees_percentage\": \"0\",\n\"female_employees_percentage\": \"0\",\n\"nationalities_rate\": [\n{\n\"nationality_id\": 2,\n\"nationality_name\": \"Syrian\",\n\"percent\": 100\n}\n],\n\"contract_expiration_percentage\": \"0\",\n\"contract_expiration\": [],\n\"expired_passports_percentage\": \"100\",\n\"expired_passports\": [\n{\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\",\n\"end_passport\": \"2023-09-11\"\n}\n]\n}",
+                            "name": "Dashboard Data"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/get_employees_list",
+                    "name": "Get Employees List in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/get_employees_list",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/get_employees_list"
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "mouaz",
+                                    "description": "Filter Employees By Name Custom",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/get_employees_list?name=mouaz"
                         },
                         "method": "GET",
                         "header": [
@@ -627,35 +948,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Employees List in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": 1,\n\"type\": 4,\n\"gender\": 1,\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": 1,\n\"entry_time\": 30,\n\"permission_to_leave\": 1,\n\"leave_time\": 60,\n\"percentage\": \"0\",\n\"basic_salary\": 200000\n},\n{\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\",\n\"email\": \"ahmad@gmail.com\",\n\"work_email\": \"ahmadlkhateeb@gmail.com\",\n\"status\": 1,\n\"type\": 4,\n\"gender\": 1,\n\"mobile\": \"0969040355\",\n\"phone\": \"0969040344\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": \"laravel developer\",\n\"skills\": \"no skills\",\n\"serial_number\": \"000011\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"User\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": 1,\n\"entry_time\": 30,\n\"permission_to_leave\": 1,\n\"leave_time\": 60,\n\"percentage\": \"0\",\n\"basic_salary\": 200000\n}\n]\n}",
+                            "name": "Employees List"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/employees_salaries",
+                    "name": "Show Salaries in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -675,35 +980,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Salaries in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"Net_Salary\": 220000,\n\"Rewards\": 10,\n\"Adversaries\": 0,\n\"Housing allowance\": 0,\n\"Transportation Allowance\": 0,\n\"date\": \"2023-08-27\",\n\"user\": {\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\"\n}\n},\n{\n\"Net_Salary\": 600000,\n\"Rewards\": 10,\n\"Adversaries\": 0,\n\"Housing allowance\": 0,\n\"Transportation Allowance\": 0,\n\"date\": \"2023-08-27\",\n\"user\": {\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\"\n}\n}\n]\n}",
+                            "name": "Show Salaries"
                         }
                     ]
                 },
                 {
-                    "name": "POST api\/update_salary",
+                    "name": "Update Employee Salary For Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -724,17 +1013,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"sapiente\",\"new_salary\":\"est\"}"
+                            "raw": "{\"user_id\":14,\"new_salary\":75000}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Update Employee Salary in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 6,\n\"name\": \"Firas Jabi\",\n\"email\": \"firassaljabi1232@gmail.com\",\n\"work_email\": \"firassaljabi1237@goma.com\",\n\"status\": 1,\n\"type\": 2,\n\"gender\": 1,\n\"mobile\": \"0969040342\",\n\"phone\": \"0935463111\",\n\"departement\": null,\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": null,\n\"serial_number\": \"00011\",\n\"birthday_date\": \"1998-11-26\",\n\"marital_status\": null,\n\"guarantor\": null,\n\"branch\": \"syria branch\",\n\"start_job_contract\": null,\n\"end_job_contract\": null,\n\"end_visa\": null,\n\"end_passport\": null,\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": null,\n\"end_health_insurance\": null,\n\"end_employee_residence\": null,\n\"image\": null,\n\"id_photo\": null,\n\"biography\": null,\n\"employee_sponsorship\": null,\n\"visa\": null,\n\"passport\": null,\n\"municipal_card\": null,\n\"health_insurance\": null,\n\"employee_residence\": null,\n\"permission_to_entry\": 0,\n\"entry_time\": null,\n\"permission_to_leave\": 0,\n\"leave_time\": null,\n\"basic_salary\": 750000\n\"percentage\": \"0\",\n}\n}",
+                            "name": "Update Employee Salary"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/update_employment_contract",
+                    "name": "Renewal Employee Contract",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -755,17 +1048,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"velit\",\"new_date\":\"2023-08-26\"}"
+                            "raw": "{\"user_id\":16,\"number_of_month\":12,\"new_date\":\"2025-05-01.\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to  Renewal Employee Contract in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"Start Employee Contract Date\": \"2023-08-01\",\n\"End Employee Contract Date\": \"2025-05-01\",\n\"Contract Termination Date\": null,\n\"Contract Termination Period\": null,\n\"Contract Termination Reason\": null,\n\"user\": {\n\"id\": 3,\n\"name\": \"mouaz alkhateeb\"\n}\n}",
+                            "name": "Renewal Employee Contract"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/employees_attendances",
+                    "name": "Show Employees Attendance in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -785,35 +1082,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Employees Attendance in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 1,\n\"Date\": \"2023-08-27\",\n\"login_time\": \"14:01:54\",\n\"logout_time\": \"14:02:07\",\n\"user\": {\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\"\n}\n},\n{\n\"id\": 2,\n\"Date\": \"2023-08-27\",\n\"login_time\": \"14:03:19\",\n\"logout_time\": \"14:03:27\",\n\"user\": {\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\"\n}\n}\n]\n}",
+                            "name": "Employees Attendance"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/get_contract_expiration",
+                    "name": "Get Contract Expiration in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -833,35 +1114,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Get Contract Expiration in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 4,\n\"Start Employee Contract Date\": \"2023-09-05\",\n\"End Employee Contract Date\": \"2023-09-27\",\n\"Contract Termination Date\": null,\n\"Contract Termination Period\": null,\n\"Contract Termination Reason\": null,\n\"user\": {\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\"\n}\n}\n]\n}",
+                            "name": "Get Contract Expiration"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/get_employee\/{id}",
+                    "name": "Get Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -872,8 +1137,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
-                                    "description": "The ID of the get employee."
+                                    "value": "15",
+                                    "description": "Must Be Exists In Users Table"
                                 }
                             ]
                         },
@@ -889,35 +1154,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Get Employee in Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": {\n\"id\": 4,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": \"1\",\n\"type\": 4,\n\"gender\": \"1\",\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": \"1\",\n\"entry_time\": \"30\",\n\"permission_to_leave\": \"1\",\n\"leave_time\": \"60\",\n\"nationalitie\": {\n  \"name\": \"Syrian\"\n},\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"shifts\": [\n  {\n     \"id\": 3,\n    \"start_time\": \"09:00:00\",\n   \"end_time\": \"15:00:00\",\n  \"start_break_hour\": \"12:30:00\",\n  \"end_break_hour\": \"13:00:00\"\n},\n{\n  \"id\": 4,\n  \"start_time\": \"16:00:00\",\n \"end_time\": \"22:00:00\",\n \"start_break_hour\": \"20:30:00\",\n \"end_break_hour\": \"21:00:00\"\n}\n],\n\"deposits\": [\n{\n\"id\": 1,\n\"type\": 2,\n\"status\": 1,\n\"extra_status\": null,\n\"laptop_type\": \"asus\",\n\"Serial_laptop_number\": \"2010\",\n\"laptop_color\": \"blue\",\n\"laptop_image\": \"http:\/\/127.0.0.1:8000\/employees_deposits\/2023-08-27-EmployeeDeposit-844.png\",\n\"reason_reject\": null,\n\"reason_clearance_reject\": null\n}\n]\n}\n}",
+                            "name": "Show Employee"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/profile",
+                    "name": "Show My Profile",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -937,35 +1186,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Personal Profile and Just Employee Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 4,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": \"1\",\n\"type\": 4,\n\"gender\": \"1\",\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http:\/\/127.0.0.1:8000\/employees\/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": \"1\",\n\"entry_time\": \"30\",\n\"permission_to_leave\": \"1\",\n\"leave_time\": \"60\",\n\"nationalitie\": {\n  \"name\": \"Syrian\"\n},\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"shifts\": [\n  {\n     \"id\": 3,\n    \"start_time\": \"09:00:00\",\n   \"end_time\": \"15:00:00\",\n  \"start_break_hour\": \"12:30:00\",\n  \"end_break_hour\": \"13:00:00\"\n},\n{\n  \"id\": 4,\n  \"start_time\": \"16:00:00\",\n \"end_time\": \"22:00:00\",\n \"start_break_hour\": \"20:30:00\",\n \"end_break_hour\": \"21:00:00\"\n}\n],\n\"deposits\": [\n{\n\"id\": 1,\n\"type\": 2,\n\"status\": 1,\n\"extra_status\": null,\n\"laptop_type\": \"asus\",\n\"Serial_laptop_number\": \"2010\",\n\"laptop_color\": \"blue\",\n\"laptop_image\": \"http:\/\/127.0.0.1:8000\/employees_deposits\/2023-08-27-EmployeeDeposit-844.png\",\n\"reason_reject\": null,\n\"reason_clearance_reject\": null\n}\n]\n}\n}",
+                            "name": "Show My Profile"
                         }
                     ]
                 },
                 {
-                    "name": "POST api\/check_in_attendance",
+                    "name": "Employee check in System Daily",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -986,17 +1219,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"check_in\":\"id\"}"
+                            "raw": "{\"check_in\":1}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to check in System in the Company and Employee Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 2,\n\"Date\": \"2023-08-27\",\n\"login_time\": \"14:03:19\",\n\"logout_time\": null,\n\"user\": {\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\"\n}\n}\n}",
+                            "name": "Employee check in System Daily"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/check_out_attendance",
+                    "name": "Employee Out in System Daily",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1017,17 +1254,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"check_out\":\"sunt\"}"
+                            "raw": "{\"check_out\":1}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to check Out From System in the Company and Employee Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 2,\n\"Date\": \"2023-08-27\",\n\"login_time\": \"14:03:19\",\n\"logout_time\": null,\n\"user\": {\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\"\n}\n}\n}",
+                            "name": "Employee check Out System Daily"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/termination_employees_contract",
+                    "name": "Termination Employee Contract",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1048,17 +1289,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"id\",\"contract_termination_period\":\"3\",\"contract_termination_reason\":\"aut\"}"
+                            "raw": "{\"user_id\":6,\"contract_termination_period\":3,\"contract_termination_reason\":\"Without Reason\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Termination Employee Contract in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 4,\n\"Start Employee Contract Date\": \"2023-09-05\",\n\"End Employee Contract Date\": \"2024-01-09\",\n\"Contract Termination Date\": \"2023-08-27\",\n\"Contract Termination Period\": \"3 months, 0 days\",\n\"Contract Termination Reason\": \"Without Reason\",\n\"user\": {\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\"\n}\n}\n}",
+                            "name": "Termination Employee Contract"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/list_of_nationalities",
+                    "name": "Show Nationalities List in the Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1078,30 +1323,14 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Nationalities List in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"Saudi Arabian\"\n},\n{\n\"id\": 2,\n\"name\": \"Syrian\"\n},\n{\n\"id\": 3,\n\"name\": \"Afghan\"\n},\n{\n\"id\": 4,\n\"name\": \"Algerian\"\n},\n{\n\"id\": 5,\n\"name\": \"Argentinian\"\n},\n{\n\"id\": 6,\n\"name\": \"Bahraini\"\n},\n{\n\"id\": 7,\n\"name\": \"Bangladeshi\"\n},\n{\n\"id\": 8,\n\"name\": \"Belarusian\"\n},\n{\n\"id\": 9,\n\"name\": \"Belgian\"\n},\n{\n\"id\": 10,\n\"name\": \"Egyptian\"\n},\n{\n\"id\": 11,\n\"name\": \"Indian\"\n},\n{\n\"id\": 12,\n\"name\": \"Iraqi\"\n},\n{\n\"id\": 13,\n\"name\": \"Irish\"\n},\n{\n\"id\": 14,\n\"name\": \"Italian\"\n},\n{\n\"id\": 15,\n\"name\": \"Jordanian\"\n},\n{\n\"id\": 16,\n\"name\": \"Kuwaiti\"\n},\n{\n\"id\": 17,\n\"name\": \"Libyan\"\n},\n{\n\"id\": 18,\n\"name\": \"Moroccan\"\n},\n{\n\"id\": 19,\n\"name\": \"Pakistani\"\n},\n{\n\"id\": 20,\n\"name\": \"Palestinian\"\n},\n{\n\"id\": 21,\n\"name\": \"Filipino\"\n},\n{\n\"id\": 22,\n\"name\": \"Polish\"\n},\n{\n\"id\": 23,\n\"name\": \"Portuguese\"\n},\n{\n\"id\": 24,\n\"name\": \"Portuguese\"\n},\n{\n\"id\": 25,\n\"name\": \"Romanian\"\n},\n{\n\"id\": 26,\n\"name\": \"Qatari\"\n},\n{\n\"id\": 27,\n\"name\": \"Russian\"\n},\n{\n\"id\": 28,\n\"name\": \"Singaporean\"\n},\n{\n\"id\": 29,\n\"name\": \"Somali\"\n},\n{\n\"id\": 30,\n\"name\": \"Sudanese\"\n},\n{\n\"id\": 31,\n\"name\": \"Swedish\"\n},\n{\n\"id\": 32,\n\"name\": \"Swiss\"\n},\n{\n\"id\": 33,\n\"name\": \"Taiwanese\"\n},\n{\n\"id\": 34,\n\"name\": \"Tajikistani\"\n},\n{\n\"id\": 35,\n\"name\": \"Thai\"\n},\n{\n\"id\": 36,\n\"name\": \"Tunisian\"\n},\n{\n\"id\": 37,\n\"name\": \"Turkish\"\n},\n{\n\"id\": 38,\n\"name\": \"Ukrainian\"\n},\n{\n\"id\": 39,\n\"name\": \"Emirati\"\n},\n{\n\"id\": 40,\n\"name\": \"British\"\n},\n{\n\"id\": 41,\n\"name\": \"American\"\n},\n{\n\"id\": 42,\n\"name\": \"Uruguayan\"\n},\n{\n\"id\": 43,\n\"name\": \"Uzbek\"\n},\n{\n\"id\": 44,\n\"name\": \"Venezuelan\"\n},\n{\n\"id\": 45,\n\"name\": \"Yemeni\"\n},\n{\n\"id\": 46,\n\"name\": \"South African\"\n},\n{\n\"id\": 47,\n\"name\": \"Serbian\"\n},\n{\n\"id\": 48,\n\"name\": \"Panamanian\"\n},\n{\n\"id\": 49,\n\"name\": \"Omani\"\n},\n{\n\"id\": 50,\n\"name\": \"Norwegian\"\n},\n{\n\"id\": 51,\n\"name\": \"Nigerian\"\n},\n{\n\"id\": 52,\n\"name\": \"Dutch\"\n},\n{\n\"id\": 53,\n\"name\": \"Mexican\"\n},\n{\n\"id\": 54,\n\"name\": \"Mauritanian\"\n},\n{\n\"id\": 55,\n\"name\": \"Malaysian\"\n},\n{\n\"id\": 56,\n\"name\": \"Japanese\"\n}\n]\n}",
+                            "name": "Show Nationalities List"
                         }
                     ]
                 }
@@ -1109,10 +1338,10 @@
         },
         {
             "name": "Alerts",
-            "description": "\nAPIs for managing Alert Operations",
+            "description": "",
             "item": [
                 {
-                    "name": "POST api\/add_alert",
+                    "name": "Create New Alert For Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1133,17 +1362,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"content\":\"rokqmimed\",\"email\":\"paucek.alan@example.com\",\"type\":\"3\"}"
+                            "raw": "{\"content\":\"test alert to this employeeee\",\"email\":\"mouaz@gmail.com\",\"type\":1}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create New Alert For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 3,\n\"email\": \"mouaz@gmail.com\",\n\"content\": \"test alert to this employeeee\",\n\"created_at\": \"2023-08-27\"\n}\n*}",
+                            "name": "Create New Alert For Employee"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/get_my_alert",
+                    "name": "Show My Alerts List",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1163,30 +1396,14 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to display the list of my alerts and authenticate employee access to this API. It will show the alerts specific to the authenticated employee."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 3,\n\"email\": \"mouaz@gmail.com\",\n\"content\": \"test alert to this employeeee\",\n\"created_at\": \"2023-08-27\"\n}\n]\n}",
+                            "name": "Show My Alerts List"
                         }
                     ]
                 }
@@ -1304,10 +1521,10 @@
         },
         {
             "name": "Companies",
-            "description": "\nAPIs for managing Companies",
+            "description": "",
             "item": [
                 {
-                    "name": "POST api\/create_company",
+                    "name": "Create Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1331,45 +1548,45 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "dicta",
+                                    "value": "Goma Company",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "brooks.zulauf@example.org",
+                                    "value": "goma@goma.com",
                                     "type": "text",
-                                    "description": "Must be a valid email address."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "start_commercial_record",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_commercial_record",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "longitude",
-                                    "value": "similique",
+                                    "value": 25.12,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "The longitude of the company location Custom"
                                 },
                                 {
                                     "key": "latitude",
-                                    "value": "et",
+                                    "value": 15.32,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "The latitude of the company location Custom"
                                 },
                                 {
                                     "key": "radius",
-                                    "value": "qui",
+                                    "value": 15,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "The radius of the company location Custom"
                                 },
                                 {
                                     "key": "commercial_record",
@@ -1378,15 +1595,19 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"name\": \"Goma Company\",\n\"email\": \"goma@goma.com\",\n\"commercial_record\": null,\n\"start_commercial_record\": \"2023-02-01\",\n\"end_commercial_record\": \"2023-09-01\",\n\"locations\": [\n{\n\"id\": 1,\n\"Longitude\": \"25.12\",\n\"Latitude\": \"15.32\",\n\"Radius\": \"21\"\n}\n],\n\"admin\": null\n}",
+                            "name": "Create New Company"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/company\/{id}",
+                    "name": "Show Comapny",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1397,8 +1618,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestiae",
-                                    "description": "The ID of the company."
+                                    "value": "9",
+                                    "description": "Must Be Exists In companies Table"
                                 }
                             ]
                         },
@@ -1414,35 +1635,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to display company and authenticate admin access to this API. It will show company specific to the authenticated admin Or Super Admin."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"name\": \"Goma Company\",\n\"email\": \"goma@goma.com\",\n\"commercial_record\": null,\n\"start_commercial_record\": \"2023-02-01\",\n\"end_commercial_record\": \"2023-09-01\",\n\"admin\": {\n   \"id\": 2,\n    \"name\": \"Firas Jabi\"\n}\n}\n}",
+                            "name": "Show Comapny"
                         }
                     ]
                 },
                 {
-                    "name": "POST api\/update_comapny",
+                    "name": "Update Company",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1466,33 +1671,33 @@
                             "formdata": [
                                 {
                                     "key": "company_id",
-                                    "value": "natus",
+                                    "value": 2,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Must Be Exists In companies Table"
                                 },
                                 {
                                     "key": "name",
-                                    "value": "et",
+                                    "value": "Goma Company",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "carole.huels@example.org",
+                                    "value": "goma@goma.com",
                                     "type": "text",
-                                    "description": "Must be a valid email address."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "start_commercial_record",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "end_commercial_record",
-                                    "value": "2023-08-26T16:59:43",
+                                    "value": "2023-08-27",
                                     "type": "text",
-                                    "description": "Must be a valid date."
+                                    "description": "Custom"
                                 },
                                 {
                                     "key": "commercial_record",
@@ -1501,88 +1706,16 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "GET api\/show_percenatge_company",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/show_percenatge_company",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/show_percenatge_company"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"name\": \"Goma Company\",\n\"email\": \"goma@goma.com\",\n\"commercial_record\": null,\n\"start_commercial_record\": \"2023-02-01\",\n\"end_commercial_record\": \"2023-09-01\",\n\"locations\": [\n{\n\"id\": 1,\n\"Longitude\": \"25.12\",\n\"Latitude\": \"15.32\",\n\"Radius\": \"21\"\n}\n],\n\"admin\": null\n}",
+                            "name": "Update Company"
                         }
                     ]
-                },
-                {
-                    "name": "PUT api\/update_percentage",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/update_percentage",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/update_percentage"
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
                 }
             ]
         },
@@ -1621,7 +1754,7 @@
                                 },
                                 {
                                     "key": "user_id",
-                                    "value": "nostrum",
+                                    "value": "et",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1661,7 +1794,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nam",
+                                    "value": "quia",
                                     "description": "The ID of the approve deposit."
                                 }
                             ]
@@ -1707,7 +1840,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_id\":\"voluptas\",\"reason_reject\":\"cupiditate\"}"
+                            "raw": "{\"deposit_id\":\"molestiae\",\"reason_reject\":\"neque\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1872,7 +2005,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "natus",
+                                    "value": "repudiandae",
                                     "description": "The ID of the clearance request."
                                 }
                             ]
@@ -1908,7 +2041,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "magnam",
+                                    "value": "porro",
                                     "description": "The ID of the approve clearance request."
                                 }
                             ]
@@ -1954,7 +2087,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_id\":\"exercitationem\",\"reason_clearance_reject\":\"beatae\"}"
+                            "raw": "{\"deposit_id\":\"architecto\",\"reason_clearance_reject\":\"ipsum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1967,10 +2100,10 @@
         },
         {
             "name": "Holidays",
-            "description": "\nAPIs for managing Holidays",
+            "description": "",
             "item": [
                 {
-                    "name": "POST api\/create_weekly_holiday",
+                    "name": "Create Weekly Holiday",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1991,17 +2124,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"day\":\"iste\",\"date\":\"2023-08-26T16:59:43\"}"
+                            "raw": "{\"day\":5,\"date\":\"2023-08-27\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create Weekly Holiday and  Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"day\": 6,\n\"date\": \"2023-06-01\"\n}\n}",
+                            "name": "Create Weekly Holiday"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/create_annual_holiday",
+                    "name": "Create Annual Holiday",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2022,17 +2159,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"holiday_name\":\"veritatis\",\"start_date\":\"2023-08-26T16:59:43\",\"end_date\":\"2023-08-26T16:59:43\"}"
+                            "raw": "{\"holiday_name\":\"Eid Aladha\",\"start_date\":\"2023-08-27\",\"end_date\":\"2023-08-29\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create Annual Holiday and  Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 3,\n\"holiday_name\": \"Eid Aladha\",\n\"start_date\": \"2023-06-01\",\n\"end_date\": \"2023-06-04\"\n}",
+                            "name": "Create Annual Holiday"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/update_weekly_holiday",
+                    "name": "Update Weekly Holiday",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2053,17 +2194,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"holiday_id\":\"sunt\",\"date\":\"2023-08-26T16:59:43\"}"
+                            "raw": "{\"holiday_id\":15,\"day\":5,\"date\":\"2023-08-27\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Update Weekly Holiday and  Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"day\": 6,\n\"date\": \"2023-06-01\"\n}\n}",
+                            "name": "Update Weekly Holiday"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/update_annual_holiday",
+                    "name": "Update Annual Holiday",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2084,17 +2229,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"holiday_id\":\"nihil\",\"holiday_name\":\"et\",\"start_date\":\"2023-08-26T16:59:43\",\"end_date\":\"2023-08-26T16:59:43\"}"
+                            "raw": "{\"holiday_id\":7,\"holiday_name\":\"Eid Aladha\",\"start_date\":\"2023-08-27\",\"end_date\":\"2023-08-29\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Upadate Annual Holiday and  Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 3,\n\"holiday_name\": \"Eid Aladha almobarak\",\n\"start_date\": \"2023-06-03\",\n\"end_date\": \"2023-06-06\"\n}",
+                            "name": "Update Annual Holiday"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/list_of_holidays",
+                    "name": "List Of Holidays",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2114,30 +2263,14 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Show Holidays List in the Company and Admin Or Hr Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 2,\n\"type\": 1,\n \"day\": 6,\n \"date\": \"2023-06-01\"\n},\n{\n \"id\": 3,\n\"type\": 2,\n\"holiday_name\": \"Eid Aladha almobarak\",\n\"start_date\": \"2023-06-02\",\n\"end_date\": \"2023-06-06\"\n}\n]\n}",
+                            "name": "Show Holidays"
                         }
                     ]
                 }
@@ -2372,7 +2505,7 @@
                             "formdata": [
                                 {
                                     "key": "content",
-                                    "value": "acbelevdowxqlryyjkf",
+                                    "value": "qpsecelwjyqqyrrxiy",
                                     "type": "text",
                                     "description": "Must not be greater than 500 characters."
                                 },
@@ -2508,7 +2641,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"content\":\"dlb\",\"post_id\":\"tempora\"}"
+                            "raw": "{\"content\":\"qaeliqjaq\",\"post_id\":\"at\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2539,7 +2672,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"post_id\":\"voluptatem\"}"
+                            "raw": "{\"post_id\":\"unde\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2570,7 +2703,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"comment_id\":\"aspernatur\"}"
+                            "raw": "{\"comment_id\":\"eos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2601,7 +2734,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"post_id\":\"aut\"}"
+                            "raw": "{\"post_id\":\"asperiores\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2622,7 +2755,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "3",
+                                    "value": "16",
                                     "description": "The ID of the post."
                                 }
                             ]
@@ -2658,7 +2791,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "13",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -2710,7 +2843,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"autem\",\"start_date\":\"2023-08-26T16:59:43\",\"end_date\":\"2023-08-26T16:59:43\",\"vacation_type\":\"6\",\"start_time\":\"et\",\"end_time\":\"unde\",\"payment_type\":\"deleniti\"}"
+                            "raw": "{\"reason\":\"vel\",\"start_date\":\"2023-08-27T21:51:44\",\"end_date\":\"2023-08-27T21:51:44\",\"vacation_type\":\"6\",\"start_time\":\"molestiae\",\"end_time\":\"fuga\",\"payment_type\":\"velit\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2741,7 +2874,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"nisi\",\"date\":\"2023-08-26T16:59:43\",\"start_date\":\"2023-08-26T16:59:43\",\"end_date\":\"2023-08-26T16:59:43\",\"justify_type\":\"2\",\"attachments\":\"myxebdffqxxmvhgxlx\"}"
+                            "raw": "{\"reason\":\"dolorem\",\"date\":\"2023-08-27T21:51:44\",\"start_date\":\"2023-08-27T21:51:44\",\"end_date\":\"2023-08-27T21:51:44\",\"justify_type\":\"2\",\"attachments\":\"puunxqrun\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2775,7 +2908,7 @@
                             "formdata": [
                                 {
                                     "key": "reason",
-                                    "value": "iusto",
+                                    "value": "id",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2818,7 +2951,7 @@
                             "formdata": [
                                 {
                                     "key": "reason",
-                                    "value": "magni",
+                                    "value": "dolorem",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2848,7 +2981,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facilis",
+                                    "value": "accusamus",
                                     "description": "The ID of the request."
                                 }
                             ]
@@ -2904,7 +3037,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repudiandae",
+                                    "value": "occaecati",
                                     "description": "The ID of the approve request."
                                 }
                             ]
@@ -2950,7 +3083,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"request_id\":\"cupiditate\",\"reject_reason\":\"dolor\"}"
+                            "raw": "{\"request_id\":\"reprehenderit\",\"reject_reason\":\"dolorem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3251,10 +3384,10 @@
         },
         {
             "name": "Shifts",
-            "description": "\nAPIs for managing Shifts",
+            "description": "",
             "item": [
                 {
-                    "name": "POST api\/update_employee_shift",
+                    "name": "Update Employee Shift",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -3275,14 +3408,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"shift_id\":\"labore\"}"
+                            "raw": "{\"shift_id\":15,\"start_time\":\"09:00:00.\",\"end_time\":\"15:00:00.\",\"start_break_hour\":\"12:30:00.\",\"end_break_hour\":\"13:30:00.\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Create Update Employee Shifts and Admin Or Hr Can Access To This Api."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 1,\n\"start_time\": \"17:30:00\",\n\"end_time\": \"23:30:00\",\n\"start_break_hour\": \"21:00:00\",\n\"end_break_hour\": \"21:30:00\"\n}\n}",
+                            "name": "Update Employee Shift"
+                        }
+                    ]
                 }
             ]
         }

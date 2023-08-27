@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Employees;
 
+use App\Statuses\TerminateTime;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEmployeeContractRequest extends FormRequest
 {
@@ -25,8 +27,8 @@ class UpdateEmployeeContractRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'number_of_month' => 'nullable',
-            'new_date' => 'nullable|date_format:Y-m-d'
+            'number_of_month' => ['nullable', Rule::in(TerminateTime::$statuses), 'required_without:new_date'],
+            'new_date' => ['nullable', 'date_format:Y-m-d', 'required_without_all:number_of_month'],
         ];
     }
 }

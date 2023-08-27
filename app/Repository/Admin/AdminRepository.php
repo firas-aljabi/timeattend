@@ -108,6 +108,7 @@ class AdminRepository extends BaseRepositoryImplementation
     }
     public function get_contract_expiration($filter)
     {
+
         if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR) {
             $records = Contract::where('end_contract_date', '<=', Carbon::now()->addMonth())->whereNotNull('end_contract_date')->get();
             return ['success' => true, 'data' => $records->load('user')];
@@ -518,17 +519,29 @@ class AdminRepository extends BaseRepositoryImplementation
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
+
     public function update_employment_contract($data)
     {
-        DB::beginTransaction();
         $user = User::findOrFail($data['user_id']);
         $contract = Contract::where('user_id', $data['user_id'])->first();
-        try {
 
+        DB::beginTransaction();
+        try {
             if (auth()->user()->type == UserTypes::HR || auth()->user()->type == UserTypes::ADMIN && auth()->user()->company_id == $user->company_id) {
 
                 $date = \Carbon\Carbon::create($user->end_job_contract);
-                $newDate = $date->copy()->addMonths(6)->format('Y-m-d');
+
+                $newDateThreeMonth = $date->copy()->addMonths(3)->format('Y-m-d');
+
+                $newDateSixMonth = $date->copy()->addMonths(6)->format('Y-m-d');
+
+                $newDateYear = $date->copy()->addMonths(12)->format('Y-m-d');
+
+
+
+                if (isset($data['new_date']) && isset($data['number_of_month'])) {
+                    return ['success' => false, 'message' => "Please Choose New Date Or Number Of Month Not Together"];
+                }
 
                 if (isset($data['new_date'])) {
                     $user->update([
@@ -537,21 +550,33 @@ class AdminRepository extends BaseRepositoryImplementation
                     $contract->update([
                         'end_contract_date' => $data['new_date'],
                     ]);
-                } else {
-                    $user->update([
-                        'end_job_contract' => $newDate,
-                    ]);
+                } elseif (isset($data['number_of_month']) && $data['number_of_month'] == TerminateTime::THREE_MONTH) {
                     $contract->update([
-                        'end_job_contract' => $newDate,
+                        'end_contract_date' => $newDateThreeMonth,
+                    ]);
+                    $user->update([
+                        'end_job_contract' => $newDateThreeMonth,
+                    ]);
+                } elseif (isset($data['number_of_month']) && $data['number_of_month'] == TerminateTime::SIX_MONTH) {
+                    $contract->update([
+                        'end_contract_date' => $newDateSixMonth,
+                    ]);
+                    $user->update([
+                        'end_job_contract' => $newDateSixMonth,
+                    ]);
+                } elseif (isset($data['number_of_month']) && $data['number_of_month'] == TerminateTime::ONE_YEAR) {
+                    $contract->update([
+                        'end_contract_date' => $newDateYear,
+                    ]);
+                    $user->update([
+                        'end_job_contract' => $newDateYear,
                     ]);
                 }
             } else {
                 return ['success' => false, 'message' => "Unauthorized"];
             }
-
             DB::commit();
-
-            return ['success' => true, 'data' => $user];
+            return ['success' => true, 'data' => $contract->load('user')];
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
@@ -750,7 +775,7 @@ class AdminRepository extends BaseRepositoryImplementation
                 $employeeAvailableTime = new EmployeeAvailableTime();
                 $employeeAvailableTime->user_id = $data['user_id'];
                 $employeeAvailableTime->hours_daily = $data['hours_daily'];
-                $employeeAvailableTime->days_annual = $data['days_annual'];
+                $employeeAvailableTime->days_annual = $data['hours_annual'];
                 $employeeAvailableTime->company_id = auth()->user()->company_id;
 
                 $employeeAvailableTime->save();
@@ -777,20 +802,20 @@ class AdminRepository extends BaseRepositoryImplementation
             $employeeAvailableTime =  EmployeeAvailableTime::where('user_id', $data['user_id'])->first();
             if (auth()->user()->type == UserTypes::ADMIN || auth()->user()->type == UserTypes::HR && auth()->user()->company_id == $employeeAvailableTime->company_id) {
 
-                if (isset($data['hours_daily']) && isset($data['days_annual'])) {
+                if (isset($data['hours_daily']) && isset($data['hours_annual'])) {
 
                     $employeeAvailableTime->update([
                         'hours_daily' => $data['hours_daily'],
-                        'days_annual' => $data['days_annual']
+                        'days_annual' => $data['hours_annual']
                     ]);
                 } elseif (isset($data['hours_daily'])) {
 
                     $employeeAvailableTime->update([
                         'hours_daily' => $data['hours_daily']
                     ]);
-                } elseif (isset($data['days_annual'])) {
+                } elseif (isset($data['hours_annual'])) {
                     $employeeAvailableTime->update([
-                        'days_annual' => $data['days_annual']
+                        'days_annual' => $data['hours_annual']
                     ]);
                 } else {
                     $employeeAvailableTime->update();

@@ -25,7 +25,6 @@ class CreateAdminRequest extends FormRequest
             'mobile' => 'sometimes|unique:users,mobile',
             'phone' => 'sometimes|unique:users,phone',
             "company_id" => 'required',
-            'date_employee' => 'required|date',
             'nationalitie_id' => 'required|exists:nationalities,id',
             'birthday_date' => 'required|date',
             'material_status' => ['nullable', Rule::in(MaterialStatus::$statuses)],

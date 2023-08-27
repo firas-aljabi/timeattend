@@ -18,7 +18,7 @@ class DetermineWorkingHoursRequest extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'hours_daily' => 'sometimes',
-            'days_annual' => 'sometimes'
+            'hours_annual' => 'sometimes'
         ];
     }
 }

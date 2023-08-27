@@ -61,6 +61,8 @@ class DepositRepository extends BaseRepositoryImplementation
                     $deposit->type = DepositType::MOBILE;
                     $deposit->serial_mobile_number = $data['serial_mobile_number'];
                     $deposit->mobile_color = $data['mobile_color'];
+                    $deposit->mobile_type = $data['mobile_type'];
+                    $deposit->mobile_sim = $data['mobile_sim'];
 
                     if (Arr::has($data, 'mobile_image')) {
                         $file = Arr::get($data, 'mobile_image');
@@ -89,7 +91,8 @@ class DepositRepository extends BaseRepositoryImplementation
     public function my_deposits($filter)
     {
         if (auth()->user()->type == UserTypes::EMPLOYEE) {
-            $records = Deposit::query()->where('company_id', auth()->user()->company_id)->where('user_id', auth()->user()->id)->where('extra_status', null);
+            $records = Deposit::query()->where('company_id', auth()->user()->company_id)->where('user_id', auth()->user()->id)->where('extra_status', null)
+                ->where('status', DepositStatus::PENDING);
             if ($filter instanceof DepositFilter) {
 
                 $records->when(isset($filter->status), function ($records) use ($filter) {

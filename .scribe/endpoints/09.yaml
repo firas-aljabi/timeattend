@@ -57,7 +57,7 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: nostrum
+        example: et
         type: string
         enumValues: []
         custom: []
@@ -141,9 +141,25 @@ endpoints:
         type: file
         enumValues: []
         custom: []
+      mobile_type:
+        name: mobile_type
+        description: 'This field is required when <code>type</code> is <code>3</code>.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      mobile_sim:
+        name: mobile_sim
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
     cleanBodyParameters:
       type: '3'
-      user_id: nostrum
+      user_id: et
     fileParameters:
       car_image: null
       laptop_image: null
@@ -178,12 +194,12 @@ endpoints:
         name: id
         description: 'The ID of the approve deposit.'
         required: true
-        example: nam
+        example: quia
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: nam
+      id: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -223,7 +239,7 @@ endpoints:
         name: deposit_id
         description: ''
         required: true
-        example: voluptas
+        example: molestiae
         type: string
         enumValues: []
         custom: []
@@ -231,13 +247,13 @@ endpoints:
         name: reason_reject
         description: ''
         required: true
-        example: cupiditate
+        example: neque
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      deposit_id: voluptas
-      reason_reject: cupiditate
+      deposit_id: molestiae
+      reason_reject: neque
     fileParameters: []
     responses: []
     responseFields: []
@@ -392,12 +408,12 @@ endpoints:
         name: id
         description: 'The ID of the clearance request.'
         required: true
-        example: natus
+        example: repudiandae
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: natus
+      id: repudiandae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -433,12 +449,12 @@ endpoints:
         name: id
         description: 'The ID of the approve clearance request.'
         required: true
-        example: magnam
+        example: porro
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: magnam
+      id: porro
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -478,7 +494,7 @@ endpoints:
         name: deposit_id
         description: ''
         required: true
-        example: exercitationem
+        example: architecto
         type: string
         enumValues: []
         custom: []
@@ -486,13 +502,13 @@ endpoints:
         name: reason_clearance_reject
         description: ''
         required: true
-        example: beatae
+        example: ipsum
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      deposit_id: exercitationem
-      reason_clearance_reject: beatae
+      deposit_id: architecto
+      reason_clearance_reject: ipsum
     fileParameters: []
     responses: []
     responseFields: []

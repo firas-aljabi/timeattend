@@ -26,9 +26,9 @@ class AlertRepository extends BaseRepositoryImplementation
             });
 
 
-            return $records->paginate($filter->per_page);
+            return $records->get();
         }
-        return $records->paginate($filter->per_page);
+        return $records->get();
     }
 
     public function create_alert($data)

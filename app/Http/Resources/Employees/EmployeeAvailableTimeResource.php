@@ -11,9 +11,9 @@ class EmployeeAvailableTimeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'hours_daily' => $this->hours_daily,
-            'days_annual' => $this->days_annual,
+            'user_id' => intval($this->user_id),
+            'hours_daily' => intval($this->hours_daily),
+            'hours_annual' => intval($this->days_annual),
         ];
     }
 }

@@ -36,6 +36,8 @@ return new class extends Migration
             $table->string('serial_mobile_number')->nullable();
             $table->string('mobile_color')->nullable();
             $table->longText('mobile_image')->nullable();
+            $table->string('mobile_type')->nullable();
+            $table->string('mobile_sim')->nullable();
             $table->text('reason_reject')->nullable();
             $table->text('reason_clearance_reject')->nullable();
             $table->timestamps();

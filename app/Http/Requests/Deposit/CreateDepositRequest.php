@@ -32,6 +32,10 @@ class CreateDepositRequest extends FormRequest
             'serial_mobile_number' => 'required_if:type,3',
             'mobile_color' => 'required_if:type,3',
             'mobile_image' => 'required_if:type,3|image|mimes:jpeg,png,jpg|max:2048',
+            'mobile_type' => 'required_if:type,3',
+            'mobile_sim' => 'nullable'
+
+
         ];
     }
 }
