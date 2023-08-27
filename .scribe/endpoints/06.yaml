@@ -1,7 +1,5 @@
 name: Messages
-description: |-
-
-  APIs for managing Messages
+description: ''
 endpoints:
   -
     httpMethods:
@@ -9,14 +7,12 @@ endpoints:
     uri: api/get_hrs_list
     metadata:
       groupName: Messages
-      groupDescription: |-
-
-        APIs for managing Messages
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Get Hr List'
+      description: 'This endpoint is used to Get Hr List in Company and Admin Or Hr Or Employee Can Access To This Api.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -30,13 +26,28 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 201
+        content: |-
+          {
+          "data": [
+            {
+           "id": 4,
+           "name": "hamza Fawaz",
+           "email": "hamzafawaz123@gmail.com",
+           "type": 3,
+           "image": null
+          },
+          {
+              "id": 5,
+             "name": "mariam kabani",
+             "email": "mariamkabani123@gmail.com",
+             "type": 3,
+             "image": null
+          }
+          ]
+          }
+        headers: []
+        description: 'Hr List'
         custom: []
     responseFields: []
     auth: []
@@ -50,14 +61,12 @@ endpoints:
     uri: 'api/private-messages/{user_id}'
     metadata:
       groupName: Messages
-      groupDescription: |-
-
-        APIs for managing Messages
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Get Private Messages'
+      description: 'This endpoint is used to Get Private Messages.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -65,14 +74,14 @@ endpoints:
     urlParameters:
       user_id:
         name: user_id
-        description: 'The ID of the user.'
+        description: 'The user ID, must be in the Users table.'
         required: true
-        example: 1
+        example: 11
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      user_id: 1
+      user_id: 11
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -80,13 +89,40 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "messages": [
+          {
+          "id": 1,
+          "user_id": 3,
+          "receiver_id": 4,
+          "message": "please tell me more",
+          "created_at": "2023-08-27T19:24:36.000000Z",
+          "updated_at": "2023-08-27T19:24:36.000000Z",
+          "user": {
+          "id": 3,
+          "name": "mouaz alkhateeb",
+          "image": "employees/2023-08-27-Employee-8.jpg"
+          }
+          },
+          {
+          "id": 2,
+          "user_id": 3,
+          "receiver_id": 4,
+          "message": "yesss",
+          "created_at": "2023-08-27T19:43:08.000000Z",
+          "updated_at": "2023-08-27T19:43:08.000000Z",
+          "user": {
+          "id": 3,
+          "name": "mouaz alkhateeb",
+          "image": "employees/2023-08-27-Employee-8.jpg"
+          }
+          }
+          ]
+          }
+        headers: []
+        description: 'Get Private Messages'
         custom: []
     responseFields: []
     auth: []
@@ -100,14 +136,12 @@ endpoints:
     uri: 'api/private-messages/{user_id}'
     metadata:
       groupName: Messages
-      groupDescription: |-
-
-        APIs for managing Messages
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Send Private Message'
+      description: 'This endpoint is used to send a private message.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -115,20 +149,51 @@ endpoints:
     urlParameters:
       user_id:
         name: user_id
-        description: 'The ID of the user.'
+        description: 'The user ID, must be in the Users table.'
         required: true
-        example: 1
+        example: 17
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      user_id: 1
+      user_id: 17
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      message:
+        name: message
+        description: 'The message content.'
+        required: true
+        example: 'please tell me more'
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      message: 'please tell me more'
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "status": "Message private sent successfully",
+                   "message": {
+                   "message": "please tell me more",
+                   "receiver_id": 4,
+                   "user_id": 3,
+                   "updated_at": "2023-08-27T19:24:36.000000Z",
+                   "created_at": "2023-08-27T19:24:36.000000Z",
+                   "id": 1,
+                   "user": {
+                       "id": 3,
+                       "name": "mouaz alkhateeb",
+                       "image": "employees/2023-08-27-Employee-8.jpg"
+                   }
+               }
+          }
+        headers: []
+        description: 'Create New Alert For Employee'
+        custom: []
     responseFields: []
     auth: []
     controller: null

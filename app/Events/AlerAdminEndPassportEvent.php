@@ -28,6 +28,7 @@ class AlerAdminEndPassportEvent implements ShouldBroadcast
         foreach ($this->admins  as $admin) {
             $notification = new Notification();
             $notification->user_id = $this->user->id;
+            $notification->company_id = $user->company_id;
             $notification->notifier_id = $admin->id;
             $notification->message =  "Employee Passport " .  $this->user->name . " Almost expired";
             $notification->save();

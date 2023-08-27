@@ -780,7 +780,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Employee Out in System Daily
+     * Employee Check Out in System Daily
      *
      * This endpoint is used to check Out From System in the Company and Employee Can Access To This Api.
      *

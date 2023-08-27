@@ -30,7 +30,7 @@ endpoints:
         name: content
         description: 'Must not be greater than 500 characters.'
         required: true
-        example: qpsecelwjyqqyrrxiy
+        example: jawwml
         type: string
         enumValues: []
         custom: []
@@ -43,7 +43,7 @@ endpoints:
         enumValues: []
         custom: []
     cleanBodyParameters:
-      content: qpsecelwjyqqyrrxiy
+      content: jawwml
     fileParameters:
       image: null
     responses: []
@@ -162,7 +162,7 @@ endpoints:
         name: content
         description: 'Must not be greater than 100 characters.'
         required: true
-        example: qaeliqjaq
+        example: tybdtyoko
         type: string
         enumValues: []
         custom: []
@@ -170,13 +170,13 @@ endpoints:
         name: post_id
         description: ''
         required: true
-        example: at
+        example: animi
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      content: qaeliqjaq
-      post_id: at
+      content: tybdtyoko
+      post_id: animi
     fileParameters: []
     responses: []
     responseFields: []
@@ -212,12 +212,12 @@ endpoints:
         name: post_id
         description: ''
         required: true
-        example: unde
+        example: deserunt
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      post_id: unde
+      post_id: deserunt
     fileParameters: []
     responses: []
     responseFields: []
@@ -253,12 +253,12 @@ endpoints:
         name: comment_id
         description: ''
         required: true
-        example: eos
+        example: quia
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      comment_id: eos
+      comment_id: quia
     fileParameters: []
     responses: []
     responseFields: []
@@ -294,12 +294,12 @@ endpoints:
         name: post_id
         description: ''
         required: true
-        example: asperiores
+        example: exercitationem
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      post_id: asperiores
+      post_id: exercitationem
     fileParameters: []
     responses: []
     responseFields: []
@@ -331,12 +331,12 @@ endpoints:
         name: id
         description: 'The ID of the post.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 16
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -372,12 +372,12 @@ endpoints:
         name: id
         description: 'The ID of the comment.'
         required: true
-        example: 13
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 13
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

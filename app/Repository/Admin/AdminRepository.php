@@ -120,7 +120,7 @@ class AdminRepository extends BaseRepositoryImplementation
     public function getHrsList()
     {
         $records = User::query()->where('type', UserTypes::HR)->where('company_id', auth()->user()->company_id);
-        return $records->paginate();
+        return $records->get();
     }
 
     public function create_employee($data)

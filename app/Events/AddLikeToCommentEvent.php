@@ -31,6 +31,7 @@ class AddLikeToCommentEvent implements ShouldBroadcast
         $notification = new Notification();
         $notification->user_id = $user->id;
         $notification->post_id = $comment->id;
+        $notification->company_id = $user->company_id;
         $notification->notifier_id = $notifier->id;
         $notification->message =  "New Like Added To Your Comment By " . $user_name->name;
         $notification->save();

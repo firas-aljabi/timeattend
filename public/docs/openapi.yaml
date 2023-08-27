@@ -284,7 +284,7 @@ paths:
                 nationalitie_id:
                   type: integer
                   description: 'Must be from 1 to 56'
-                  example: 15
+                  example: 3
                 birthday_date:
                   type: date
                   description: Custom
@@ -376,7 +376,7 @@ paths:
                 end_passport:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T21:51:43'
+                  example: '2023-08-27T22:48:49'
                 image:
                   type: string
                   format: binary
@@ -425,13 +425,13 @@ paths:
                   type: array
                   description: 'optional An array of shift for the user. Required when `number_of_shifts` is not null.'
                   example:
-                    - quam
+                    - deserunt
                   items:
                     type: string
                 user_id:
                   type: integer
                   description: 'optional The ID of the user That Exists in users Table.'
-                  example: 8
+                  example: 20
                 start_time:
                   type: time
                   description: 'The start time of the shift in the format `HH:MM:SS` Custom'
@@ -512,7 +512,7 @@ paths:
                 nationalitie_id:
                   type: integer
                   description: 'Must be from 1 to 56'
-                  example: 3
+                  example: 11
                 birthday_date:
                   type: date
                   description: Custom
@@ -588,7 +588,7 @@ paths:
                 permission_to_leave:
                   type: string
                   description: ''
-                  example: '1'
+                  example: '0'
                   enum:
                     - '1'
                     - '0'
@@ -599,7 +599,7 @@ paths:
                 permission_to_entry:
                   type: string
                   description: ''
-                  example: '1'
+                  example: '0'
                   enum:
                     - '1'
                     - '0'
@@ -610,7 +610,7 @@ paths:
                 end_passport:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T21:51:43'
+                  example: '2023-08-27T22:48:49'
                 image:
                   type: string
                   format: binary
@@ -654,12 +654,12 @@ paths:
                 number_of_shifts:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 89
+                  example: 35
                 shifts:
                   type: array
                   description: 'This field is required when <code>number_of_shifts</code> is <code>!=</code> or <code>null</code>.'
                   example:
-                    - voluptate
+                    - molestiae
                   items:
                     type: string
               required:
@@ -890,11 +890,11 @@ paths:
                 company_id:
                   type: string
                   description: ''
-                  example: minus
+                  example: ipsa
                 nationalitie_id:
                   type: integer
                   description: 'Must be from 1 to 56'
-                  example: 3
+                  example: 15
                 birthday_date:
                   type: date
                   description: Custom
@@ -930,7 +930,7 @@ paths:
                 comapny_id:
                   type: integer
                   description: 'Must be exists in companies table.'
-                  example: 19
+                  example: 7
               required:
                 - name
                 - email
@@ -1227,7 +1227,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In Users Table'
-        example: 13
+        example: 14
         required: true
         schema:
           type: integer
@@ -1274,15 +1274,15 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 5
+                  example: 12
                 hours_daily:
                   type: integer
                   description: 'The number of hours Vacation per month.'
-                  example: 5
+                  example: 15
                 hours_annual:
                   type: integer
                   description: 'The number of hours Vacation per year.'
-                  example: 17
+                  example: 16
               required:
                 - user_id
   /api/update_working_hours:
@@ -1328,15 +1328,15 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 10
+                  example: 20
                 hours_daily:
                   type: integer
                   description: 'The number of hours Vacation per month.'
-                  example: 7
+                  example: 5
                 hours_annual:
                   type: integer
                   description: 'The number of hours Vacation per year.'
-                  example: 9
+                  example: 7
               required:
                 - user_id
   /api/reward_adversaries_allowance_salary:
@@ -1402,7 +1402,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 17
+                  example: 1
                 rewards_type:
                   type: integer
                   description: "optional The type of rewards to user. Must be one of the following values:\n- `1`: Number.\n- `2`: Rate. Custom"
@@ -1980,7 +1980,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 14
+                  example: 7
                 new_salary:
                   type: number
                   description: 'Refers To New Salary Custom'
@@ -2014,7 +2014,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 16
+                  example: 6
                 number_of_month:
                   type: integer
                   description: "Must Be Required if new_date equal null, Must be one of the following values:\n- `3`: Three Month.\n- `6`: Six Month.\n- `12`: One Year. Custom"
@@ -2476,7 +2476,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In Users Table'
-        example: 15
+        example: 10
         required: true
         schema:
           type: integer
@@ -2969,7 +2969,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 6
+                  example: 14
                 contract_termination_period:
                   type: integer
                   description: "required. Must be one of the following values:\n- `0`: Open Term.\n- `3`: Three Month.\n- `6`: Six Month.\n- `12`: One Year. Custom"
@@ -3833,7 +3833,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In companies Table'
-        example: 9
+        example: 19
         required: true
         schema:
           type: integer
@@ -3863,7 +3863,7 @@ paths:
                 company_id:
                   type: integer
                   description: 'Must Be Exists In companies Table'
-                  example: 2
+                  example: 19
                 name:
                   type: string
                   description: Custom
@@ -3923,7 +3923,7 @@ paths:
                 user_id:
                   type: string
                   description: ''
-                  example: et
+                  example: corrupti
                 manufacturing_year:
                   type: string
                   description: 'This field is required when <code>type</code> is <code>1</code>.'
@@ -3991,7 +3991,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the approve deposit.'
-        example: quia
+        example: modi
         required: true
         schema:
           type: string
@@ -4014,11 +4014,11 @@ paths:
                 deposit_id:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: reiciendis
                 reason_reject:
                   type: string
                   description: ''
-                  example: neque
+                  example: eos
               required:
                 - deposit_id
                 - reason_reject
@@ -4104,7 +4104,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the clearance request.'
-        example: repudiandae
+        example: commodi
         required: true
         schema:
           type: string
@@ -4123,7 +4123,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the approve clearance request.'
-        example: porro
+        example: nobis
         required: true
         schema:
           type: string
@@ -4146,11 +4146,11 @@ paths:
                 deposit_id:
                   type: string
                   description: ''
-                  example: architecto
+                  example: iste
                 reason_clearance_reject:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: aut
               required:
                 - deposit_id
                 - reason_clearance_reject
@@ -4284,7 +4284,7 @@ paths:
                 holiday_id:
                   type: integer
                   description: 'Must Be Exists In Holidays Table'
-                  example: 15
+                  example: 8
                 day:
                   type: integer
                   description: 'Bust Be From 1 to 7 Custom'
@@ -4323,7 +4323,7 @@ paths:
                 holiday_id:
                   type: integer
                   description: 'Must Be Exists In Holidays Table'
-                  example: 7
+                  example: 15
                 holiday_name:
                   type: string
                   description: Custom
@@ -4398,88 +4398,386 @@ paths:
         - Holidays
   /api/get_hrs_list:
     get:
-      summary: ''
-      operationId: getApiGet_hrs_list
-      description: ''
+      summary: 'Get Hr List'
+      operationId: getHrList
+      description: 'This endpoint is used to Get Hr List in Company and Admin Or Hr Or Employee Can Access To This Api.'
       parameters: []
       responses:
-        401:
-          description: ''
+        201:
+          description: 'Hr List'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 4
+                      name: 'hamza Fawaz'
+                      email: hamzafawaz123@gmail.com
+                      type: 3
+                      image: null
+                    -
+                      id: 5
+                      name: 'mariam kabani'
+                      email: mariamkabani123@gmail.com
+                      type: 3
+                      image: null
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        name: 'hamza Fawaz'
+                        email: hamzafawaz123@gmail.com
+                        type: 3
+                        image: null
+                      -
+                        id: 5
+                        name: 'mariam kabani'
+                        email: mariamkabani123@gmail.com
+                        type: 3
+                        image: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 4
+                        name:
+                          type: string
+                          example: 'hamza Fawaz'
+                        email:
+                          type: string
+                          example: hamzafawaz123@gmail.com
+                        type:
+                          type: integer
+                          example: 3
+                        image:
+                          type: string
+                          example: null
       tags:
         - Messages
-      security: []
   '/api/private-messages/{user_id}':
     get:
-      summary: ''
-      operationId: getApiPrivateMessagesUser_id
-      description: ''
+      summary: 'Get Private Messages'
+      operationId: getPrivateMessages
+      description: 'This endpoint is used to Get Private Messages.'
       parameters: []
       responses:
-        401:
-          description: ''
+        200:
+          description: 'Get Private Messages'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  messages:
+                    -
+                      id: 1
+                      user_id: 3
+                      receiver_id: 4
+                      message: 'please tell me more'
+                      created_at: '2023-08-27T19:24:36.000000Z'
+                      updated_at: '2023-08-27T19:24:36.000000Z'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: employees/2023-08-27-Employee-8.jpg
+                    -
+                      id: 2
+                      user_id: 3
+                      receiver_id: 4
+                      message: yesss
+                      created_at: '2023-08-27T19:43:08.000000Z'
+                      updated_at: '2023-08-27T19:43:08.000000Z'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: employees/2023-08-27-Employee-8.jpg
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  messages:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 3
+                        receiver_id: 4
+                        message: 'please tell me more'
+                        created_at: '2023-08-27T19:24:36.000000Z'
+                        updated_at: '2023-08-27T19:24:36.000000Z'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: employees/2023-08-27-Employee-8.jpg
+                      -
+                        id: 2
+                        user_id: 3
+                        receiver_id: 4
+                        message: yesss
+                        created_at: '2023-08-27T19:43:08.000000Z'
+                        updated_at: '2023-08-27T19:43:08.000000Z'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: employees/2023-08-27-Employee-8.jpg
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        user_id:
+                          type: integer
+                          example: 3
+                        receiver_id:
+                          type: integer
+                          example: 4
+                        message:
+                          type: string
+                          example: 'please tell me more'
+                        created_at:
+                          type: string
+                          example: '2023-08-27T19:24:36.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-08-27T19:24:36.000000Z'
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'mouaz alkhateeb'
+                            image:
+                              type: string
+                              example: employees/2023-08-27-Employee-8.jpg
       tags:
         - Messages
-      security: []
     post:
-      summary: ''
-      operationId: postApiPrivateMessagesUser_id
-      description: ''
+      summary: 'Send Private Message'
+      operationId: sendPrivateMessage
+      description: 'This endpoint is used to send a private message.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Create New Alert For Employee'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 'Message private sent successfully'
+                  message:
+                    message: 'please tell me more'
+                    receiver_id: 4
+                    user_id: 3
+                    updated_at: '2023-08-27T19:24:36.000000Z'
+                    created_at: '2023-08-27T19:24:36.000000Z'
+                    id: 1
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: employees/2023-08-27-Employee-8.jpg
+                properties:
+                  status:
+                    type: string
+                    example: 'Message private sent successfully'
+                  message:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'please tell me more'
+                      receiver_id:
+                        type: integer
+                        example: 4
+                      user_id:
+                        type: integer
+                        example: 3
+                      updated_at:
+                        type: string
+                        example: '2023-08-27T19:24:36.000000Z'
+                      created_at:
+                        type: string
+                        example: '2023-08-27T19:24:36.000000Z'
+                      id:
+                        type: integer
+                        example: 1
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: employees/2023-08-27-Employee-8.jpg
       tags:
         - Messages
-      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: 'The message content.'
+                  example: 'please tell me more'
+              required:
+                - message
     parameters:
       -
         in: path
         name: user_id
-        description: 'The ID of the user.'
-        example: 1
+        description: 'The user ID, must be in the Users table.'
+        example: 11
         required: true
         schema:
           type: integer
   /api/notification:
     get:
-      summary: ''
-      operationId: getApiNotification
-      description: ''
+      summary: 'Show My Notifications List And Number Of Unread Notification'
+      operationId: showMyNotificationsListAndNumberOfUnreadNotification
+      description: 'This endpoint is used to display the list of my Notifications And Number Of Unread Notification and authenticate employee access to this API. It will show the Notifications specific to the authenticated employee.'
       parameters: []
       responses:
-        401:
-          description: ''
+        200:
+          description: 'Show My Notifications List And Number Of Unread Notification'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 6
+                      notifier_id: 3
+                      post_id: 1
+                      user_id: 3
+                      message: 'New Like Added To Your Post By mouaz alkhateeb'
+                      read_at: null
+                      company_id: 1
+                      created_at: '2023-08-27T19:01:39.000000Z'
+                      updated_at: '2023-08-27T19:01:39.000000Z'
+                    -
+                      id: 5
+                      notifier_id: 3
+                      post_id: 1
+                      user_id: 3
+                      message: 'New Comment Added To Your Post By mouaz alkhateeb'
+                      read_at: null
+                      company_id: 1
+                      created_at: '2023-08-27T19:01:26.000000Z'
+                      updated_at: '2023-08-27T19:01:26.000000Z'
+                    -
+                      id: 4
+                      notifier_id: 3
+                      post_id: null
+                      user_id: 2
+                      message: 'You Have New Alert From Admin For Many Reasons'
+                      read_at: null
+                      company_id: 1
+                      created_at: '2023-08-27T18:59:17.000000Z'
+                      updated_at: '2023-08-27T18:59:17.000000Z'
+                    -
+                      id: 3
+                      notifier_id: 3
+                      post_id: null
+                      user_id: 2
+                      message: 'You Have New Alert From Admin Because FABRICATE PROBLEMS'
+                      read_at: null
+                      company_id: 1
+                      created_at: '2023-08-27T15:33:04.000000Z'
+                      updated_at: '2023-08-27T15:33:04.000000Z'
+                  unread_notification: 4
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 6
+                        notifier_id: 3
+                        post_id: 1
+                        user_id: 3
+                        message: 'New Like Added To Your Post By mouaz alkhateeb'
+                        read_at: null
+                        company_id: 1
+                        created_at: '2023-08-27T19:01:39.000000Z'
+                        updated_at: '2023-08-27T19:01:39.000000Z'
+                      -
+                        id: 5
+                        notifier_id: 3
+                        post_id: 1
+                        user_id: 3
+                        message: 'New Comment Added To Your Post By mouaz alkhateeb'
+                        read_at: null
+                        company_id: 1
+                        created_at: '2023-08-27T19:01:26.000000Z'
+                        updated_at: '2023-08-27T19:01:26.000000Z'
+                      -
+                        id: 4
+                        notifier_id: 3
+                        post_id: null
+                        user_id: 2
+                        message: 'You Have New Alert From Admin For Many Reasons'
+                        read_at: null
+                        company_id: 1
+                        created_at: '2023-08-27T18:59:17.000000Z'
+                        updated_at: '2023-08-27T18:59:17.000000Z'
+                      -
+                        id: 3
+                        notifier_id: 3
+                        post_id: null
+                        user_id: 2
+                        message: 'You Have New Alert From Admin Because FABRICATE PROBLEMS'
+                        read_at: null
+                        company_id: 1
+                        created_at: '2023-08-27T15:33:04.000000Z'
+                        updated_at: '2023-08-27T15:33:04.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 6
+                        notifier_id:
+                          type: integer
+                          example: 3
+                        post_id:
+                          type: integer
+                          example: 1
+                        user_id:
+                          type: integer
+                          example: 3
+                        message:
+                          type: string
+                          example: 'New Like Added To Your Post By mouaz alkhateeb'
+                        read_at:
+                          type: string
+                          example: null
+                        company_id:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-08-27T19:01:39.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-08-27T19:01:39.000000Z'
+                  unread_notification:
+                    type: integer
+                    example: 4
       tags:
         - Notifications
-      security: []
   /api/create_post:
     post:
       summary: ''
@@ -4499,7 +4797,7 @@ paths:
                 content:
                   type: string
                   description: 'Must not be greater than 500 characters.'
-                  example: qpsecelwjyqqyrrxiy
+                  example: jawwml
                 image:
                   type: string
                   format: binary
@@ -4570,11 +4868,11 @@ paths:
                 content:
                   type: string
                   description: 'Must not be greater than 100 characters.'
-                  example: qaeliqjaq
+                  example: tybdtyoko
                 post_id:
                   type: string
                   description: ''
-                  example: at
+                  example: animi
               required:
                 - content
                 - post_id
@@ -4598,7 +4896,7 @@ paths:
                 post_id:
                   type: string
                   description: ''
-                  example: unde
+                  example: deserunt
               required:
                 - post_id
       security: []
@@ -4621,7 +4919,7 @@ paths:
                 comment_id:
                   type: string
                   description: ''
-                  example: eos
+                  example: quia
               required:
                 - comment_id
       security: []
@@ -4644,7 +4942,7 @@ paths:
                 post_id:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: exercitationem
               required:
                 - post_id
       security: []
@@ -4663,7 +4961,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the post.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -4682,7 +4980,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the comment.'
-        example: 13
+        example: 1
         required: true
         schema:
           type: integer
@@ -4705,19 +5003,19 @@ paths:
                 reason:
                   type: string
                   description: ''
-                  example: vel
+                  example: facere
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T21:51:44'
+                  example: '2023-08-27T22:48:50'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T21:51:44'
+                  example: '2023-08-27T22:48:50'
                 vacation_type:
                   type: string
                   description: ''
-                  example: '6'
+                  example: '4'
                   enum:
                     - '1'
                     - '2'
@@ -4733,15 +5031,15 @@ paths:
                 start_time:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: doloremque
                 end_time:
                   type: string
                   description: ''
-                  example: fuga
+                  example: occaecati
                 payment_type:
                   type: string
                   description: ''
-                  example: velit
+                  example: tempora
               required:
                 - reason
                 - start_date
@@ -4770,19 +5068,19 @@ paths:
                 reason:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: omnis
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T21:51:44'
+                  example: '2023-08-27T22:48:50'
                 start_date:
                   type: string
                   description: 'This field is required when <code>date</code> is <code>null</code>.  Must be a valid date.'
-                  example: '2023-08-27T21:51:44'
+                  example: '2023-08-27T22:48:50'
                 end_date:
                   type: string
                   description: 'This field is required when <code>date</code> is <code>null</code>.  Must be a valid date.'
-                  example: '2023-08-27T21:51:44'
+                  example: '2023-08-27T22:48:50'
                 justify_type:
                   type: string
                   description: ''
@@ -4794,7 +5092,7 @@ paths:
                 attachments:
                   type: string
                   description: 'Must not be greater than 2048 characters.'
-                  example: puunxqrun
+                  example: jjnzq
               required:
                 - reason
                 - justify_type
@@ -4818,7 +5116,7 @@ paths:
                 reason:
                   type: string
                   description: ''
-                  example: id
+                  example: harum
                 attachments:
                   type: string
                   format: binary
@@ -4845,7 +5143,7 @@ paths:
                 reason:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: occaecati
                 attachments:
                   type: string
                   format: binary
@@ -4880,7 +5178,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the request.'
-        example: accusamus
+        example: quae
         required: true
         schema:
           type: string
@@ -4899,7 +5197,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the approve request.'
-        example: occaecati
+        example: enim
         required: true
         schema:
           type: string
@@ -4922,11 +5220,11 @@ paths:
                 request_id:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: vero
                 reject_reason:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: harum
               required:
                 - request_id
                 - reject_reason
@@ -5114,7 +5412,7 @@ paths:
                 shift_id:
                   type: integer
                   description: 'Must Be Exists In shifts Table'
-                  example: 15
+                  example: 11
                 start_time:
                   type: time
                   description: 'The start time of the shift in the format `HH:MM:SS` Custom'
@@ -5158,10 +5456,10 @@ tags:
     description: ''
   -
     name: Messages
-    description: "\nAPIs for managing Messages"
+    description: ''
   -
     name: Notifications
-    description: "\nAPIs for managing Notifications"
+    description: ''
   -
     name: Posts
     description: "\nAPIs for managing Posts"

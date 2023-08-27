@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "5b0bd040-60c6-4194-b92f-3d1250a7d62f",
+        "_postman_id": "0f8351fd-aa63-4f1f-8e37-2eee66d188d6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -68,7 +68,7 @@
                                 },
                                 {
                                     "key": "nationalitie_id",
-                                    "value": 15,
+                                    "value": 3,
                                     "type": "text",
                                     "description": "Must be from 1 to 56"
                                 },
@@ -206,7 +206,7 @@
                                 },
                                 {
                                     "key": "end_passport",
-                                    "value": "2023-08-27T21:51:43",
+                                    "value": "2023-08-27T22:48:49",
                                     "type": "text",
                                     "description": "Must be a valid date."
                                 },
@@ -224,13 +224,13 @@
                                 },
                                 {
                                     "key": "shifts[0]",
-                                    "value": "quam",
+                                    "value": "deserunt",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "user_id",
-                                    "value": 8,
+                                    "value": 20,
                                     "type": "text",
                                     "description": "optional The ID of the user That Exists in users Table."
                                 },
@@ -365,7 +365,7 @@
                                 },
                                 {
                                     "key": "nationalitie_id",
-                                    "value": 3,
+                                    "value": 11,
                                     "type": "text",
                                     "description": "Must be from 1 to 56"
                                 },
@@ -479,19 +479,19 @@
                                 },
                                 {
                                     "key": "permission_to_leave",
-                                    "value": "1",
+                                    "value": "0",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "permission_to_entry",
-                                    "value": "1",
+                                    "value": "0",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "end_passport",
-                                    "value": "2023-08-27T21:51:43",
+                                    "value": "2023-08-27T22:48:49",
                                     "type": "text",
                                     "description": "Must be a valid date."
                                 },
@@ -503,13 +503,13 @@
                                 },
                                 {
                                     "key": "number_of_shifts",
-                                    "value": 89,
+                                    "value": 35,
                                     "type": "text",
                                     "description": "Must be at least 1."
                                 },
                                 {
                                     "key": "shifts[0]",
-                                    "value": "voluptate",
+                                    "value": "molestiae",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -620,13 +620,13 @@
                                 },
                                 {
                                     "key": "company_id",
-                                    "value": "minus",
+                                    "value": "ipsa",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "nationalitie_id",
-                                    "value": 3,
+                                    "value": 15,
                                     "type": "text",
                                     "description": "Must be from 1 to 56"
                                 },
@@ -668,7 +668,7 @@
                                 },
                                 {
                                     "key": "comapny_id",
-                                    "value": 19,
+                                    "value": 7,
                                     "type": "text",
                                     "description": "Must be exists in companies table."
                                 },
@@ -755,7 +755,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "13",
+                                    "value": "14",
                                     "description": "Must Be Exists In Users Table"
                                 }
                             ]
@@ -805,7 +805,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":5,\"hours_daily\":5,\"hours_annual\":17}"
+                            "raw": "{\"user_id\":12,\"hours_daily\":15,\"hours_annual\":16}"
                         },
                         "description": "This endpoint is used to DDetermine Vacation Hours For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -840,7 +840,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":10,\"hours_daily\":7,\"hours_annual\":9}"
+                            "raw": "{\"user_id\":20,\"hours_daily\":5,\"hours_annual\":7}"
                         },
                         "description": "This endpoint is used to Update Vacation Hours For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -875,7 +875,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":17,\"rewards_type\":1,\"adversaries_type\":1,\"rewards\":5,\"adversaries\":3,\"housing_allowance\":100000,\"transportation_allowance\":80000}"
+                            "raw": "{\"user_id\":1,\"rewards_type\":1,\"adversaries_type\":1,\"rewards\":5,\"adversaries\":3,\"housing_allowance\":100000,\"transportation_allowance\":80000}"
                         },
                         "description": "This endpoint is used to Add Reward Adversaries allowance For Employee in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -1013,7 +1013,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":14,\"new_salary\":75000}"
+                            "raw": "{\"user_id\":7,\"new_salary\":75000}"
                         },
                         "description": "This endpoint is used to Update Employee Salary in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -1048,7 +1048,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":16,\"number_of_month\":12,\"new_date\":\"2025-05-01.\"}"
+                            "raw": "{\"user_id\":6,\"number_of_month\":12,\"new_date\":\"2025-05-01.\"}"
                         },
                         "description": "This endpoint is used to  Renewal Employee Contract in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -1137,7 +1137,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "15",
+                                    "value": "10",
                                     "description": "Must Be Exists In Users Table"
                                 }
                             ]
@@ -1289,7 +1289,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":6,\"contract_termination_period\":3,\"contract_termination_reason\":\"Without Reason\"}"
+                            "raw": "{\"user_id\":14,\"contract_termination_period\":3,\"contract_termination_reason\":\"Without Reason\"}"
                         },
                         "description": "This endpoint is used to Termination Employee Contract in the Company and Admin Or Hr Can Access To This Api."
                     },
@@ -1618,7 +1618,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "19",
                                     "description": "Must Be Exists In companies Table"
                                 }
                             ]
@@ -1671,7 +1671,7 @@
                             "formdata": [
                                 {
                                     "key": "company_id",
-                                    "value": 2,
+                                    "value": 19,
                                     "type": "text",
                                     "description": "Must Be Exists In companies Table"
                                 },
@@ -1754,7 +1754,7 @@
                                 },
                                 {
                                     "key": "user_id",
-                                    "value": "et",
+                                    "value": "corrupti",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1794,7 +1794,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quia",
+                                    "value": "modi",
                                     "description": "The ID of the approve deposit."
                                 }
                             ]
@@ -1840,7 +1840,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_id\":\"molestiae\",\"reason_reject\":\"neque\"}"
+                            "raw": "{\"deposit_id\":\"reiciendis\",\"reason_reject\":\"eos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2005,7 +2005,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repudiandae",
+                                    "value": "commodi",
                                     "description": "The ID of the clearance request."
                                 }
                             ]
@@ -2041,7 +2041,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "porro",
+                                    "value": "nobis",
                                     "description": "The ID of the approve clearance request."
                                 }
                             ]
@@ -2087,7 +2087,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_id\":\"architecto\",\"reason_clearance_reject\":\"ipsum\"}"
+                            "raw": "{\"deposit_id\":\"iste\",\"reason_clearance_reject\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2194,7 +2194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"holiday_id\":15,\"day\":5,\"date\":\"2023-08-27\"}"
+                            "raw": "{\"holiday_id\":8,\"day\":5,\"date\":\"2023-08-27\"}"
                         },
                         "description": "This endpoint is used to Update Weekly Holiday and  Admin Or Hr Can Access To This Api."
                     },
@@ -2229,7 +2229,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"holiday_id\":7,\"holiday_name\":\"Eid Aladha\",\"start_date\":\"2023-08-27\",\"end_date\":\"2023-08-29\"}"
+                            "raw": "{\"holiday_id\":15,\"holiday_name\":\"Eid Aladha\",\"start_date\":\"2023-08-27\",\"end_date\":\"2023-08-29\"}"
                         },
                         "description": "This endpoint is used to Upadate Annual Holiday and  Admin Or Hr Can Access To This Api."
                     },
@@ -2278,10 +2278,10 @@
         },
         {
             "name": "Messages",
-            "description": "\nAPIs for managing Messages",
+            "description": "",
             "item": [
                 {
-                    "name": "GET api\/get_hrs_list",
+                    "name": "Get Hr List",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2301,35 +2301,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Get Hr List in Company and Admin Or Hr Or Employee Can Access To This Api."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"data\": [\n  {\n \"id\": 4,\n \"name\": \"hamza Fawaz\",\n \"email\": \"hamzafawaz123@gmail.com\",\n \"type\": 3,\n \"image\": null\n},\n{\n    \"id\": 5,\n   \"name\": \"mariam kabani\",\n   \"email\": \"mariamkabani123@gmail.com\",\n   \"type\": 3,\n   \"image\": null\n}\n]\n}",
+                            "name": "Hr List"
                         }
                     ]
                 },
                 {
-                    "name": "GET api\/private-messages\/{user_id}",
+                    "name": "Get Private Messages",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2340,8 +2324,8 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": "1",
-                                    "description": "The ID of the user."
+                                    "value": "11",
+                                    "description": "The user ID, must be in the Users table."
                                 }
                             ]
                         },
@@ -2357,35 +2341,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to Get Private Messages."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"messages\": [\n{\n\"id\": 1,\n\"user_id\": 3,\n\"receiver_id\": 4,\n\"message\": \"please tell me more\",\n\"created_at\": \"2023-08-27T19:24:36.000000Z\",\n\"updated_at\": \"2023-08-27T19:24:36.000000Z\",\n\"user\": {\n\"id\": 3,\n\"name\": \"mouaz alkhateeb\",\n\"image\": \"employees\/2023-08-27-Employee-8.jpg\"\n}\n},\n{\n\"id\": 2,\n\"user_id\": 3,\n\"receiver_id\": 4,\n\"message\": \"yesss\",\n\"created_at\": \"2023-08-27T19:43:08.000000Z\",\n\"updated_at\": \"2023-08-27T19:43:08.000000Z\",\n\"user\": {\n\"id\": 3,\n\"name\": \"mouaz alkhateeb\",\n\"image\": \"employees\/2023-08-27-Employee-8.jpg\"\n}\n}\n]\n}",
+                            "name": "Get Private Messages"
                         }
                     ]
                 },
                 {
-                    "name": "POST api\/private-messages\/{user_id}",
+                    "name": "Send Private Message",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2396,8 +2364,8 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": "1",
-                                    "description": "The ID of the user."
+                                    "value": "17",
+                                    "description": "The user ID, must be in the Users table."
                                 }
                             ]
                         },
@@ -2412,22 +2380,29 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"message\":\"please tell me more\"}"
+                        },
+                        "description": "This endpoint is used to send a private message."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Message private sent successfully\",\n         \"message\": {\n         \"message\": \"please tell me more\",\n         \"receiver_id\": 4,\n         \"user_id\": 3,\n         \"updated_at\": \"2023-08-27T19:24:36.000000Z\",\n         \"created_at\": \"2023-08-27T19:24:36.000000Z\",\n         \"id\": 1,\n         \"user\": {\n             \"id\": 3,\n             \"name\": \"mouaz alkhateeb\",\n             \"image\": \"employees\/2023-08-27-Employee-8.jpg\"\n         }\n     }\n}",
+                            "name": "Create New Alert For Employee"
+                        }
+                    ]
                 }
             ]
         },
         {
             "name": "Notifications",
-            "description": "\nAPIs for managing Notifications",
+            "description": "",
             "item": [
                 {
-                    "name": "GET api\/notification",
+                    "name": "Show My Notifications List And Number Of Unread Notification",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -2447,30 +2422,14 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "This endpoint is used to display the list of my Notifications And Number Of Unread Notification and authenticate employee access to this API. It will show the Notifications specific to the authenticated employee."
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n {\n \"id\": 6,\n \"notifier_id\": 3,\n \"post_id\": 1,\n \"user_id\": 3,\n  \"message\": \"New Like Added To Your Post By mouaz alkhateeb\",\n  \"read_at\": null,\n   \"company_id\": 1,\n   \"created_at\": \"2023-08-27T19:01:39.000000Z\",\n   \"updated_at\": \"2023-08-27T19:01:39.000000Z\"\n},\n{\n    \"id\": 5,\n    \"notifier_id\": 3,\n   \"post_id\": 1,\n    \"user_id\": 3,\n    \"message\": \"New Comment Added To Your Post By mouaz alkhateeb\",\n    \"read_at\": null,\n    \"company_id\": 1,\n    \"created_at\": \"2023-08-27T19:01:26.000000Z\",\n    \"updated_at\": \"2023-08-27T19:01:26.000000Z\"\n},\n{\n\"id\": 4,\n\"notifier_id\": 3,\n\"post_id\": null,\n\"user_id\": 2,\n\"message\": \"You Have New Alert From Admin For Many Reasons\",\n\"read_at\": null,\n\"company_id\": 1,\n\"created_at\": \"2023-08-27T18:59:17.000000Z\",\n\"updated_at\": \"2023-08-27T18:59:17.000000Z\"\n},\n{\n  \"id\": 3,\n   \"notifier_id\": 3,\n  \"post_id\": null,\n   \"user_id\": 2,\n   \"message\": \"You Have New Alert From Admin Because FABRICATE PROBLEMS\",\n   \"read_at\": null,\n   \"company_id\": 1,\n   \"created_at\": \"2023-08-27T15:33:04.000000Z\",\n   \"updated_at\": \"2023-08-27T15:33:04.000000Z\"\n}\n],\n\"unread_notification\": 4\n}",
+                            "name": "Show My Notifications List And Number Of Unread Notification"
                         }
                     ]
                 }
@@ -2505,7 +2464,7 @@
                             "formdata": [
                                 {
                                     "key": "content",
-                                    "value": "qpsecelwjyqqyrrxiy",
+                                    "value": "jawwml",
                                     "type": "text",
                                     "description": "Must not be greater than 500 characters."
                                 },
@@ -2641,7 +2600,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"content\":\"qaeliqjaq\",\"post_id\":\"at\"}"
+                            "raw": "{\"content\":\"tybdtyoko\",\"post_id\":\"animi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2672,7 +2631,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"post_id\":\"unde\"}"
+                            "raw": "{\"post_id\":\"deserunt\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2703,7 +2662,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"comment_id\":\"eos\"}"
+                            "raw": "{\"comment_id\":\"quia\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2734,7 +2693,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"post_id\":\"asperiores\"}"
+                            "raw": "{\"post_id\":\"exercitationem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2755,7 +2714,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "16",
+                                    "value": "1",
                                     "description": "The ID of the post."
                                 }
                             ]
@@ -2791,7 +2750,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "13",
+                                    "value": "1",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -2843,7 +2802,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"vel\",\"start_date\":\"2023-08-27T21:51:44\",\"end_date\":\"2023-08-27T21:51:44\",\"vacation_type\":\"6\",\"start_time\":\"molestiae\",\"end_time\":\"fuga\",\"payment_type\":\"velit\"}"
+                            "raw": "{\"reason\":\"facere\",\"start_date\":\"2023-08-27T22:48:50\",\"end_date\":\"2023-08-27T22:48:50\",\"vacation_type\":\"4\",\"start_time\":\"doloremque\",\"end_time\":\"occaecati\",\"payment_type\":\"tempora\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2874,7 +2833,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"dolorem\",\"date\":\"2023-08-27T21:51:44\",\"start_date\":\"2023-08-27T21:51:44\",\"end_date\":\"2023-08-27T21:51:44\",\"justify_type\":\"2\",\"attachments\":\"puunxqrun\"}"
+                            "raw": "{\"reason\":\"omnis\",\"date\":\"2023-08-27T22:48:50\",\"start_date\":\"2023-08-27T22:48:50\",\"end_date\":\"2023-08-27T22:48:50\",\"justify_type\":\"2\",\"attachments\":\"jjnzq\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2908,7 +2867,7 @@
                             "formdata": [
                                 {
                                     "key": "reason",
-                                    "value": "id",
+                                    "value": "harum",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2951,7 +2910,7 @@
                             "formdata": [
                                 {
                                     "key": "reason",
-                                    "value": "dolorem",
+                                    "value": "occaecati",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2981,7 +2940,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "accusamus",
+                                    "value": "quae",
                                     "description": "The ID of the request."
                                 }
                             ]
@@ -3037,7 +2996,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "occaecati",
+                                    "value": "enim",
                                     "description": "The ID of the approve request."
                                 }
                             ]
@@ -3083,7 +3042,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"request_id\":\"reprehenderit\",\"reject_reason\":\"dolorem\"}"
+                            "raw": "{\"request_id\":\"vero\",\"reject_reason\":\"harum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3408,7 +3367,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"shift_id\":15,\"start_time\":\"09:00:00.\",\"end_time\":\"15:00:00.\",\"start_break_hour\":\"12:30:00.\",\"end_break_hour\":\"13:30:00.\"}"
+                            "raw": "{\"shift_id\":11,\"start_time\":\"09:00:00.\",\"end_time\":\"15:00:00.\",\"start_break_hour\":\"12:30:00.\",\"end_break_hour\":\"13:30:00.\"}"
                         },
                         "description": "This endpoint is used to Create Update Employee Shifts and Admin Or Hr Can Access To This Api."
                     },

@@ -31,18 +31,21 @@ class AddAlertEvent implements ShouldBroadcast
         if ($alert->type == 1) {
             $notification = new Notification();
             $notification->user_id = $user->id;
+            $notification->company_id = $user->company_id;
             $notification->notifier_id = $notifier->id;
             $notification->message =  "You Have New Alert From Admin Because SWEARING";
             $notification->save();
         } elseif ($alert->type == 2) {
             $notification = new Notification();
             $notification->user_id = $user->id;
+            $notification->company_id = $user->company_id;
             $notification->notifier_id = $notifier->id;
             $notification->message =  "You Have New Alert From Admin Because FABRICATE PROBLEMS";
             $notification->save();
         } else {
             $notification = new Notification();
             $notification->user_id = $user->id;
+            $notification->company_id = $user->company_id;
             $notification->notifier_id = $notifier->id;
             $notification->message =  "You Have New Alert From Admin For Many Reasons";
             $notification->save();

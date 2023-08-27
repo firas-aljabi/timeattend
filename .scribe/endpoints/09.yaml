@@ -57,7 +57,7 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: et
+        example: corrupti
         type: string
         enumValues: []
         custom: []
@@ -159,7 +159,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       type: '3'
-      user_id: et
+      user_id: corrupti
     fileParameters:
       car_image: null
       laptop_image: null
@@ -194,12 +194,12 @@ endpoints:
         name: id
         description: 'The ID of the approve deposit.'
         required: true
-        example: quia
+        example: modi
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: modi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -239,7 +239,7 @@ endpoints:
         name: deposit_id
         description: ''
         required: true
-        example: molestiae
+        example: reiciendis
         type: string
         enumValues: []
         custom: []
@@ -247,13 +247,13 @@ endpoints:
         name: reason_reject
         description: ''
         required: true
-        example: neque
+        example: eos
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      deposit_id: molestiae
-      reason_reject: neque
+      deposit_id: reiciendis
+      reason_reject: eos
     fileParameters: []
     responses: []
     responseFields: []
@@ -408,12 +408,12 @@ endpoints:
         name: id
         description: 'The ID of the clearance request.'
         required: true
-        example: repudiandae
+        example: commodi
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: repudiandae
+      id: commodi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -449,12 +449,12 @@ endpoints:
         name: id
         description: 'The ID of the approve clearance request.'
         required: true
-        example: porro
+        example: nobis
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: porro
+      id: nobis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -494,7 +494,7 @@ endpoints:
         name: deposit_id
         description: ''
         required: true
-        example: architecto
+        example: iste
         type: string
         enumValues: []
         custom: []
@@ -502,13 +502,13 @@ endpoints:
         name: reason_clearance_reject
         description: ''
         required: true
-        example: ipsum
+        example: aut
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      deposit_id: architecto
-      reason_clearance_reject: ipsum
+      deposit_id: iste
+      reason_clearance_reject: aut
     fileParameters: []
     responses: []
     responseFields: []

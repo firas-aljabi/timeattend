@@ -29,6 +29,7 @@ class AddCommentEvent implements ShouldBroadcast
         $notification = new Notification();
         $notification->user_id = $user->id;
         $notification->post_id = $post->id;
+        $notification->company_id = $user->company_id;
         $notification->notifier_id = $notifier->id;
         $notification->message =  "New Comment Added To Your Post By " . $user_name->name;
         $notification->save();

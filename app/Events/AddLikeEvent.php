@@ -28,6 +28,7 @@ class AddLikeEvent implements ShouldBroadcast
         $user_name = User::where('id', $user->id)->first();
         $notification = new Notification();
         $notification->user_id = $user->id;
+        $notification->company_id = $user->company_id;
         $notification->post_id = $post->id;
         $notification->notifier_id = $notifier->id;
         $notification->message =  "New Like Added To Your Post By " . $user_name->name;
