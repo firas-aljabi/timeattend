@@ -61,6 +61,7 @@ paths:
                     entry_time: '30'
                     permission_to_leave: '1'
                     leave_time: '60'
+                    number_of_working_hours: 0
                     nationalitie:
                       name: Syrian
                     percentage: '0'
@@ -200,6 +201,9 @@ paths:
                       leave_time:
                         type: string
                         example: '60'
+                      number_of_working_hours:
+                        type: integer
+                        example: 0
                       nationalitie:
                         type: object
                         properties:
@@ -376,7 +380,7 @@ paths:
                 end_passport:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T22:48:49'
+                  example: '2023-08-29T00:09:15'
                 image:
                   type: string
                   format: binary
@@ -425,13 +429,13 @@ paths:
                   type: array
                   description: 'optional An array of shift for the user. Required when `number_of_shifts` is not null.'
                   example:
-                    - deserunt
+                    - necessitatibus
                   items:
                     type: string
                 user_id:
                   type: integer
                   description: 'optional The ID of the user That Exists in users Table.'
-                  example: 20
+                  example: 2
                 start_time:
                   type: time
                   description: 'The start time of the shift in the format `HH:MM:SS` Custom'
@@ -512,7 +516,7 @@ paths:
                 nationalitie_id:
                   type: integer
                   description: 'Must be from 1 to 56'
-                  example: 11
+                  example: 19
                 birthday_date:
                   type: date
                   description: Custom
@@ -588,7 +592,7 @@ paths:
                 permission_to_leave:
                   type: string
                   description: ''
-                  example: '0'
+                  example: '1'
                   enum:
                     - '1'
                     - '0'
@@ -610,7 +614,7 @@ paths:
                 end_passport:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-08-27T22:48:49'
+                  example: '2023-08-29T00:09:16'
                 image:
                   type: string
                   format: binary
@@ -654,12 +658,12 @@ paths:
                 number_of_shifts:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 35
+                  example: 41
                 shifts:
                   type: array
                   description: 'This field is required when <code>number_of_shifts</code> is <code>!=</code> or <code>null</code>.'
                   example:
-                    - molestiae
+                    - assumenda
                   items:
                     type: string
               required:
@@ -890,11 +894,11 @@ paths:
                 company_id:
                   type: string
                   description: ''
-                  example: ipsa
+                  example: iste
                 nationalitie_id:
                   type: integer
                   description: 'Must be from 1 to 56'
-                  example: 15
+                  example: 3
                 birthday_date:
                   type: date
                   description: Custom
@@ -902,7 +906,7 @@ paths:
                 material_status:
                   type: string
                   description: ''
-                  example: '3'
+                  example: '2'
                   enum:
                     - '1'
                     - '2'
@@ -930,7 +934,7 @@ paths:
                 comapny_id:
                   type: integer
                   description: 'Must be exists in companies table.'
-                  example: 7
+                  example: 9
               required:
                 - name
                 - email
@@ -993,6 +997,7 @@ paths:
                     entry_time: '30'
                     permission_to_leave: '1'
                     leave_time: '60'
+                    number_of_working_hours: 0
                     nationalitie:
                       name: Syrian
                     percentage: '0'
@@ -1132,6 +1137,9 @@ paths:
                       leave_time:
                         type: string
                         example: '60'
+                      number_of_working_hours:
+                        type: integer
+                        example: 0
                       nationalitie:
                         type: object
                         properties:
@@ -1227,7 +1235,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In Users Table'
-        example: 14
+        example: 1
         required: true
         schema:
           type: integer
@@ -1274,15 +1282,15 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 12
+                  example: 7
                 hours_daily:
                   type: integer
                   description: 'The number of hours Vacation per month.'
-                  example: 15
+                  example: 19
                 hours_annual:
                   type: integer
                   description: 'The number of hours Vacation per year.'
-                  example: 16
+                  example: 6
               required:
                 - user_id
   /api/update_working_hours:
@@ -1328,34 +1336,36 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 20
+                  example: 5
                 hours_daily:
                   type: integer
                   description: 'The number of hours Vacation per month.'
-                  example: 5
+                  example: 3
                 hours_annual:
                   type: integer
                   description: 'The number of hours Vacation per year.'
-                  example: 7
+                  example: 15
               required:
                 - user_id
   /api/reward_adversaries_allowance_salary:
     post:
-      summary: 'Add Reward Adversaries allowance For Employee'
-      operationId: addRewardAdversariesAllowanceForEmployee
-      description: 'This endpoint is used to Add Reward Adversaries allowance For Employee in the Company and Admin Or Hr Can Access To This Api.'
+      summary: 'Add Reward and Adversaries Allowance for Employee'
+      operationId: addRewardAndAdversariesAllowanceForEmployee
+      description: 'This endpoint is used to add reward and adversaries allowance for an employee in the company. Only admins or HR personnel can access this API.'
       parameters: []
       responses:
         200:
-          description: 'Add Reward Adversaries allowance For Employee'
+          description: 'Add Reward and Adversaries Allowance for Employee'
           content:
             application/json:
               schema:
                 type: object
                 example:
                   Net_Salary: 220000
-                  Rewards: 10
-                  Adversaries: 0
+                  Rewards: 50000
+                  rewards_type: 1
+                  Adversaries: 95000
+                  adversaries_type: 1
                   'Housing allowance': 0
                   'Transportation Allowance': 0
                   date: '2023-08-27'
@@ -1368,10 +1378,16 @@ paths:
                     example: 220000
                   Rewards:
                     type: integer
-                    example: 10
+                    example: 50000
+                  rewards_type:
+                    type: integer
+                    example: 1
                   Adversaries:
                     type: integer
-                    example: 0
+                    example: 95000
+                  adversaries_type:
+                    type: integer
+                    example: 1
                   'Housing allowance':
                     type: integer
                     example: 0
@@ -1401,34 +1417,36 @@ paths:
               properties:
                 user_id:
                   type: integer
-                  description: 'Must Be Exists In Users Table'
-                  example: 1
+                  description: 'The user ID, which must exist in the Users table.'
+                  example: 13
                 rewards_type:
                   type: integer
-                  description: "optional The type of rewards to user. Must be one of the following values:\n- `1`: Number.\n- `2`: Rate. Custom"
+                  description: "optional The type of rewards for the user. Must be one of the following values:\n- `1`: Number.\n- `2`: Rate. (Custom"
                   example: 1
                 adversaries_type:
                   type: integer
-                  description: "optional The type of adversaries to user. Must be one of the following values:\n- `1`: Number.\n- `2`: Rate. Custom"
+                  description: "optional The type of adversaries for the user. Must be one of the following values:\n- `1`: Number.\n- `2`: Rate. (Custom"
                   example: 1
                 rewards:
                   type: number
-                  description: 'This Field Required if rewards type not equal null Custom Example: 25000, Custom'
+                  description: 'if rewards_type is not null. The amount of rewards. (Custom Example: 25000, Custom'
                   example: 5.0
                 adversaries:
                   type: number
-                  description: 'This Field Required if adversaries type not equal null Custom Example: 78000, Custom'
+                  description: 'if adversaries_type is not null. The amount of adversaries. (Custom Example: 78000, Custom'
                   example: 3.0
                 housing_allowance:
                   type: number
-                  description: Custom
+                  description: 'The housing allowance. (Custom'
                   example: 100000.0
                 transportation_allowance:
                   type: number
-                  description: Custom
+                  description: 'The transportation allowance. (Custom'
                   example: 80000.0
               required:
                 - user_id
+                - rewards
+                - adversaries
   /api/get_dashboard_data:
     get:
       summary: 'Get Data Dashboard Statics in the Company'
@@ -1558,309 +1576,10 @@ paths:
         200:
           description: 'Employees List'
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  data:
-                    -
-                      id: 8
-                      name: 'mouaz alkhateeb'
-                      email: mouaz@gmail.com
-                      work_email: mouazalkhateeb@gmail.com
-                      status: 1
-                      type: 4
-                      gender: 1
-                      mobile: '0969040322'
-                      phone: '0969040322'
-                      departement: it
-                      address: Damascus
-                      position: null
-                      skills: 'no skills'
-                      serial_number: '000007'
-                      birthday_date: '2022-11-26'
-                      marital_status: null
-                      guarantor: admin
-                      branch: 'syria branch'
-                      start_job_contract: '2023-08-01'
-                      end_job_contract: '2023-10-01'
-                      end_visa: '2023-09-11'
-                      end_passport: '2023-09-11'
-                      end_employee_sponsorship: null
-                      end_municipal_card: '2023-09-10'
-                      end_health_insurance: '2023-09-14'
-                      end_employee_residence: '2023-09-20'
-                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
-                      id_photo: null
-                      biography: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf'
-                      employee_sponsorship: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg'
-                      visa: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg'
-                      passport: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg'
-                      municipal_card: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg'
-                      health_insurance: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg'
-                      employee_residence: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg'
-                      permission_to_entry: 1
-                      entry_time: 30
-                      permission_to_leave: 1
-                      leave_time: 60
-                      percentage: '0'
-                      basic_salary: 200000
-                    -
-                      id: 9
-                      name: 'ahmad alkhateeb'
-                      email: ahmad@gmail.com
-                      work_email: ahmadlkhateeb@gmail.com
-                      status: 1
-                      type: 4
-                      gender: 1
-                      mobile: '0969040355'
-                      phone: '0969040344'
-                      departement: it
-                      address: Damascus
-                      position: 'laravel developer'
-                      skills: 'no skills'
-                      serial_number: '000011'
-                      birthday_date: '2022-11-26'
-                      marital_status: null
-                      guarantor: User
-                      branch: 'syria branch'
-                      start_job_contract: '2023-08-01'
-                      end_job_contract: '2023-10-01'
-                      end_visa: '2023-09-11'
-                      end_passport: '2023-09-11'
-                      end_employee_sponsorship: null
-                      end_municipal_card: '2023-09-10'
-                      end_health_insurance: '2023-09-14'
-                      end_employee_residence: '2023-09-20'
-                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
-                      id_photo: null
-                      biography: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf'
-                      employee_sponsorship: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg'
-                      visa: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg'
-                      passport: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg'
-                      municipal_card: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg'
-                      health_insurance: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg'
-                      employee_residence: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg'
-                      permission_to_entry: 1
-                      entry_time: 30
-                      permission_to_leave: 1
-                      leave_time: 60
-                      percentage: '0'
-                      basic_salary: 200000
-                properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 8
-                        name: 'mouaz alkhateeb'
-                        email: mouaz@gmail.com
-                        work_email: mouazalkhateeb@gmail.com
-                        status: 1
-                        type: 4
-                        gender: 1
-                        mobile: '0969040322'
-                        phone: '0969040322'
-                        departement: it
-                        address: Damascus
-                        position: null
-                        skills: 'no skills'
-                        serial_number: '000007'
-                        birthday_date: '2022-11-26'
-                        marital_status: null
-                        guarantor: admin
-                        branch: 'syria branch'
-                        start_job_contract: '2023-08-01'
-                        end_job_contract: '2023-10-01'
-                        end_visa: '2023-09-11'
-                        end_passport: '2023-09-11'
-                        end_employee_sponsorship: null
-                        end_municipal_card: '2023-09-10'
-                        end_health_insurance: '2023-09-14'
-                        end_employee_residence: '2023-09-20'
-                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
-                        id_photo: null
-                        biography: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf'
-                        employee_sponsorship: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg'
-                        visa: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg'
-                        passport: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg'
-                        municipal_card: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg'
-                        health_insurance: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg'
-                        employee_residence: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg'
-                        permission_to_entry: 1
-                        entry_time: 30
-                        permission_to_leave: 1
-                        leave_time: 60
-                        percentage: '0'
-                        basic_salary: 200000
-                      -
-                        id: 9
-                        name: 'ahmad alkhateeb'
-                        email: ahmad@gmail.com
-                        work_email: ahmadlkhateeb@gmail.com
-                        status: 1
-                        type: 4
-                        gender: 1
-                        mobile: '0969040355'
-                        phone: '0969040344'
-                        departement: it
-                        address: Damascus
-                        position: 'laravel developer'
-                        skills: 'no skills'
-                        serial_number: '000011'
-                        birthday_date: '2022-11-26'
-                        marital_status: null
-                        guarantor: User
-                        branch: 'syria branch'
-                        start_job_contract: '2023-08-01'
-                        end_job_contract: '2023-10-01'
-                        end_visa: '2023-09-11'
-                        end_passport: '2023-09-11'
-                        end_employee_sponsorship: null
-                        end_municipal_card: '2023-09-10'
-                        end_health_insurance: '2023-09-14'
-                        end_employee_residence: '2023-09-20'
-                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
-                        id_photo: null
-                        biography: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf'
-                        employee_sponsorship: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg'
-                        visa: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg'
-                        passport: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg'
-                        municipal_card: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg'
-                        health_insurance: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg'
-                        employee_residence: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg'
-                        permission_to_entry: 1
-                        entry_time: 30
-                        permission_to_leave: 1
-                        leave_time: 60
-                        percentage: '0'
-                        basic_salary: 200000
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 8
-                        name:
-                          type: string
-                          example: 'mouaz alkhateeb'
-                        email:
-                          type: string
-                          example: mouaz@gmail.com
-                        work_email:
-                          type: string
-                          example: mouazalkhateeb@gmail.com
-                        status:
-                          type: integer
-                          example: 1
-                        type:
-                          type: integer
-                          example: 4
-                        gender:
-                          type: integer
-                          example: 1
-                        mobile:
-                          type: string
-                          example: '0969040322'
-                        phone:
-                          type: string
-                          example: '0969040322'
-                        departement:
-                          type: string
-                          example: it
-                        address:
-                          type: string
-                          example: Damascus
-                        position:
-                          type: string
-                          example: null
-                        skills:
-                          type: string
-                          example: 'no skills'
-                        serial_number:
-                          type: string
-                          example: '000007'
-                        birthday_date:
-                          type: string
-                          example: '2022-11-26'
-                        marital_status:
-                          type: string
-                          example: null
-                        guarantor:
-                          type: string
-                          example: admin
-                        branch:
-                          type: string
-                          example: 'syria branch'
-                        start_job_contract:
-                          type: string
-                          example: '2023-08-01'
-                        end_job_contract:
-                          type: string
-                          example: '2023-10-01'
-                        end_visa:
-                          type: string
-                          example: '2023-09-11'
-                        end_passport:
-                          type: string
-                          example: '2023-09-11'
-                        end_employee_sponsorship:
-                          type: string
-                          example: null
-                        end_municipal_card:
-                          type: string
-                          example: '2023-09-10'
-                        end_health_insurance:
-                          type: string
-                          example: '2023-09-14'
-                        end_employee_residence:
-                          type: string
-                          example: '2023-09-20'
-                        image:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
-                        id_photo:
-                          type: string
-                          example: null
-                        biography:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf'
-                        employee_sponsorship:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg'
-                        visa:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg'
-                        passport:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg'
-                        municipal_card:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg'
-                        health_insurance:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg'
-                        employee_residence:
-                          type: string
-                          example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg'
-                        permission_to_entry:
-                          type: integer
-                          example: 1
-                        entry_time:
-                          type: integer
-                          example: 30
-                        permission_to_leave:
-                          type: integer
-                          example: 1
-                        leave_time:
-                          type: integer
-                          example: 60
-                        percentage:
-                          type: string
-                          example: '0'
-                        basic_salary:
-                          type: integer
-                          example: 200000
+                type: string
+                example: "{\n\"data\": [\n{\n\"id\": 8,\n\"name\": \"mouaz alkhateeb\",\n\"email\": \"mouaz@gmail.com\",\n\"work_email\": \"mouazalkhateeb@gmail.com\",\n\"status\": 1,\n\"type\": 4,\n\"gender\": 1,\n\"mobile\": \"0969040322\",\n\"phone\": \"0969040322\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": null,\n\"skills\": \"no skills\",\n\"serial_number\": \"000007\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"admin\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": 1,\n\"entry_time\": 30,\n\"permission_to_leave\": 1,\n\"leave_time\": 60,\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"number_of_working_hours\": 0,\n},\n{\n\"id\": 9,\n\"name\": \"ahmad alkhateeb\",\n\"email\": \"ahmad@gmail.com\",\n\"work_email\": \"ahmadlkhateeb@gmail.com\",\n\"status\": 1,\n\"type\": 4,\n\"gender\": 1,\n\"mobile\": \"0969040355\",\n\"phone\": \"0969040344\",\n\"departement\": \"it\",\n\"address\": \"Damascus\",\n\"position\": \"laravel developer\",\n\"skills\": \"no skills\",\n\"serial_number\": \"000011\",\n\"birthday_date\": \"2022-11-26\",\n\"marital_status\": null,\n\"guarantor\": \"User\",\n\"branch\": \"syria branch\",\n\"start_job_contract\": \"2023-08-01\",\n\"end_job_contract\": \"2023-10-01\",\n\"end_visa\": \"2023-09-11\",\n\"end_passport\": \"2023-09-11\",\n\"end_employee_sponsorship\": null,\n\"end_municipal_card\": \"2023-09-10\",\n\"end_health_insurance\": \"2023-09-14\",\n\"end_employee_residence\": \"2023-09-20\",\n\"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n\"id_photo\": null,\n\"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n\"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n\"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n\"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n\"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n\"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n\"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n\"permission_to_entry\": 1,\n\"entry_time\": 30,\n\"permission_to_leave\": 1,\n\"leave_time\": 60,\n\"percentage\": \"0\",\n\"basic_salary\": 200000,\n\"number_of_working_hours\": 0,\n}\n]\n}"
       tags:
         - 'Admin Operations'
   /api/employees_salaries:
@@ -1980,7 +1699,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 7
+                  example: 11
                 new_salary:
                   type: number
                   description: 'Refers To New Salary Custom'
@@ -2014,7 +1733,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 6
+                  example: 16
                 number_of_month:
                   type: integer
                   description: "Must Be Required if new_date equal null, Must be one of the following values:\n- `3`: Three Month.\n- `6`: Six Month.\n- `12`: One Year. Custom"
@@ -2227,6 +1946,7 @@ paths:
                     entry_time: '30'
                     permission_to_leave: '1'
                     leave_time: '60'
+                    number_of_working_hours: 0
                     nationalitie:
                       name: Syrian
                     percentage: '0'
@@ -2377,6 +2097,9 @@ paths:
                       leave_time:
                         type: string
                         example: '60'
+                      number_of_working_hours:
+                        type: integer
+                        example: 0
                       nationalitie:
                         type: object
                         properties:
@@ -2476,7 +2199,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In Users Table'
-        example: 10
+        example: 5
         required: true
         schema:
           type: integer
@@ -2534,6 +2257,7 @@ paths:
                     entry_time: '30'
                     permission_to_leave: '1'
                     leave_time: '60'
+                    number_of_working_hours: 0
                     nationalitie:
                       name: Syrian
                     percentage: '0'
@@ -2684,6 +2408,9 @@ paths:
                       leave_time:
                         type: string
                         example: '60'
+                      number_of_working_hours:
+                        type: integer
+                        example: 0
                       nationalitie:
                         type: object
                         properties:
@@ -2842,8 +2569,8 @@ paths:
                 - check_in
   /api/check_out_attendance:
     post:
-      summary: 'Employee Out in System Daily'
-      operationId: employeeOutInSystemDaily
+      summary: 'Employee Check Out in System Daily'
+      operationId: employeeCheckOutInSystemDaily
       description: 'This endpoint is used to check Out From System in the Company and Employee Can Access To This Api.'
       parameters: []
       responses:
@@ -2969,7 +2696,7 @@ paths:
                 user_id:
                   type: integer
                   description: 'Must Be Exists In Users Table'
-                  example: 14
+                  example: 19
                 contract_termination_period:
                   type: integer
                   description: "required. Must be one of the following values:\n- `0`: Open Term.\n- `3`: Three Month.\n- `6`: Six Month.\n- `12`: One Year. Custom"
@@ -3347,6 +3074,45 @@ paths:
                           example: 'Saudi Arabian'
       tags:
         - 'Admin Operations'
+  /api/update_employee_permission_time:
+    post:
+      summary: 'Update Employee Permission Time'
+      operationId: updateEmployeePermissionTime
+      description: 'This endpoint is used to update the permission time for an employee. Only admins or HR personnel can access this API.'
+      parameters: []
+      responses:
+        200:
+          description: 'Update Employee Permission Time'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"mouaz alkhateeb\",\n        \"email\": \"mouaz@gmail.com\",\n        \"work_email\": \"mouazalkhateeb@gmail.com\",\n        \"status\": 1,\n        \"type\": 4,\n        \"gender\": 1,\n        \"mobile\": \"0969040322\",\n        \"phone\": \"0969040322\",\n        \"departement\": \"it\",\n        \"address\": \"Damascus\",\n        \"position\": null,\n        \"skills\": \"no skills\",\n        \"serial_number\": \"000007\",\n        \"birthday_date\": \"2022-11-26\",\n        \"marital_status\": null,\n        \"guarantor\": \"admin\",\n        \"branch\": \"syria branch\",\n        \"start_job_contract\": \"2023-08-01\",\n        \"end_job_contract\": \"2023-10-01\",\n        \"end_visa\": \"2023-09-11\",\n        \"end_passport\": \"2023-09-11\",\n        \"end_employee_sponsorship\": null,\n        \"end_municipal_card\": \"2023-09-10\",\n        \"end_health_insurance\": \"2023-09-14\",\n        \"end_employee_residence\": \"2023-09-20\",\n        \"image\": null,\n        \"id_photo\": null,\n        \"biography\": null,\n        \"employee_sponsorship\": null,\n        \"visa\": null,\n        \"passport\": null,\n        \"municipal_card\": null,\n        \"health_insurance\": null,\n        \"employee_residence\": null,\n        \"permission_to_entry\": 1,\n        \"entry_time\": 60,\n        \"permission_to_leave\": 1,\n        \"leave_time\": 90,\n        \"percentage\": \"0\",\n        \"basic_salary\": 200000,\n        \"number_of_working_hours\": 0,\n    }\n}"
+      tags:
+        - 'Admin Operations'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'The user ID, which must exist in the users table.'
+                  example: 16
+                entry_time:
+                  type: number
+                  description: "if permission_to_entry is equal to 1. Must be one of the following values:\n- 30\n- 60\n- 90 (Custom"
+                  example: 90.0
+                leave_time:
+                  type: number
+                  description: "if permission_to_leave is equal to 1. Must be one of the following values:\n- 30\n- 60\n- 90 (Custom"
+                  example: 60.0
+              required:
+                - user_id
+                - entry_time
+                - leave_time
   /api/add_alert:
     post:
       summary: 'Create New Alert For Employee'
@@ -3490,6 +3256,7 @@ paths:
                     entry_time: null
                     permission_to_leave: 0
                     leave_time: null
+                    number_of_working_hours: 0
                     code: null
                     expired_at: null
                     created_at: '2023-08-26T07:01:20.000000Z'
@@ -3631,6 +3398,9 @@ paths:
                       leave_time:
                         type: string
                         example: null
+                      number_of_working_hours:
+                        type: integer
+                        example: 0
                       code:
                         type: string
                         example: null
@@ -3714,16 +3484,78 @@ paths:
     post:
       summary: 'Create Company'
       operationId: createCompany
-      description: 'This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.'
+      description: 'This endpoint is used to create a new company. Only super admins can access this API.'
       parameters: []
       responses:
         200:
-          description: 'Create New Company'
+          description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n\"data\": {\n\"id\": 1,\n\"name\": \"Goma Company\",\n\"email\": \"goma@goma.com\",\n\"commercial_record\": null,\n\"start_commercial_record\": \"2023-02-01\",\n\"end_commercial_record\": \"2023-09-01\",\n\"locations\": [\n{\n\"id\": 1,\n\"Longitude\": \"25.12\",\n\"Latitude\": \"15.32\",\n\"Radius\": \"21\"\n}\n],\n\"admin\": null\n}"
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'Goma Company'
+                    email: goma@goma.com
+                    commercial_record: null
+                    start_commercial_record: '2023-02-01'
+                    end_commercial_record: '2023-09-01'
+                    locations:
+                      -
+                        id: 1
+                        Longitude: '25.12'
+                        Latitude: '15.32'
+                        Radius: '21'
+                    admin: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Goma Company'
+                      email:
+                        type: string
+                        example: goma@goma.com
+                      commercial_record:
+                        type: string
+                        example: null
+                      start_commercial_record:
+                        type: string
+                        example: '2023-02-01'
+                      end_commercial_record:
+                        type: string
+                        example: '2023-09-01'
+                      locations:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            Longitude: '25.12'
+                            Latitude: '15.32'
+                            Radius: '21'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            Longitude:
+                              type: string
+                              example: '25.12'
+                            Latitude:
+                              type: string
+                              example: '15.32'
+                            Radius:
+                              type: string
+                              example: '21'
+                      admin:
+                        type: string
+                        example: null
       tags:
         - Companies
       requestBody:
@@ -3735,35 +3567,35 @@ paths:
               properties:
                 name:
                   type: string
-                  description: Custom
+                  description: 'The name of the company. Custom'
                   example: 'Goma Company'
                 email:
                   type: email
-                  description: Custom
+                  description: 'The email address of the company. Custom'
                   example: goma@goma.com
                 start_commercial_record:
                   type: date
-                  description: Custom
+                  description: 'The start date of the commercial record. Custom'
                   example: '2023-08-27'
                 end_commercial_record:
                   type: date
-                  description: Custom
+                  description: 'The end date of the commercial record. Custom'
                   example: '2023-08-27'
                 commercial_record:
                   type: string
                   format: binary
-                  description: 'Must not be greater than 2048 kilobytes'
+                  description: 'The commercial record file. Must not be greater than 2048 kilobytes.'
                 longitude:
                   type: number
-                  description: 'The longitude of the company location Custom'
+                  description: 'The longitude of the company location. Custom'
                   example: 25.12
                 latitude:
                   type: number
-                  description: 'The latitude of the company location Custom'
+                  description: 'The latitude of the company location. Custom'
                   example: 15.32
                 radius:
                   type: number
-                  description: 'The radius of the company location Custom'
+                  description: 'The radius of the company location. Custom'
                   example: 15.0
               required:
                 - name
@@ -3833,7 +3665,7 @@ paths:
         in: path
         name: id
         description: 'Must Be Exists In companies Table'
-        example: 19
+        example: 20
         required: true
         schema:
           type: integer
@@ -3841,16 +3673,78 @@ paths:
     post:
       summary: 'Update Company'
       operationId: updateCompany
-      description: 'This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.'
+      description: 'This endpoint is used to update a company. Only super admins can access this API.'
       parameters: []
       responses:
         200:
-          description: 'Update Company'
+          description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n\"data\": {\n\"id\": 1,\n\"name\": \"Goma Company\",\n\"email\": \"goma@goma.com\",\n\"commercial_record\": null,\n\"start_commercial_record\": \"2023-02-01\",\n\"end_commercial_record\": \"2023-09-01\",\n\"locations\": [\n{\n\"id\": 1,\n\"Longitude\": \"25.12\",\n\"Latitude\": \"15.32\",\n\"Radius\": \"21\"\n}\n],\n\"admin\": null\n}"
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'Goma Company'
+                    email: goma@goma.com
+                    commercial_record: null
+                    start_commercial_record: '2023-02-01'
+                    end_commercial_record: '2023-09-01'
+                    locations:
+                      -
+                        id: 1
+                        Longitude: '25.12'
+                        Latitude: '15.32'
+                        Radius: '21'
+                    admin: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Goma Company'
+                      email:
+                        type: string
+                        example: goma@goma.com
+                      commercial_record:
+                        type: string
+                        example: null
+                      start_commercial_record:
+                        type: string
+                        example: '2023-02-01'
+                      end_commercial_record:
+                        type: string
+                        example: '2023-09-01'
+                      locations:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            Longitude: '25.12'
+                            Latitude: '15.32'
+                            Radius: '21'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            Longitude:
+                              type: string
+                              example: '25.12'
+                            Latitude:
+                              type: string
+                              example: '15.32'
+                            Radius:
+                              type: string
+                              example: '21'
+                      admin:
+                        type: string
+                        example: null
       tags:
         - Companies
       requestBody:
@@ -3862,39 +3756,96 @@ paths:
               properties:
                 company_id:
                   type: integer
-                  description: 'Must Be Exists In companies Table'
-                  example: 19
+                  description: 'The ID of the company. Must exist in the companies table.'
+                  example: 12
                 name:
                   type: string
-                  description: Custom
+                  description: 'The name of the company. Custom'
                   example: 'Goma Company'
                 email:
                   type: email
-                  description: Custom
+                  description: 'The email address of the company.Custom'
                   example: goma@goma.com
                 start_commercial_record:
                   type: date
-                  description: Custom
+                  description: 'The start date of the commercial record.Custom'
                   example: '2023-08-27'
                 end_commercial_record:
                   type: date
-                  description: Custom
+                  description: 'The end date of the commercial record.Custom'
                   example: '2023-08-27'
                 commercial_record:
                   type: string
                   format: binary
-                  description: 'Must not be greater than 2048 kilobytes'
+                  description: 'The commercial record file. Must not be greater than 2048 kilobytes.'
               required:
                 - company_id
                 - name
                 - email
+  /api/show_percenatge_company:
+    get:
+      summary: 'Show Company Percentage'
+      operationId: showCompanyPercentage
+      description: 'This endpoint is used to display the company percentage. Only authenticated admins or HR personnel can access this API. It will show the percentage specific to the authenticated admin or HR personnel.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    percentage: false
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      percentage:
+                        type: boolean
+                        example: false
+      tags:
+        - Companies
+  /api/update_percentage:
+    put:
+      summary: 'Update Company Percentage'
+      operationId: updateCompanyPercentage
+      description: 'This endpoint is used to Update the company percentage. Only authenticated admins or HR personnel can access this API. It will Update the percentage specific to the authenticated admin or HR personnel.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    percentage: true
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      percentage:
+                        type: boolean
+                        example: true
+      tags:
+        - Companies
   /api/craete_deposit:
     post:
-      summary: ''
-      operationId: postApiCraete_deposit
-      description: ''
+      summary: 'Add Deposit'
+      operationId: addDeposit
+      description: 'This endpoint is used to add a deposit for an employee. Only admins or HR personnel can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": {\n        \"id\": 6,\n        \"type\": 3,\n        \"status\": 3,\n        \"extra_status\": null,\n        \"serial_mobile_number\": 125815,\n        \"mobile_color\": \"red\",\n        \"mobile_type\": \"samsung\",\n        \"mobile_sim\": 5422,\n        \"mobile_image\": \"http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg\",\n        \"reason_reject\": null,\n        \"reason_clearance_reject\": null,\n        \"deposit_request_date\": \"2023-08-28\",\n        \"clearance_request_date\": null,\n        \"user\": {\n            \"id\": 3,\n            \"name\": \"mouaz alkhateeb\",\n            \"image\": \"http://127.0.0.http://127.0.0http://127.0\"\n            \"position\": null\n        }\n    }\n}"
       tags:
         - Deposits
       requestBody:
@@ -3905,103 +3856,265 @@ paths:
               type: object
               properties:
                 type:
-                  type: string
-                  description: ''
-                  example: '3'
-                  enum:
-                    - '3'
-                    - '2'
-                    - '1'
+                  type: integer
+                  description: "The deposit type. Must be one of the following values:\n- `1`: CAR.\n- `2`: LAPTOP.\n- `3`: MOBILE.\nCustom"
+                  example: 2
                 car_number:
-                  type: string
-                  description: 'This field is required when <code>type</code> is <code>1</code>.'
-                  example: null
+                  type: number
+                  description: "The car number. This field is required if the deposit type is 1 (car).\nCustom"
+                  example: 1021.0
                 car_model:
                   type: string
-                  description: 'This field is required when <code>type</code> is <code>1</code>.'
-                  example: null
+                  description: "The car model. This field is required if the deposit type is 1 (car).\nCustom"
+                  example: bmw.
                 user_id:
-                  type: string
-                  description: ''
-                  example: corrupti
+                  type: integer
+                  description: 'The ID of the user. Must exist in the users table.'
+                  example: 11
                 manufacturing_year:
-                  type: string
-                  description: 'This field is required when <code>type</code> is <code>1</code>.'
-                  example: null
+                  type: number
+                  description: "The manufacturing year of the car. This field is required if the deposit type is 1 (car).\nCustom"
+                  example: 2010.0
                 Mechanic_card_number:
-                  type: string
-                  description: 'This field is required when <code>type</code> is <code>1</code>.'
-                  example: null
+                  type: number
+                  description: "The mechanic card number of the car. This field is required if the deposit type is 1 (car).\nCustom"
+                  example: 200054.0
                 car_image:
                   type: string
                   format: binary
-                  description: 'This field is required when <code>type</code> is <code>1</code>.  Must be an image. Must not be greater than 2048 kilobytes.'
+                  description: 'The car image. This field is required if the deposit type is 1 (car). Must not be greater than 2048 kilobytes.'
                 laptop_type:
                   type: string
-                  description: 'This field is required when <code>type</code> is <code>2</code>.'
-                  example: null
+                  description: "The laptop type. This field is required if the deposit type is 2 (laptop).\nCustom"
+                  example: Asus.
                 serial_laptop_number:
-                  type: string
-                  description: 'This field is required when <code>type</code> is <code>2</code>.'
-                  example: null
+                  type: number
+                  description: "The serial number of the laptop. This field is required if the deposit type is 2 (laptop).\nCustom"
+                  example: 1100.0
                 laptop_color:
                   type: string
-                  description: 'This field is required when <code>type</code> is <code>2</code>.'
-                  example: null
+                  description: "The color of the laptop. This field is required if the deposit type is 2 (laptop).\nCustom"
+                  example: red.
                 laptop_image:
                   type: string
                   format: binary
-                  description: 'This field is required when <code>type</code> is <code>2</code>.  Must be an image. Must not be greater than 2048 kilobytes.'
+                  description: 'The laptop image. This field is required if the deposit type is 2 (laptop). Must not be greater than 2048 kilobytes.'
                 serial_mobile_number:
-                  type: string
-                  description: 'This field is required when <code>type</code> is <code>3</code>.'
-                  example: null
+                  type: number
+                  description: "The serial number of the mobile. This field is required if the deposit type is 3 (mobile).\nCustom"
+                  example: 1021.0
                 mobile_color:
                   type: string
-                  description: 'This field is required when <code>type</code> is <code>3</code>.'
-                  example: null
+                  description: "The color of the mobile. This field is required if the deposit type is 3 (mobile).\nCustom"
+                  example: blue.
                 mobile_image:
                   type: string
                   format: binary
-                  description: 'This field is required when <code>type</code> is <code>3</code>.  Must be an image. Must not be greater than 2048 kilobytes.'
+                  description: 'The mobile image. This field is required if the deposit type is 3 (mobile). Must not be greater than 2048 kilobytes.'
                 mobile_type:
                   type: string
-                  description: 'This field is required when <code>type</code> is <code>3</code>.'
-                  example: null
+                  description: "The type of the mobile. This field is required if the deposit type is 3 (mobile).\nCustom"
+                  example: samsung.
                 mobile_sim:
-                  type: string
-                  description: ''
-                  example: null
+                  type: number
+                  description: "The SIM number of the mobile. This field is required if the deposit type is 3 (mobile).\nCustom"
+                  example: 56252.0
               required:
                 - type
                 - user_id
-      security: []
   '/api/approve_deposit/{id}':
     put:
-      summary: ''
-      operationId: putApiApprove_depositId
-      description: ''
+      summary: 'Approve Deposit'
+      operationId: approveDeposit
+      description: "This endpoint is used to approve a deposit. Employees can access this API to accept their deposits. The status will be set to 1, where:\n- `1`: approved.\n- `2`: rejected.\n- `3`: pending status."
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 6
+                    type: 3
+                    status: 1
+                    extra_status: null
+                    serial_mobile_number: 125815
+                    mobile_color: red
+                    mobile_type: samsung
+                    mobile_sim: 5422
+                    mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                    reason_reject: null
+                    reason_clearance_reject: null
+                    deposit_request_date: '2023-08-28'
+                    clearance_request_date: null
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      type:
+                        type: integer
+                        example: 3
+                      status:
+                        type: integer
+                        example: 1
+                      extra_status:
+                        type: string
+                        example: null
+                      serial_mobile_number:
+                        type: integer
+                        example: 125815
+                      mobile_color:
+                        type: string
+                        example: red
+                      mobile_type:
+                        type: string
+                        example: samsung
+                      mobile_sim:
+                        type: integer
+                        example: 5422
+                      mobile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject:
+                        type: string
+                        example: null
+                      reason_clearance_reject:
+                        type: string
+                        example: null
+                      deposit_request_date:
+                        type: string
+                        example: '2023-08-28'
+                      clearance_request_date:
+                        type: string
+                        example: null
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: null
       tags:
         - Deposits
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the approve deposit.'
-        example: modi
+        description: 'The ID of the deposit. Must exist in the deposits table.'
+        example: 9
         required: true
         schema:
-          type: string
+          type: integer
   /api/reject_deposit:
     post:
-      summary: ''
-      operationId: postApiReject_deposit
-      description: ''
+      summary: 'Reject Deposit'
+      operationId: rejectDeposit
+      description: "This endpoint is used to reject a deposit. Employees can access this API to rejecte their deposits. The status will be set to 1, where:\n- `1`: approved.\n- `2`: rejected.\n- `3`: pending status."
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 6
+                    type: 3
+                    status: 2
+                    extra_status: null
+                    serial_mobile_number: 125815
+                    mobile_color: red
+                    mobile_type: samsung
+                    mobile_sim: 5422
+                    mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                    reason_reject: 'Without Any Reason'
+                    reason_clearance_reject: null
+                    deposit_request_date: '2023-08-28'
+                    clearance_request_date: null
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      type:
+                        type: integer
+                        example: 3
+                      status:
+                        type: integer
+                        example: 2
+                      extra_status:
+                        type: string
+                        example: null
+                      serial_mobile_number:
+                        type: integer
+                        example: 125815
+                      mobile_color:
+                        type: string
+                        example: red
+                      mobile_type:
+                        type: string
+                        example: samsung
+                      mobile_sim:
+                        type: integer
+                        example: 5422
+                      mobile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject:
+                        type: string
+                        example: 'Without Any Reason'
+                      reason_clearance_reject:
+                        type: string
+                        example: null
+                      deposit_request_date:
+                        type: string
+                        example: '2023-08-28'
+                      clearance_request_date:
+                        type: string
+                        example: null
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: null
       tags:
         - Deposits
       requestBody:
@@ -4012,128 +4125,303 @@ paths:
               type: object
               properties:
                 deposit_id:
-                  type: string
-                  description: ''
-                  example: reiciendis
+                  type: integer
+                  description: 'Must Be Exists In deposits Table'
+                  example: 15
                 reason_reject:
                   type: string
-                  description: ''
-                  example: eos
+                  description: 'The reject reason for the deposit Custom'
+                  example: 'Without Any Reason.'
               required:
                 - deposit_id
                 - reason_reject
-      security: []
-  /api/my_deposits:
-    get:
-      summary: ''
-      operationId: getApiMy_deposits
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Deposits
-      security: []
-  /api/list_of_deposits:
-    get:
-      summary: ''
-      operationId: getApiList_of_deposits
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Deposits
-      security: []
-  /api/list_of_clearance_deposits:
-    get:
-      summary: ''
-      operationId: getApiList_of_clearance_deposits
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Deposits
-      security: []
   '/api/clearance_request/{id}':
     put:
-      summary: ''
-      operationId: putApiClearance_requestId
-      description: ''
+      summary: 'Clearance Request'
+      operationId: clearanceRequest
+      description: "This endpoint is used to Clearance Request. Employees can access this API. The extra status will be set to 4, where:\n- `4`: up paid.\n- `5`: paid.\n- `6`: un paid rejected status Custom Example:4."
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 6
+                    type: 3
+                    status: 1
+                    extra_status: 4
+                    serial_mobile_number: 125815
+                    mobile_color: red
+                    mobile_type: samsung
+                    mobile_sim: 5422
+                    mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                    reason_reject: null
+                    reason_clearance_reject: null
+                    deposit_request_date: '2023-08-28'
+                    clearance_request_date: '2023-08-30'
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      type:
+                        type: integer
+                        example: 3
+                      status:
+                        type: integer
+                        example: 1
+                      extra_status:
+                        type: integer
+                        example: 4
+                      serial_mobile_number:
+                        type: integer
+                        example: 125815
+                      mobile_color:
+                        type: string
+                        example: red
+                      mobile_type:
+                        type: string
+                        example: samsung
+                      mobile_sim:
+                        type: integer
+                        example: 5422
+                      mobile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject:
+                        type: string
+                        example: null
+                      reason_clearance_reject:
+                        type: string
+                        example: null
+                      deposit_request_date:
+                        type: string
+                        example: '2023-08-28'
+                      clearance_request_date:
+                        type: string
+                        example: '2023-08-30'
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: null
       tags:
         - Deposits
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the clearance request.'
-        example: commodi
+        description: 'The ID of the deposit. Must exist in the deposits table.'
+        example: 6
         required: true
         schema:
-          type: string
+          type: integer
   '/api/approve_clearance_request/{id}':
     put:
-      summary: ''
-      operationId: putApiApprove_clearance_requestId
-      description: ''
+      summary: 'Approve Clearance Request'
+      operationId: approveClearanceRequest
+      description: "This endpoint is used to Approve Clearance Request. Admin Or Hr can access this API to accept Clearance Request Deposits. The extra status will be set to 5, where:\n- `4`: up paid.\n- `5`: paid.\n- `6`: un paid rejected status Custom Example:4."
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 6
+                    type: 3
+                    status: 1
+                    extra_status: 5
+                    serial_mobile_number: 125815
+                    mobile_color: red
+                    mobile_type: samsung
+                    mobile_sim: 5422
+                    mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                    reason_reject: null
+                    reason_clearance_reject: null
+                    deposit_request_date: '2023-08-28'
+                    clearance_request_date: '2023-08-30'
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      type:
+                        type: integer
+                        example: 3
+                      status:
+                        type: integer
+                        example: 1
+                      extra_status:
+                        type: integer
+                        example: 5
+                      serial_mobile_number:
+                        type: integer
+                        example: 125815
+                      mobile_color:
+                        type: string
+                        example: red
+                      mobile_type:
+                        type: string
+                        example: samsung
+                      mobile_sim:
+                        type: integer
+                        example: 5422
+                      mobile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject:
+                        type: string
+                        example: null
+                      reason_clearance_reject:
+                        type: string
+                        example: null
+                      deposit_request_date:
+                        type: string
+                        example: '2023-08-28'
+                      clearance_request_date:
+                        type: string
+                        example: '2023-08-30'
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: null
       tags:
         - Deposits
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the approve clearance request.'
-        example: nobis
+        description: 'The ID of the deposit. Must exist in the deposits table.'
+        example: 16
         required: true
         schema:
-          type: string
+          type: integer
   /api/reject_clearance_request:
     post:
-      summary: ''
-      operationId: postApiReject_clearance_request
-      description: ''
+      summary: 'Reject Clearance Request'
+      operationId: rejectClearanceRequest
+      description: "This endpoint is used to Reject Clearance Request. Admin Or Hr can access this API to Reject Clearance Request Deposits. The extra status will be set to 6, where:\n- `4`: up paid.\n- `5`: paid.\n- `6`: un paid rejected status Custom Example:4."
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 6
+                    type: 3
+                    status: 1
+                    extra_status: 6
+                    serial_mobile_number: 125815
+                    mobile_color: red
+                    mobile_type: samsung
+                    mobile_sim: 5422
+                    mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                    reason_reject: null
+                    reason_clearance_reject: 'Reject Clearance Request Without Any Reason'
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      type:
+                        type: integer
+                        example: 3
+                      status:
+                        type: integer
+                        example: 1
+                      extra_status:
+                        type: integer
+                        example: 6
+                      serial_mobile_number:
+                        type: integer
+                        example: 125815
+                      mobile_color:
+                        type: string
+                        example: red
+                      mobile_type:
+                        type: string
+                        example: samsung
+                      mobile_sim:
+                        type: integer
+                        example: 5422
+                      mobile_image:
+                        type: string
+                        example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject:
+                        type: string
+                        example: null
+                      reason_clearance_reject:
+                        type: string
+                        example: 'Reject Clearance Request Without Any Reason'
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: null
       tags:
         - Deposits
       requestBody:
@@ -4144,17 +4432,364 @@ paths:
               type: object
               properties:
                 deposit_id:
-                  type: string
-                  description: ''
-                  example: iste
+                  type: integer
+                  description: 'Must Be Exists In deposits Table'
+                  example: 14
                 reason_clearance_reject:
                   type: string
                   description: ''
-                  example: aut
+                  example: cupiditate
+                reason_reject:
+                  type: string
+                  description: 'The reject reason for the deposit Custom'
+                  example: 'Reject Clearance Request Without Any Reason.'
               required:
                 - deposit_id
                 - reason_clearance_reject
-      security: []
+                - reason_reject
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the deposit. Must exist in the deposits table.'
+        example: 19
+        required: true
+        schema:
+          type: integer
+  /api/my_deposits:
+    get:
+      summary: 'My Deposits'
+      operationId: myDeposits
+      description: 'This endpoint displays the deposits specific to the authenticated employee. Only deposits with a status of 3 (pending) will be show.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"type\": 3,\n            \"status\": 3,\n            \"extra_status\": null,\n            \"serial_mobile_number\": 125815,\n            \"mobile_color\": \"red\",\n            \"mobile_type\": \"samsung\",\n            \"mobile_sim\": 5422,\n            \"mobile_image\": \"http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg\",\n            \"reason_reject\": null,\n            \"reason_clearance_reject\": null,\n            \"deposit_request_date\": \"2023-08-28\",\n            \"clearance_request_date\": \"2023-08-30\",\n        }\n    ]\n}"
+      tags:
+        - Deposits
+  /api/list_of_deposits:
+    get:
+      summary: 'List of Deposits'
+      operationId: listOfDeposits
+      description: 'This endpoint is used to retrieve a list of deposits that can be accessed by the company, admins, and HR.'
+      parameters:
+        -
+          in: query
+          name: status
+          description: 'optional Filter the deposits by status. Possible values: 1 (approved), 2 (rejected), 3 (pending) Custom'
+          example: 2
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter the deposits by status. Possible values: 1 (approved), 2 (rejected), 3 (pending) Custom'
+            example: 2
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 6
+                      type: 3
+                      status: 3
+                      extra_status: null
+                      serial_mobile_number: 125815
+                      mobile_color: red
+                      mobile_type: samsung
+                      mobile_sim: 5422
+                      mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject: null
+                      reason_clearance_reject: null
+                      deposit_request_date: '2023-08-28'
+                      clearance_request_date: '2023-08-30'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
+                    -
+                      id: 7
+                      type: 1
+                      status: 2
+                      extra_status: null
+                      car_number: '0101'
+                      car_model: bmw3
+                      manufacturing_year: '2023'
+                      mechanic_card_number: '2348'
+                      car_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-3face.jpeg'
+                      reason_reject: 'No Reason '
+                      reason_clearance_reject: null
+                      deposit_request_date: '2023-08-28'
+                      clearance_request_date: '2023-08-30'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 6
+                        type: 3
+                        status: 3
+                        extra_status: null
+                        serial_mobile_number: 125815
+                        mobile_color: red
+                        mobile_type: samsung
+                        mobile_sim: 5422
+                        mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                        reason_reject: null
+                        reason_clearance_reject: null
+                        deposit_request_date: '2023-08-28'
+                        clearance_request_date: '2023-08-30'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                      -
+                        id: 7
+                        type: 1
+                        status: 2
+                        extra_status: null
+                        car_number: '0101'
+                        car_model: bmw3
+                        manufacturing_year: '2023'
+                        mechanic_card_number: '2348'
+                        car_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-3face.jpeg'
+                        reason_reject: 'No Reason '
+                        reason_clearance_reject: null
+                        deposit_request_date: '2023-08-28'
+                        clearance_request_date: '2023-08-30'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 6
+                        type:
+                          type: integer
+                          example: 3
+                        status:
+                          type: integer
+                          example: 3
+                        extra_status:
+                          type: string
+                          example: null
+                        serial_mobile_number:
+                          type: integer
+                          example: 125815
+                        mobile_color:
+                          type: string
+                          example: red
+                        mobile_type:
+                          type: string
+                          example: samsung
+                        mobile_sim:
+                          type: integer
+                          example: 5422
+                        mobile_image:
+                          type: string
+                          example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                        reason_reject:
+                          type: string
+                          example: null
+                        reason_clearance_reject:
+                          type: string
+                          example: null
+                        deposit_request_date:
+                          type: string
+                          example: '2023-08-28'
+                        clearance_request_date:
+                          type: string
+                          example: '2023-08-30'
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'mouaz alkhateeb'
+                            image:
+                              type: string
+                              example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                            position:
+                              type: string
+                              example: null
+      tags:
+        - Deposits
+  /api/list_of_clearance_deposits:
+    get:
+      summary: 'List of Clearance Deposits'
+      operationId: listOfClearanceDeposits
+      description: 'This endpoint is used to retrieve a list of Clearance Deposits that can be accessed by the company, admins, and HR And Extra Status of Deposit Will Be 4 (up paid).'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 6
+                      type: 3
+                      status: 1
+                      extra_status: 4
+                      serial_mobile_number: 125815
+                      mobile_color: red
+                      mobile_type: samsung
+                      mobile_sim: 5422
+                      mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                      reason_reject: null
+                      reason_clearance_reject: null
+                      deposit_request_date: '2023-08-28'
+                      clearance_request_date: '2023-08-30'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
+                    -
+                      id: 7
+                      type: 1
+                      status: 1
+                      extra_status: 4
+                      car_number: '0101'
+                      car_model: bmw3
+                      manufacturing_year: '2023'
+                      mechanic_card_number: '2348'
+                      car_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-3face.jpeg'
+                      reason_reject: null
+                      reason_clearance_reject: null
+                      deposit_request_date: '2023-08-28'
+                      clearance_request_date: '2023-08-30'
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 6
+                        type: 3
+                        status: 1
+                        extra_status: 4
+                        serial_mobile_number: 125815
+                        mobile_color: red
+                        mobile_type: samsung
+                        mobile_sim: 5422
+                        mobile_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                        reason_reject: null
+                        reason_clearance_reject: null
+                        deposit_request_date: '2023-08-28'
+                        clearance_request_date: '2023-08-30'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                      -
+                        id: 7
+                        type: 1
+                        status: 1
+                        extra_status: 4
+                        car_number: '0101'
+                        car_model: bmw3
+                        manufacturing_year: '2023'
+                        mechanic_card_number: '2348'
+                        car_image: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-3face.jpeg'
+                        reason_reject: null
+                        reason_clearance_reject: null
+                        deposit_request_date: '2023-08-28'
+                        clearance_request_date: '2023-08-30'
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 6
+                        type:
+                          type: integer
+                          example: 3
+                        status:
+                          type: integer
+                          example: 1
+                        extra_status:
+                          type: integer
+                          example: 4
+                        serial_mobile_number:
+                          type: integer
+                          example: 125815
+                        mobile_color:
+                          type: string
+                          example: red
+                        mobile_type:
+                          type: string
+                          example: samsung
+                        mobile_sim:
+                          type: integer
+                          example: 5422
+                        mobile_image:
+                          type: string
+                          example: 'http://127.0.0.1:8000/employees_deposits/2023-08-28-EmployeeDeposit-310.jpg'
+                        reason_reject:
+                          type: string
+                          example: null
+                        reason_clearance_reject:
+                          type: string
+                          example: null
+                        deposit_request_date:
+                          type: string
+                          example: '2023-08-28'
+                        clearance_request_date:
+                          type: string
+                          example: '2023-08-30'
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'mouaz alkhateeb'
+                            image:
+                              type: string
+                              example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                            position:
+                              type: string
+                              example: null
+      tags:
+        - Deposits
   /api/create_weekly_holiday:
     post:
       summary: 'Create Weekly Holiday'
@@ -4284,7 +4919,7 @@ paths:
                 holiday_id:
                   type: integer
                   description: 'Must Be Exists In Holidays Table'
-                  example: 8
+                  example: 15
                 day:
                   type: integer
                   description: 'Bust Be From 1 to 7 Custom'
@@ -4323,7 +4958,7 @@ paths:
                 holiday_id:
                   type: integer
                   description: 'Must Be Exists In Holidays Table'
-                  example: 15
+                  example: 8
                 holiday_name:
                   type: string
                   description: Custom
@@ -4639,7 +5274,7 @@ paths:
         in: path
         name: user_id
         description: 'The user ID, must be in the Users table.'
-        example: 11
+        example: 17
         required: true
         schema:
           type: integer
@@ -4780,11 +5415,18 @@ paths:
         - Notifications
   /api/create_post:
     post:
-      summary: ''
-      operationId: postApiCreate_post
-      description: ''
+      summary: 'Create Post'
+      operationId: createPost
+      description: 'This endpoint is used to create a new post. Admin, HR, or Employee can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Create Post'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n    \"id\": 2,\n    \"content\": \"test data\",\n    \"image\": null,\n    \"comments_count\": null,\n    \"likes_count\": null,\n    \"shares_count\": null,\n    \"created_at\": \"2023-08-27\",\n    \"comments\": [],\n    \"likes\": [],\n    \"shares\": [],\n    \"writer\": {\n        \"id\": 3,\n        \"name\": \"mouaz alkhateeb\",\n        \"email\": \"mouaz@gmail.com\",\n        \"work_email\": \"mouazalkhateeb@gmail.com\",\n        \"status\": 1,\n        \"type\": 4,\n        \"gender\": 1,\n        \"mobile\": \"0969040322\",\n        \"phone\": \"0969040322\",\n        \"departement\": \"it\",\n        \"address\": \"Damascus\",\n        \"position\": null,\n        \"skills\": \"no skills\",\n        \"serial_number\": \"000007\",\n        \"birthday_date\": \"2022-11-26\",\n        \"marital_status\": null,\n        \"guarantor\": \"admin\",\n        \"branch\": \"syria branch\",\n        \"start_job_contract\": \"2023-08-01\",\n        \"end_job_contract\": \"2025-05-01\",\n        \"end_visa\": \"2023-09-11\",\n        \"end_passport\": \"2023-09-11\",\n        \"end_employee_sponsorship\": null,\n        \"end_municipal_card\": \"2023-09-10\",\n        \"end_health_insurance\": \"2023-09-14\",\n        \"end_employee_residence\": \"2023-09-20\",\n        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n        \"id_photo\": null,\n        \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n        \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n        \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n        \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n        \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n        \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n        \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n        \"permission_to_entry\": 1,\n        \"entry_time\": 30\n        \"permission_to_leave\": 1,\n        \"leave_time\": 60,\n        \"percentage\": \"0\",\n        \"basic_salary\": 200000,\n        \"number_of_working_hours\": 0,\n      }\n}"
       tags:
         - Posts
       requestBody:
@@ -4796,66 +5438,60 @@ paths:
               properties:
                 content:
                   type: string
-                  description: 'Must not be greater than 500 characters.'
-                  example: jawwml
+                  description: 'The content of the post.'
+                  example: 'test post'
                 image:
                   type: string
                   format: binary
-                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  description: 'The image file to be attached to the post. Must not exceed 2048 kilobytes.'
               required:
                 - content
-      security: []
   /api/get_posts_list:
     get:
-      summary: ''
-      operationId: getApiGet_posts_list
-      description: ''
+      summary: 'List of Posts'
+      operationId: listOfPosts
+      description: 'This endpoint is used to show a list of posts that can be accessed by the company, admins, HR, and employees.'
       parameters: []
       responses:
-        401:
-          description: ''
+        200:
+          description: 'List Of Posts'
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"content\": \"test data\",\n            \"image\": null,\n            \"comments_count\": 1,\n            \"likes_count\": 1,\n            \"shares_count\": 0,\n            \"created_at\": \"2023-08-27\",\n            \"comments\": [\n                {\n                    \"content\": \"New Comment\",\n                    \"likes_count\": 0,\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"likes\": [\n                {\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"shares\": [],\n            \"writer\": {\n                \"id\": 3,\n                \"name\": \"Mouaz Alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"work_email\": \"mouazalkhateeb@gmail.com\",\n                \"status\": 1,\n                \"type\": 4,\n                \"gender\": 1,\n                \"mobile\": \"0969040322\",\n                \"phone\": \"0969040322\",\n                \"department\": \"IT\",\n                \"address\": \"Damascus\",\n                \"position\": null,\n                \"skills\": \"no skills\",\n                \"serial_number\": \"000007\",\n                \"birthday_date\": \"2022-11-26\",\n                \"marital_status\": null,\n                \"guarantor\": \"admin\",\n                \"branch\": \"Syria Branch\",\n                \"start_job_contract\": \"2023-08-01\",\n                \"end_job_contract\": \"2025-05-01\",\n                \"end_visa\": \"2023-09-11\",\n                \"end_passport\": \"2023-09-11\",\n                \"end_employee_sponsorship\": null,\n                \"end_municipal_card\": \"2023-09-10\",\n                \"end_health_insurance\": \"2023-09-14\",\n                \"end_employee_residence\": \"2023-09-20\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"id_photo\": null,\n                \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n                \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n                \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n                \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n                \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n                \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n                \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n                \"permission_to_entry\": 1,\n                \"entry_time\": 30,\n                \"permission_to_leave\": 1,\n                \"leave_time\": 60,\n                \"percentage\": \"0\",\n                \"basic_salary\": 200000,\n                \"number_of_working_hours\": 0,\n               }\n            },\n          },\n\n          {\n            \"id\": 2,\n            \"content\": \"new post\",\n            \"image\": null,\n            \"comments_count\": 1,\n            \"likes_count\": 1,\n            \"shares_count\": 0,\n            \"created_at\": \"2023-08-27\",\n            \"comments\": [\n                {\n                    \"content\": \"New Comment\",\n                    \"likes_count\": 0,\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"likes\": [\n                {\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"shares\": [],\n            \"writer\": {\n                \"id\": 3,\n                \"name\": \"Mouaz Alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"work_email\": \"mouazalkhateeb@gmail.com\",\n                \"status\": 1,\n                \"type\": 4,\n                \"gender\": 1,\n                \"mobile\": \"0969040322\",\n                \"phone\": \"0969040322\",\n                \"department\": \"IT\",\n                \"address\": \"Damascus\",\n                \"position\": null,\n                \"skills\": \"no skills\",\n                \"serial_number\": \"000007\",\n                \"birthday_date\": \"2022-11-26\",\n                \"marital_status\": null,\n                \"guarantor\": \"admin\",\n                \"branch\": \"Syria Branch\",\n                \"start_job_contract\": \"2023-08-01\",\n                \"end_job_contract\": \"2025-05-01\",\n                \"end_visa\": \"2023-09-11\",\n                \"end_passport\": \"2023-09-11\",\n                \"end_employee_sponsorship\": null,\n                \"end_municipal_card\": \"2023-09-10\",\n                \"end_health_insurance\": \"2023-09-14\",\n                \"end_employee_residence\": \"2023-09-20\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"id_photo\": null,\n                \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n                \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n                \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n                \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n                \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n                \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n                \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n                \"permission_to_entry\": 1,\n                \"entry_time\": 30,\n                \"permission_to_leave\": 1,\n                \"leave_time\": 60,\n                \"percentage\": \"0\",\n                \"basic_salary\": 200000,\n                \"number_of_working_hours\": 0,\n               }\n            },\n          },\n     ],\n   }"
       tags:
         - Posts
-      security: []
   /api/get_my_posts:
     get:
-      summary: ''
-      operationId: getApiGet_my_posts
-      description: ''
+      summary: 'My Posts'
+      operationId: myPosts
+      description: 'This endpoint is used to display the list of my posts and authenticate employee access to this API. It will show the posts specific to the authenticated employee.'
       parameters: []
       responses:
-        401:
-          description: ''
+        200:
+          description: 'My Posts'
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"content\": \"test data\",\n            \"image\": null,\n            \"comments_count\": 1,\n            \"likes_count\": 1,\n            \"shares_count\": 0,\n            \"created_at\": \"2023-08-27\",\n            \"comments\": [\n                {\n                    \"content\": \"New Comment\",\n                    \"likes_count\": 0,\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"likes\": [\n                {\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"shares\": [],\n            \"writer\": {\n                \"id\": 3,\n                \"name\": \"Mouaz Alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"work_email\": \"mouazalkhateeb@gmail.com\",\n                \"status\": 1,\n                \"type\": 4,\n                \"gender\": 1,\n                \"mobile\": \"0969040322\",\n                \"phone\": \"0969040322\",\n                \"department\": \"IT\",\n                \"address\": \"Damascus\",\n                \"position\": null,\n                \"skills\": \"no skills\",\n                \"serial_number\": \"000007\",\n                \"birthday_date\": \"2022-11-26\",\n                \"marital_status\": null,\n                \"guarantor\": \"admin\",\n                \"branch\": \"Syria Branch\",\n                \"start_job_contract\": \"2023-08-01\",\n                \"end_job_contract\": \"2025-05-01\",\n                \"end_visa\": \"2023-09-11\",\n                \"end_passport\": \"2023-09-11\",\n                \"end_employee_sponsorship\": null,\n                \"end_municipal_card\": \"2023-09-10\",\n                \"end_health_insurance\": \"2023-09-14\",\n                \"end_employee_residence\": \"2023-09-20\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"id_photo\": null,\n                \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n                \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n                \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n                \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n                \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n                \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n                \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n                \"permission_to_entry\": 1,\n                \"entry_time\": 30,\n                \"permission_to_leave\": 1,\n                \"leave_time\": 60,\n                \"percentage\": \"0\",\n                \"basic_salary\": 200000,\n                \"number_of_working_hours\": 0,\n               }\n            },\n          },\n\n          {\n            \"id\": 2,\n            \"content\": \"new post\",\n            \"image\": null,\n            \"comments_count\": 1,\n            \"likes_count\": 1,\n            \"shares_count\": 0,\n            \"created_at\": \"2023-08-27\",\n            \"comments\": [\n                {\n                    \"content\": \"New Comment\",\n                    \"likes_count\": 0,\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"likes\": [\n                {\n                    \"user\": {\n                        \"name\": \"Mouaz Alkhateeb\",\n                        \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\"\n                    },\n                    \"created_at\": \"2023-08-27\"\n                }\n            ],\n            \"shares\": [],\n            \"writer\": {\n                \"id\": 3,\n                \"name\": \"Mouaz Alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"work_email\": \"mouazalkhateeb@gmail.com\",\n                \"status\": 1,\n                \"type\": 4,\n                \"gender\": 1,\n                \"mobile\": \"0969040322\",\n                \"phone\": \"0969040322\",\n                \"department\": \"IT\",\n                \"address\": \"Damascus\",\n                \"position\": null,\n                \"skills\": \"no skills\",\n                \"serial_number\": \"000007\",\n                \"birthday_date\": \"2022-11-26\",\n                \"marital_status\": null,\n                \"guarantor\": \"admin\",\n                \"branch\": \"Syria Branch\",\n                \"start_job_contract\": \"2023-08-01\",\n                \"end_job_contract\": \"2025-05-01\",\n                \"end_visa\": \"2023-09-11\",\n                \"end_passport\": \"2023-09-11\",\n                \"end_employee_sponsorship\": null,\n                \"end_municipal_card\": \"2023-09-10\",\n                \"end_health_insurance\": \"2023-09-14\",\n                \"end_employee_residence\": \"2023-09-20\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"id_photo\": null,\n                \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n                \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n                \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n                \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n                \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n                \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n                \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n                \"permission_to_entry\": 1,\n                \"entry_time\": 30,\n                \"permission_to_leave\": 1,\n                \"leave_time\": 60,\n                \"percentage\": \"0\",\n                \"basic_salary\": 200000,\n                \"number_of_working_hours\": 0,\n               }\n            },\n          },\n     ],\n   }"
       tags:
         - Posts
-      security: []
   /api/add_comment:
     post:
-      summary: ''
-      operationId: postApiAdd_comment
-      description: ''
+      summary: 'Add Comment'
+      operationId: addComment
+      description: 'This endpoint is used to create a new Comment on post. Admin, HR, or Employee can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Add Comment'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n    \"id\": 2,\n    \"content\": \"New Comment\",\n    \"likes_count\": null,\n     \"user\": {\n        \"id\": 3,\n        \"name\": \"mouaz alkhateeb\",\n        \"image\": \"employees/2023-08-27-Employee-8.jpg\"\n      },\n    \"created_at\": \"2023-08-27\",\n}"
       tags:
         - Posts
       requestBody:
@@ -4867,23 +5503,29 @@ paths:
               properties:
                 content:
                   type: string
-                  description: 'Must not be greater than 100 characters.'
-                  example: tybdtyoko
+                  description: 'The content of the post.'
+                  example: 'test comment'
                 post_id:
-                  type: string
-                  description: ''
-                  example: animi
+                  type: integer
+                  description: 'Must Be in posts Table.'
+                  example: 20
               required:
                 - content
                 - post_id
-      security: []
   /api/add_like:
     post:
-      summary: ''
-      operationId: postApiAdd_like
-      description: ''
+      summary: 'Add Like'
+      operationId: addLike
+      description: 'This endpoint is used to Add a new Like on post. Admin, HR, or Employee can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Add Like'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"user\": {\n        \"id\": 3,\n        \"name\": \"mouaz alkhateeb\",\n        \"image\": \"employees/2023-08-27-Employee-8.jpg\"\n      },\n    \"created_at\": \"2023-08-27\",\n}"
       tags:
         - Posts
       requestBody:
@@ -4894,19 +5536,25 @@ paths:
               type: object
               properties:
                 post_id:
-                  type: string
-                  description: ''
-                  example: deserunt
+                  type: integer
+                  description: 'Must Be in posts Table.'
+                  example: 18
               required:
                 - post_id
-      security: []
   /api/add_like_comment:
     post:
-      summary: ''
-      operationId: postApiAdd_like_comment
-      description: ''
+      summary: 'Add Like To Comment'
+      operationId: addLikeToComment
+      description: 'This endpoint is used to Add Like To Comment. Admin, HR, or Employee can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Add Like To Comment'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"user\": {\n        \"id\": 3,\n        \"name\": \"mouaz alkhateeb\",\n        \"image\": \"employees/2023-08-27-Employee-8.jpg\"\n      },\n    \"created_at\": \"2023-08-27\",\n}"
       tags:
         - Posts
       requestBody:
@@ -4917,19 +5565,25 @@ paths:
               type: object
               properties:
                 comment_id:
-                  type: string
-                  description: ''
-                  example: quia
+                  type: integer
+                  description: 'Must Be in comments Table.'
+                  example: 15
               required:
                 - comment_id
-      security: []
   /api/share_post:
     post:
-      summary: ''
-      operationId: postApiShare_post
-      description: ''
+      summary: 'Share Post'
+      operationId: sharePost
+      description: 'This endpoint is used to share a post. Admin, HR, or Employee can access this API.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Share Post'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"user\": {\n        \"id\": 3,\n        \"name\": \"mouaz alkhateeb\",\n        \"image\": \"employees/2023-08-27-Employee-8.jpg\"\n      },\n    \"post\": {\n        \"id\": 1,\n        \"content\": \"test data\",\n        \"image\": null,\n        \"comments_count\": 4,\n        \"likes_count\": 1,\n        \"shares_count\": 1,\n        \"created_at\": \"2023-08-27\",\n        \"writer\": {\n            \"id\": 3,\n            \"name\": \"mouaz alkhateeb\",\n            \"email\": \"mouaz@gmail.com\",\n            \"work_email\": \"mouazalkhateeb@gmail.com\",\n            \"status\": 1,\n            \"type\": 4,\n            \"gender\": 1,\n            \"mobile\": \"0969040322\",\n            \"phone\": \"0969040322\",\n            \"departement\": \"it\",\n            \"address\": \"Damascus\",\n            \"position\": null,\n            \"skills\": \"no skills\",\n            \"serial_number\": \"000007\",\n            \"birthday_date\": \"2022-11-26\",\n            \"marital_status\": null,\n            \"guarantor\": \"admin\",\n            \"branch\": \"syria branch\",\n            \"start_job_contract\": \"2023-08-01\",\n            \"end_job_contract\": \"2025-05-01\",\n            \"end_visa\": \"2023-09-11\",\n            \"end_passport\": \"2023-09-11\",\n            \"end_employee_sponsorship\": null,\n            \"end_municipal_card\": \"2023-09-10\",\n            \"end_health_insurance\": \"2023-09-14\",\n            \"end_employee_residence\": \"2023-09-20\",\n            \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n            \"id_photo\": null,\n            \"biography\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-test.pdf\",\n            \"employee_sponsorship\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-55.jpg\",\n            \"visa\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-7.jpg\",\n            \"passport\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-6.jpeg\",\n            \"municipal_card\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpeg\",\n            \"health_insurance\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-9.jpg\",\n            \"employee_residence\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-77.jpg\",\n            \"permission_to_entry\": 1,\n            \"entry_time\": 30,\n            \"permission_to_leave\": 1,\n            \"leave_time\": 60,\n            \"percentage\": \"0\",\n            \"basic_salary\": 200000,\n            \"number_of_working_hours\": 0,\n          }\n        },\n            \"created_at\": \"2023-08-28\"\n    }"
       tags:
         - Posts
       requestBody:
@@ -4940,57 +5594,146 @@ paths:
               type: object
               properties:
                 post_id:
-                  type: string
-                  description: ''
-                  example: exercitationem
+                  type: integer
+                  description: 'The ID of the post to share. Must be in the posts table.'
+                  example: 8
               required:
                 - post_id
-      security: []
   '/api/post/{id}':
     delete:
-      summary: ''
-      operationId: deleteApiPostId
-      description: ''
+      summary: 'Delete Post'
+      operationId: deletePost
+      description: 'This endpoint is used to to Delete Post and authenticate employee access to this API and Admin. It will delete post specific to the authenticated employee.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Delete Post'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
       tags:
         - Posts
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the post.'
-        example: 1
+        description: 'Must Be Exists In posts Table'
+        example: 15
         required: true
         schema:
           type: integer
   '/api/comment/{id}':
     delete:
-      summary: ''
-      operationId: deleteApiCommentId
-      description: ''
+      summary: 'Delete Comment'
+      operationId: deleteComment
+      description: 'This endpoint is used to to Delete Comment and authenticate employee access to this API and Admin. It will delete comment specific to the authenticated employee.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Delete Comment'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
       tags:
         - Posts
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the comment.'
-        example: 1
+        description: 'Must Be Exists In comments Table'
+        example: 17
         required: true
         schema:
           type: integer
   /api/add_vacation_request:
     post:
-      summary: ''
-      operationId: postApiAdd_vacation_request
-      description: ''
+      summary: 'Add Vacation Request'
+      operationId: addVacationRequest
+      description: 'This endpoint is used to add a vacation request. Employee can access this API Once A Day.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Add Vacation Request'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    type: 1
+                    status: 3
+                    reason: 'death of a lover'
+                    start_time: '05:00:00'
+                    end_time: '07:00:00'
+                    start_date: '2023-06-19'
+                    end_date: '2023-06-19'
+                    payment_type: 1
+                    vacation_type: 1
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      email: mouaz@gmail.com
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: 'Backend Developer'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      type:
+                        type: integer
+                        example: 1
+                      status:
+                        type: integer
+                        example: 3
+                      reason:
+                        type: string
+                        example: 'death of a lover'
+                      start_time:
+                        type: string
+                        example: '05:00:00'
+                      end_time:
+                        type: string
+                        example: '07:00:00'
+                      start_date:
+                        type: string
+                        example: '2023-06-19'
+                      end_date:
+                        type: string
+                        example: '2023-06-19'
+                      payment_type:
+                        type: integer
+                        example: 1
+                      vacation_type:
+                        type: integer
+                        example: 1
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          email:
+                            type: string
+                            example: mouaz@gmail.com
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: 'Backend Developer'
       tags:
         - Requests
       requestBody:
@@ -5002,44 +5745,32 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: ''
-                  example: facere
+                  description: 'The reason for the vacation request Custom'
+                  example: 'death of a lover.'
                 start_date:
-                  type: string
-                  description: 'Must be a valid date.'
-                  example: '2023-08-27T22:48:50'
+                  type: date
+                  description: 'The end date of the vacation request Custom'
+                  example: '2023-08-27'
                 end_date:
-                  type: string
-                  description: 'Must be a valid date.'
-                  example: '2023-08-27T22:48:50'
+                  type: date
+                  description: 'The end date of the vacation request Custom'
+                  example: '2023-08-27'
                 vacation_type:
-                  type: string
-                  description: ''
-                  example: '4'
-                  enum:
-                    - '1'
-                    - '2'
-                    - '3'
-                    - '4'
-                    - '5'
-                    - '6'
-                    - '7'
-                    - '8'
-                    - '9'
-                    - '10'
-                    - '11'
+                  type: integer
+                  description: "The vacation type of the vacation request. Must be one of the following values:\n- `1`: HOURLY.\n- `2`: DAILY.\n- `3`: ANNUL.\n- `4`: DEATH.\n- `5`: SATISFYING.\n- `6`: PILGRIMAME.\n- `7`: NEW_BABY.\n- `8`: EXAM.\n- `9`: PREGNANT_WOMAN.\n- `10`: METERNITY.\n- `11`: SICK_CHILD. Custom"
+                  example: 4
                 start_time:
-                  type: string
-                  description: ''
-                  example: doloremque
+                  type: time
+                  description: 'The start time of the vacation request in the format `HH:MM:SS` Custom'
+                  example: '09:00:00.'
                 end_time:
-                  type: string
-                  description: ''
-                  example: occaecati
+                  type: time
+                  description: 'The end time of the vacation request in the format `HH:MM:SS` Custom'
+                  example: '15:30:00.'
                 payment_type:
-                  type: string
-                  description: ''
-                  example: tempora
+                  type: integer
+                  description: "The payment type of the vacation request. Must be one of the following values:\n- `1`: payment.\n- `2`: unpayment. Custom"
+                  example: 1
               required:
                 - reason
                 - start_date
@@ -5048,166 +5779,243 @@ paths:
                 - start_time
                 - end_time
                 - payment_type
-      security: []
   /api/add_justify_request:
     post:
-      summary: ''
-      operationId: postApiAdd_justify_request
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Requests
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                reason:
-                  type: string
-                  description: ''
-                  example: omnis
-                date:
-                  type: string
-                  description: 'Must be a valid date.'
-                  example: '2023-08-27T22:48:50'
-                start_date:
-                  type: string
-                  description: 'This field is required when <code>date</code> is <code>null</code>.  Must be a valid date.'
-                  example: '2023-08-27T22:48:50'
-                end_date:
-                  type: string
-                  description: 'This field is required when <code>date</code> is <code>null</code>.  Must be a valid date.'
-                  example: '2023-08-27T22:48:50'
-                justify_type:
-                  type: string
-                  description: ''
-                  example: '2'
-                  enum:
-                    - '1'
-                    - '2'
-                    - '3'
-                attachments:
-                  type: string
-                  description: 'Must not be greater than 2048 characters.'
-                  example: jjnzq
-              required:
-                - reason
-                - justify_type
-      security: []
-  /api/add_retirement_request:
-    post:
-      summary: ''
-      operationId: postApiAdd_retirement_request
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Requests
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                reason:
-                  type: string
-                  description: ''
-                  example: harum
-                attachments:
-                  type: string
-                  format: binary
-                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
-              required:
-                - reason
-      security: []
-  /api/add_resignation_request:
-    post:
-      summary: ''
-      operationId: postApiAdd_resignation_request
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Requests
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                reason:
-                  type: string
-                  description: ''
-                  example: occaecati
-                attachments:
-                  type: string
-                  format: binary
-                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
-              required:
-                - reason
-      security: []
-  '/api/request/{id}':
-    get:
-      summary: ''
-      operationId: getApiRequestId
-      description: ''
+      summary: 'Add Justify Request'
+      operationId: addJustifyRequest
+      description: 'This endpoint is used to add a Justify request. Employee can access this API Once A Day.'
       parameters: []
       responses:
-        401:
-          description: ''
+        200:
+          description: 'Add Justify Request'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    id: 2
+                    type: 2
+                    status: 3
+                    justify_type: 1
+                    reason: 'this is the reason'
+                    date: '2023-06-22'
+                    attachments: null
+                    user:
+                      id: 3
+                      name: 'mouaz alkhateeb'
+                      email: mouaz@gmail.com
+                      image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                      position: 'Backend Developer'
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      type:
+                        type: integer
+                        example: 2
+                      status:
+                        type: integer
+                        example: 3
+                      justify_type:
+                        type: integer
+                        example: 1
+                      reason:
+                        type: string
+                        example: 'this is the reason'
+                      date:
+                        type: string
+                        example: '2023-06-22'
+                      attachments:
+                        type: string
+                        example: null
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'mouaz alkhateeb'
+                          email:
+                            type: string
+                            example: mouaz@gmail.com
+                          image:
+                            type: string
+                            example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position:
+                            type: string
+                            example: 'Backend Developer'
       tags:
         - Requests
-      security: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: 'The reason for the justify request Custom'
+                  example: 'death of a lover.'
+                date:
+                  type: date
+                  description: 'The date of the justify request Custom'
+                  example: '2023-08-27'
+                start_date:
+                  type: date
+                  description: 'The end date of the justify request Custom'
+                  example: '2023-08-27'
+                end_date:
+                  type: date
+                  description: 'The end date of the justify request Custom'
+                  example: '2023-08-27'
+                justify_type:
+                  type: integer
+                  description: "The justify type of the justify request. Must be one of the following values:\n- `1`: ILLNESS.\n- `2`: TRAVEL.\n- `3`: OTHERS. Custom"
+                  example: 2
+                attachments:
+                  type: string
+                  format: binary
+                  description: 'Must not be greater than 2048 kilobytes'
+              required:
+                - reason
+                - justify_type
+  /api/add_retirement_request:
+    post:
+      summary: 'Add Retirement Request'
+      operationId: addRetirementRequest
+      description: 'This endpoint is used to add a retirement request. Employee can access this API Once A Day.'
+      parameters: []
+      responses:
+        200:
+          description: 'Add Retirement Request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"id\": 3,\n     \"type\": 3,\n     \"date\": \"2023-08-28\",\n     \"status\": 3,\n     \"reason\": \"this is the reason for retirement request\",\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     },\n      \"attachments\": null,\n  }\n}"
+      tags:
+        - Requests
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: 'The reason for the retirement request Custom'
+                  example: 'death of a lover.'
+                attachments:
+                  type: string
+                  format: binary
+                  description: 'Must not be greater than 2048 kilobytes'
+              required:
+                - reason
+  /api/add_resignation_request:
+    post:
+      summary: 'Add Resignation Request'
+      operationId: addResignationRequest
+      description: 'This endpoint is used to add a resignation request. Employee can access this API Once A Day.'
+      parameters: []
+      responses:
+        200:
+          description: 'Add Resignation Request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"id\": 3,\n     \"type\": 4,\n     \"date\": \"2023-08-28\",\n     \"status\": 3,\n     \"reason\": \"this is the reason for resignation request\",\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     },\n      \"attachments\": null,\n  }\n}"
+      tags:
+        - Requests
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: 'The reason for the resignation request Custom'
+                  example: 'death of a lover.'
+                attachments:
+                  type: string
+                  format: binary
+                  description: 'Must not be greater than 2048 kilobytes'
+              required:
+                - reason
+  '/api/request/{id}':
+    get:
+      summary: 'Get Request'
+      operationId: getRequest
+      description: 'This endpoint is used to Get Request in Company and Admin Or Hr Can Access To This Api.'
+      parameters: []
+      responses:
+        201:
+          description: 'Get Request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"id\": 3,\n     \"type\": 4,\n     \"date\": \"2023-08-28\",\n     \"status\": 3,\n     \"reason\": \"this is the reason for resignation request\",\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     },\n      \"attachments\": null,\n  },\nOr\n  \"data\": {\n     \"id\": 2,\n     \"type\": 2,\n     \"status\": 3,\n     \"justify_type\": 1,\n     \"reason\": \"this is the reason\",\n     \"date\": \"2023-06-22\",\n     \"attachments\": null,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\nOr\n  \"data\": {\n     \"id\": 1,\n     \"type\": 1,\n     \"status\": 3,\n     \"reason\": \"death of a lover\",\n     \"start_time\": \"05:00:00\",\n     \"end_time\": \"07:00:00\",\n     \"start_date\": \"2023-06-19\",\n     \"end_date\": \"2023-06-19\",\n     \"payment_type\": 1,\n     \"vacation_type\": 1,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\n}"
+      tags:
+        - Requests
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the request.'
-        example: quae
+        description: 'Must Be Exists In requests Table'
+        example: 19
         required: true
         schema:
-          type: string
+          type: integer
   '/api/approve_request/{id}':
     put:
-      summary: ''
-      operationId: putApiApprove_requestId
-      description: ''
+      summary: 'Approve Request'
+      operationId: approveRequest
+      description: 'This endpoint is used to approve a request in the company. Admin or HR can access this API. The status will be set to 1, where number 1 refers to approved,number 2 refers to rejected, and number 3 refers to pending status.'
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: 'Approve Request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"id\": 3,\n     \"type\": 4,\n     \"date\": \"2023-08-28\",\n     \"status\": 1,\n     \"reason\": \"this is the reason for resignation request\",\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     },\n      \"attachments\": null,\n  },\nOr\n  \"data\": {\n     \"id\": 2,\n     \"type\": 2,\n     \"status\": 1,\n     \"justify_type\": 1,\n     \"reason\": \"this is the reason\",\n     \"date\": \"2023-06-22\",\n     \"attachments\": null,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\nOr\n  \"data\": {\n     \"id\": 1,\n     \"type\": 1,\n     \"status\": 1,\n     \"reason\": \"death of a lover\",\n     \"start_time\": \"05:00:00\",\n     \"end_time\": \"07:00:00\",\n     \"start_date\": \"2023-06-19\",\n     \"end_date\": \"2023-06-19\",\n     \"payment_type\": 1,\n     \"vacation_type\": 1,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\n}"
       tags:
         - Requests
-      security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the approve request.'
-        example: enim
+        description: 'Must Be Exists In requests Table'
+        example: 1
         required: true
         schema:
-          type: string
+          type: integer
   /api/reject_request:
     post:
-      summary: ''
-      operationId: postApiReject_request
-      description: ''
+      summary: 'Rjected Request'
+      operationId: rjectedRequest
+      description: 'This endpoint is used to rjected a request in the company. Admin or HR can access this API. The status will be set to 1, where number 1 refers to approved,number 2 refers to rejected, and number 3 refers to pending status.'
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: 'Rjected Request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": {\n     \"id\": 3,\n     \"type\": 4,\n     \"date\": \"2023-08-28\",\n     \"status\": 2,\n     \"reason\": \"this is the reason for resignation request\",\n     \"reject_reason\": \"Without Any Reason\",\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     },\n      \"attachments\": null,\n  },\nOr\n  \"data\": {\n     \"id\": 2,\n     \"type\": 2,\n     \"status\": 2,\n     \"justify_type\": 1,\n     \"reason\": \"this is the reason\",\n     \"reject_reason\": \"Without Any Reason\",\n     \"date\": \"2023-06-22\",\n     \"attachments\": null,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\nOr\n  \"data\": {\n     \"id\": 1,\n     \"type\": 1,\n     \"status\": 2,\n     \"reason\": \"death of a lover\",\n     \"reject_reason\": \"Without Any Reason\",\n     \"start_time\": \"05:00:00\",\n     \"end_time\": \"07:00:00\",\n     \"start_date\": \"2023-06-19\",\n     \"end_date\": \"2023-06-19\",\n     \"payment_type\": 1,\n     \"vacation_type\": 1,\n     \"user\": {\n         \"id\": 3,\n         \"name\": \"mouaz alkhateeb\",\n         \"email\": \"mouaz@gmail.com\",\n         \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n         \"position\": \"Backend Developer\"\n     }\n  }\n}"
       tags:
         - Requests
       requestBody:
@@ -5218,149 +6026,426 @@ paths:
               type: object
               properties:
                 request_id:
-                  type: string
-                  description: ''
-                  example: vero
+                  type: integer
+                  description: 'Must Be Exists In requests Table'
+                  example: 13
                 reject_reason:
                   type: string
-                  description: ''
-                  example: harum
+                  description: 'The reject reason for the request Custom'
+                  example: 'Without Any Reason.'
               required:
                 - request_id
                 - reject_reason
-      security: []
   /api/my_requests:
     get:
-      summary: ''
-      operationId: getApiMy_requests
-      description: ''
-      parameters: []
+      summary: 'Show My Requests List'
+      operationId: showMyRequestsList
+      description: 'This endpoint displays a list of requests specific to the authenticated employee.'
+      parameters:
+        -
+          in: query
+          name: type
+          description: 'optional Filter the requests by type. Possible values: 1 (approved), 2 (rejected), 3 (pending).'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter the requests by type. Possible values: 1 (approved), 2 (rejected), 3 (pending).'
+            example: 15
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 3
+                      type: 3
+                      date: '2023-08-28'
+                      status: 3
+                      reason: 'no reason'
+                      attachments: null
+                    -
+                      id: 2
+                      type: 2
+                      status: 3
+                      justify_type: 1
+                      reason: 'this is the reason'
+                      date: '2023-06-22'
+                      attachments: null
+                    -
+                      id: 1
+                      type: 1
+                      status: 3
+                      reason: 'death of a lover'
+                      start_time: '05:00:00'
+                      end_time: '07:00:00'
+                      start_date: '2023-06-19'
+                      end_date: '2023-06-19'
+                      payment_type: 1
+                      vacation_type: 1
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 3
+                        type: 3
+                        date: '2023-08-28'
+                        status: 3
+                        reason: 'no reason'
+                        attachments: null
+                      -
+                        id: 2
+                        type: 2
+                        status: 3
+                        justify_type: 1
+                        reason: 'this is the reason'
+                        date: '2023-06-22'
+                        attachments: null
+                      -
+                        id: 1
+                        type: 1
+                        status: 3
+                        reason: 'death of a lover'
+                        start_time: '05:00:00'
+                        end_time: '07:00:00'
+                        start_date: '2023-06-19'
+                        end_date: '2023-06-19'
+                        payment_type: 1
+                        vacation_type: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 3
+                        type:
+                          type: integer
+                          example: 3
+                        date:
+                          type: string
+                          example: '2023-08-28'
+                        status:
+                          type: integer
+                          example: 3
+                        reason:
+                          type: string
+                          example: 'no reason'
+                        attachments:
+                          type: string
+                          example: null
       tags:
         - Requests
-      security: []
   /api/vacation_requests:
     get:
-      summary: ''
-      operationId: getApiVacation_requests
-      description: ''
+      summary: 'List Of Vacation Requests'
+      operationId: listOfVacationRequests
+      description: 'This endpoint is used to display a list of vacation requests in the company. Only admins or HR personnel can access this API.'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 1
+                      type: 1
+                      status: 3
+                      reason: 'death of a lover'
+                      start_time: '05:00:00'
+                      end_time: '07:00:00'
+                      start_date: '2023-06-19'
+                      end_date: '2023-06-19'
+                      payment_type: 1
+                      vacation_type: 1
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        email: mouaz@gmail.com
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        type: 1
+                        status: 3
+                        reason: 'death of a lover'
+                        start_time: '05:00:00'
+                        end_time: '07:00:00'
+                        start_date: '2023-06-19'
+                        end_date: '2023-06-19'
+                        payment_type: 1
+                        vacation_type: 1
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          email: mouaz@gmail.com
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        type:
+                          type: integer
+                          example: 1
+                        status:
+                          type: integer
+                          example: 3
+                        reason:
+                          type: string
+                          example: 'death of a lover'
+                        start_time:
+                          type: string
+                          example: '05:00:00'
+                        end_time:
+                          type: string
+                          example: '07:00:00'
+                        start_date:
+                          type: string
+                          example: '2023-06-19'
+                        end_date:
+                          type: string
+                          example: '2023-06-19'
+                        payment_type:
+                          type: integer
+                          example: 1
+                        vacation_type:
+                          type: integer
+                          example: 1
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'mouaz alkhateeb'
+                            email:
+                              type: string
+                              example: mouaz@gmail.com
+                            image:
+                              type: string
+                              example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                            position:
+                              type: string
+                              example: null
       tags:
         - Requests
-      security: []
   /api/justify_requests:
     get:
-      summary: ''
-      operationId: getApiJustify_requests
-      description: ''
+      summary: 'List Of Justify Requests'
+      operationId: listOfJustifyRequests
+      description: 'This endpoint is used to display a list of Justify requests in the company. Only admins or HR personnel can access this API.'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 2
+                      type: 2
+                      status: 3
+                      justify_type: 1
+                      reason: 'this is the reason'
+                      date: '2023-06-22'
+                      attachments: null
+                      user:
+                        id: 3
+                        name: 'mouaz alkhateeb'
+                        email: mouaz@gmail.com
+                        image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                        position: null
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        type: 2
+                        status: 3
+                        justify_type: 1
+                        reason: 'this is the reason'
+                        date: '2023-06-22'
+                        attachments: null
+                        user:
+                          id: 3
+                          name: 'mouaz alkhateeb'
+                          email: mouaz@gmail.com
+                          image: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                          position: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        type:
+                          type: integer
+                          example: 2
+                        status:
+                          type: integer
+                          example: 3
+                        justify_type:
+                          type: integer
+                          example: 1
+                        reason:
+                          type: string
+                          example: 'this is the reason'
+                        date:
+                          type: string
+                          example: '2023-06-22'
+                        attachments:
+                          type: string
+                          example: null
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'mouaz alkhateeb'
+                            email:
+                              type: string
+                              example: mouaz@gmail.com
+                            image:
+                              type: string
+                              example: 'http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg'
+                            position:
+                              type: string
+                              example: null
       tags:
         - Requests
-      security: []
   /api/retirement_requests:
     get:
-      summary: ''
-      operationId: getApiRetirement_requests
-      description: ''
+      summary: 'List Of Retirement Requests'
+      operationId: listOfRetirementRequests
+      description: 'This endpoint is used to display a list of Retirement requests in the company. Only admins or HR personnel can access this API.'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"type\": 3,\n            \"date\": \"2023-08-28\",\n            \"status\": 3,\n            \"reason\": \"no reason\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"mouaz alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"position\": null\n            },\n            \"attachments\": null,\n        }\n    ]\n}"
       tags:
         - Requests
-      security: []
   /api/resignation_requests:
     get:
-      summary: ''
-      operationId: getApiResignation_requests
-      description: ''
+      summary: 'List Of Resignation Requests'
+      operationId: listOfResignationRequests
+      description: 'This endpoint is used to display a list of Resignation requests in the company. Only admins or HR personnel can access this API.'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"type\": 4,\n            \"date\": \"2023-08-28\",\n            \"status\": 3,\n            \"reason\": \"no reason\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"mouaz alkhateeb\",\n                \"email\": \"mouaz@gmail.com\",\n                \"image\": \"http://127.0.0.1:8000/employees/2023-08-27-Employee-8.jpg\",\n                \"position\": null\n            },\n            \"attachments\": null,\n        }\n    ]\n}"
       tags:
         - Requests
-      security: []
   /api/my_monthly_shift:
     get:
-      summary: ''
-      operationId: getApiMy_monthly_shift
-      description: ''
-      parameters: []
+      summary: 'My Monthly Shift'
+      operationId: myMonthlyShift
+      description: 'This endpoint displays the monthly shift specific to the authenticated employee.'
+      parameters:
+        -
+          in: query
+          name: duration
+          description: 'optional Filter the Monthly Shifts by duration. Possible values: 1 (only day absences), 2 (several days absences).'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter the Monthly Shifts by duration. Possible values: 1 (only day absences), 2 (several days absences).'
+            example: 15
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      id: 1
+                      date: '2023-08-28'
+                      status: 1
+                    -
+                      id: 2
+                      date: '2023-08-29'
+                      status: 1
+                    -
+                      id: 3
+                      date: '2023-08-30'
+                      status: 0
+                      relatedAbsent:
+                        -
+                          id: 3
+                          date: '2023-08-30'
+                          status: 0
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        date: '2023-08-28'
+                        status: 1
+                      -
+                        id: 2
+                        date: '2023-08-29'
+                        status: 1
+                      -
+                        id: 3
+                        date: '2023-08-30'
+                        status: 0
+                        relatedAbsent:
+                          -
+                            id: 3
+                            date: '2023-08-30'
+                            status: 0
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        date:
+                          type: string
+                          example: '2023-08-28'
+                        status:
+                          type: integer
+                          example: 1
       tags:
         - Requests
-      security: []
   /api/update_employee_shift:
     post:
       summary: 'Update Employee Shift'
@@ -5412,7 +6497,7 @@ paths:
                 shift_id:
                   type: integer
                   description: 'Must Be Exists In shifts Table'
-                  example: 11
+                  example: 12
                 start_time:
                   type: time
                   description: 'The start time of the shift in the format `HH:MM:SS` Custom'
@@ -5450,7 +6535,7 @@ tags:
     description: ''
   -
     name: Deposits
-    description: "\nAPIs for managing Deposits"
+    description: ''
   -
     name: Holidays
     description: ''
@@ -5462,10 +6547,10 @@ tags:
     description: ''
   -
     name: Posts
-    description: "\nAPIs for managing Posts"
+    description: ''
   -
     name: Requests
-    description: "\nAPIs for managing Requests"
+    description: ''
   -
     name: Shifts
     description: ''

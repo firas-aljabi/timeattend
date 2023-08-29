@@ -20,6 +20,7 @@ use App\Http\Requests\Employees\GetEmployeesListRequest;
 use App\Http\Requests\Employees\GetEmployeesSalariesListRequest;
 use App\Http\Requests\Employees\RewerdsAdversriesSalaryRequest;
 use App\Http\Requests\Employees\UpdateEmployeeContractRequest;
+use App\Http\Requests\Employees\UpdateEmployeePermissionRequest;
 use App\Http\Requests\Employees\UpdateEmployeeRequest;
 use App\Http\Requests\Employees\UpdateEmployeeShift;
 use App\Http\Requests\Employees\UpdateSalaryRequest;
@@ -185,6 +186,7 @@ class AdminController extends Controller
      * "entry_time": "30",
      *"permission_to_leave": "1",
      *"leave_time": "60",
+     *"number_of_working_hours": 0,
      *"nationalitie": {
      *   "name": "Syrian"
      * },
@@ -494,6 +496,7 @@ class AdminController extends Controller
      * "entry_time": "30",
      *"permission_to_leave": "1",
      *"leave_time": "60",
+     *"number_of_working_hours": 0,
      *"nationalitie": {
      *   "name": "Syrian"
      * },
@@ -816,39 +819,41 @@ class AdminController extends Controller
     }
 
     /**
-     * Add Reward Adversaries allowance For Employee
+     * Add Reward and Adversaries Allowance for Employee
      *
-     * This endpoint is used to Add Reward Adversaries allowance For Employee in the Company and Admin Or Hr Can Access To This Api.
+     * This endpoint is used to add reward and adversaries allowance for an employee in the company. Only admins or HR personnel can access this API.
      *
-     *@bodyParam user_id int required Must Be Exists In Users Table
-
-     * @bodyParam rewards_type int optional The type of rewards to user. Must be one of the following values:
+     * @bodyParam user_id int required The user ID, which must exist in the Users table.
+     *
+     * @bodyParam rewards_type int optional The type of rewards for the user. Must be one of the following values:
      * - `1`: Number.
-     * - `2`: Rate. Custom Example: 1
+     * - `2`: Rate. (Custom Example: 1)
      *
-     * @bodyParam rewards double This Field Required if rewards type not equal null Custom Example: 25000, Custom Example:5.
+     * @bodyParam rewards double required if rewards_type is not null. The amount of rewards. (Custom Example: 25000, Custom Example: 5)
      *
-     * @bodyParam adversaries_type  int optional The type of adversaries to user. Must be one of the following values:
+     * @bodyParam adversaries_type int optional The type of adversaries for the user. Must be one of the following values:
      * - `1`: Number.
-     * - `2`: Rate. Custom Example: 1
+     * - `2`: Rate. (Custom Example: 1)
      *
-     * @bodyParam adversaries double This Field Required if adversaries type not equal null Custom Example: 78000, Custom Example:3.
+     * @bodyParam adversaries double required if adversaries_type is not null. The amount of adversaries. (Custom Example: 78000, Custom Example: 3)
      *
-     * @bodyParam housing_allowance double Custom Example: 100000.
+     * @bodyParam housing_allowance double The housing allowance. (Custom Example: 100000)
      *
-     * @bodyParam transportation_allowance  double Custom Example: 80000.
+     * @bodyParam transportation_allowance double The transportation allowance. (Custom Example: 80000)
      *
-     * @response 200 scenario="Add Reward Adversaries allowance For Employee"{
-     *"Net_Salary": 220000,
-     *"Rewards": 10,
-     *"Adversaries": 0,
-     *"Housing allowance": 0,
-     *"Transportation Allowance": 0,
-     *"date": "2023-08-27",
-     *"user": {
-     *"id": 8,
-     *"name": "mouaz alkhateeb"
-     *}
+     * @response 200 scenario="Add Reward and Adversaries Allowance for Employee"{
+     *     "Net_Salary": 220000,
+     *     "Rewards": 50000,
+     *     "rewards_type": 1,
+     *     "Adversaries": 95000,
+     *     "adversaries_type": 1,
+     *     "Housing allowance": 0,
+     *     "Transportation Allowance": 0,
+     *     "date": "2023-08-27",
+     *     "user": {
+     *         "id": 8,
+     *         "name": "mouaz alkhateeb"
+     *     }
      * }
      */
 
@@ -981,7 +986,8 @@ class AdminController extends Controller
      *"permission_to_leave": 1,
      *"leave_time": 60,
      *"percentage": "0",
-     *"basic_salary": 200000
+     *"basic_salary": 200000,
+     *"number_of_working_hours": 0,
      *},
      *{
      *"id": 9,
@@ -1024,7 +1030,8 @@ class AdminController extends Controller
      *"permission_to_leave": 1,
      *"leave_time": 60,
      *"percentage": "0",
-     *"basic_salary": 200000
+     *"basic_salary": 200000,
+     *"number_of_working_hours": 0,
      * }
      *]
      * }
@@ -1213,6 +1220,7 @@ class AdminController extends Controller
      * "entry_time": "30",
      *"permission_to_leave": "1",
      *"leave_time": "60",
+     *"number_of_working_hours": 0,
      *"nationalitie": {
      *   "name": "Syrian"
      * },
@@ -1305,6 +1313,7 @@ class AdminController extends Controller
      * "entry_time": "30",
      *"permission_to_leave": "1",
      *"leave_time": "60",
+     *"number_of_working_hours": 0,
      *"nationalitie": {
      *   "name": "Syrian"
      * },
@@ -1594,5 +1603,83 @@ class AdminController extends Controller
         return ApiResponseHelper::sendResponse(
             new Result($returnData, "DONE")
         );
+    }
+    /**
+     * Update Employee Permission Time
+     *
+     * This endpoint is used to update the permission time for an employee. Only admins or HR personnel can access this API.
+     *
+     * @bodyParam user_id int required The user ID, which must exist in the users table.
+     *
+     * @bodyParam leave_time number required if permission_to_leave is equal to 1. Must be one of the following values:
+     * - 30
+     * - 60
+     * - 90 (Custom Example: 60)
+     *
+     * @bodyParam entry_time number required if permission_to_entry is equal to 1. Must be one of the following values:
+     * - 30
+     * - 60
+     * - 90 (Custom Example: 90)
+     *
+     * @response 200 scenario="Update Employee Permission Time"{
+     *     "data": {
+     *         "id": 6,
+     *         "name": "mouaz alkhateeb",
+     *         "email": "mouaz@gmail.com",
+     *         "work_email": "mouazalkhateeb@gmail.com",
+     *         "status": 1,
+     *         "type": 4,
+     *         "gender": 1,
+     *         "mobile": "0969040322",
+     *         "phone": "0969040322",
+     *         "departement": "it",
+     *         "address": "Damascus",
+     *         "position": null,
+     *         "skills": "no skills",
+     *         "serial_number": "000007",
+     *         "birthday_date": "2022-11-26",
+     *         "marital_status": null,
+     *         "guarantor": "admin",
+     *         "branch": "syria branch",
+     *         "start_job_contract": "2023-08-01",
+     *         "end_job_contract": "2023-10-01",
+     *         "end_visa": "2023-09-11",
+     *         "end_passport": "2023-09-11",
+     *         "end_employee_sponsorship": null,
+     *         "end_municipal_card": "2023-09-10",
+     *         "end_health_insurance": "2023-09-14",
+     *         "end_employee_residence": "2023-09-20",
+     *         "image": null,
+     *         "id_photo": null,
+     *         "biography": null,
+     *         "employee_sponsorship": null,
+     *         "visa": null,
+     *         "passport": null,
+     *         "municipal_card": null,
+     *         "health_insurance": null,
+     *         "employee_residence": null,
+     *         "permission_to_entry": 1,
+     *         "entry_time": 60,
+     *         "permission_to_leave": 1,
+     *         "leave_time": 90,
+     *         "percentage": "0",
+     *         "basic_salary": 200000,
+     *         "number_of_working_hours": 0,
+     *     }
+     * }
+     */
+    public function update_employee_permission_time(UpdateEmployeePermissionRequest $request)
+    {
+        $createdData =  $this->adminService->update_employee_permission_time($request->validated());
+        if ($createdData['success']) {
+            $newData = $createdData['data'];
+            $returnData = EmployeeResource::make($newData);
+
+            return ApiResponseHelper::sendResponse(
+                new Result($returnData, "Done")
+            );
+        } else {
+            return ['message' => $createdData['message']];
+        }
     }
 }

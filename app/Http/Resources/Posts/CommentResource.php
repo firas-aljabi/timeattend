@@ -17,10 +17,12 @@ class CommentResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'content' => $this->content,
             'likes_count' => $this->likes_count,
             'user' => $this->whenLoaded('user', function () {
                 return [
+                    'id' => $this->user->id,
                     'name' => $this->user->name,
                     'image' => $this->user->image,
                 ];

@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('termination_employees_contract', [AdminController::class, 'termination_employees_contract']);
     Route::get('list_of_nationalities', [AdminController::class, 'list_of_nationalities']);
 
+
+    Route::post('update_employee_permission_time', [AdminController::class, 'update_employee_permission_time']);
+
     // -- Posts -- //
     Route::post('create_post', [PostController::class, 'store']);
     Route::get('get_posts_list', [PostController::class, 'getPostsList']);
@@ -108,18 +111,18 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('craete_deposit', [DepositController::class, 'store']);
     Route::put('approve_deposit/{id}', [DepositController::class, 'approve_deposit']);
     Route::post('reject_deposit', [DepositController::class, 'reject_deposit']);
-    Route::get('my_deposits', [DepositController::class, 'my_deposits']); // For Employee
-    Route::get('list_of_deposits', [DepositController::class, 'list_of_deposits']); //For Admin
-    Route::get('list_of_clearance_deposits', [DepositController::class, 'list_of_clearance_deposits']); //For Admin
     Route::put('clearance_request/{id}', [DepositController::class, 'clearance_request']);
     Route::put('approve_clearance_request/{id}', [DepositController::class, 'approve_clearance_request']);
     Route::post('reject_clearance_request', [DepositController::class, 'reject_clearance_request']);
+    Route::get('my_deposits', [DepositController::class, 'my_deposits']); // For Employee
+    Route::get('list_of_deposits', [DepositController::class, 'list_of_deposits']); //For Admin
+    Route::get('list_of_clearance_deposits', [DepositController::class, 'list_of_clearance_deposits']); //For Admin
 
 
     // -- Company  -- //
     Route::post('create_company', [CompanyController::class, 'store']);
     Route::get('company/{id}', [CompanyController::class, 'show']);
     Route::post('update_comapny', [CompanyController::class, 'update_comapny']);
-    // Route::get('show_percenatge_company', [CompanyController::class, 'show_percenatge_company']);
-    // Route::put('update_percentage', [CompanyController::class, 'update_percentage']);
+    Route::get('show_percenatge_company', [CompanyController::class, 'show_percenatge_company']);
+    Route::put('update_percentage', [CompanyController::class, 'update_percentage']);
 });

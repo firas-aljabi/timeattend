@@ -64,14 +64,15 @@ class EmployeeResource extends JsonResource
             'health_insurance' => $this->health_insurance ? asset($this->health_insurance) : null,
             'employee_residence' => $this->employee_residence ? asset($this->employee_residence) : null,
             'permission_to_entry' => $this->permission_to_entry,
-            'entry_time' => $this->entry_time,
+            'entry_time' => intval($this->entry_time),
             'permission_to_leave' => $this->permission_to_leave,
-            'leave_time' => $this->leave_time,
+            'leave_time' => intval($this->leave_time),
             'nationalitie' => $this->whenLoaded('nationalitie', function () {
                 return [
                     'name' => $this->nationalitie->Name,
                 ];
             }),
+            'number_of_working_hours' => AdminService::CalculateNumberOfWorkingHours($user_id),
             'percentage' => AdminService::AttendancePercentage($user_id),
             'basic_salary' => floatVal($this->basic_salary),
             'salaries' => SalaryResource::collection($this->whenLoaded('salaries')),

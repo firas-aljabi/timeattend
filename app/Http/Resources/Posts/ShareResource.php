@@ -18,10 +18,12 @@ class ShareResource extends JsonResource
         return [
             'user' => $this->whenLoaded('user', function () {
                 return [
+                    'id' => $this->user->id,
                     'name' => $this->user->name,
                     'image' => $this->user->image,
                 ];
             }),
+            'post' => PostResource::make($this->whenLoaded('post')),
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d') : null
         ];
     }

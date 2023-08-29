@@ -78,6 +78,7 @@ class AuthController extends Controller
      * "entry_time": null,
      * "permission_to_leave": 0,
      * "leave_time": null,
+     * "number_of_working_hours": 0,
      * "code": null,
      * "expired_at": null,
      * "created_at": "2023-08-26T07:01:20.000000Z",

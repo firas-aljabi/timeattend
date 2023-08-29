@@ -31,7 +31,7 @@ class User extends Authenticatable implements JWTSubject
         'employee_sponsorship', 'end_employee_sponsorship', 'visa', 'end_visa',
         'passport', 'end_passport', 'municipal_card', 'end_municipal_card', 'health_insurance', 'end_health_insurance',
         'basic_salary', 'company_id', 'permission_to_entry', 'permission_to_leave', 'employee_residence', 'end_employee_residence',
-        'code', 'expired_at', 'entry_time', 'leave_time'
+        'code', 'expired_at', 'entry_time', 'leave_time', 'number_working_hours'
     ];
 
     /**

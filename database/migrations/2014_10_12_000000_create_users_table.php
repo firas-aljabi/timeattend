@@ -40,8 +40,9 @@ return new class extends Migration
             $table->string('departement')->nullable();
             $table->string('position')->nullable();
             $table->tinyInteger('type')->default(UserTypes::EMPLOYEE);
-            $table->tinyInteger('status')->default(EmployeeStatus::ON_DUTY);
+            $table->tinyInteger('status')->default(EmployeeStatus::ABSENT);
             $table->longText('skills')->nullable();
+            $table->string('number_working_hours')->default(0)->nullable();
             $table->date('start_job_contract')->nullable();
             $table->date('end_job_contract')->nullable();
             $table->longText('image')->nullable();

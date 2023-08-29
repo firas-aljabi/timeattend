@@ -36,6 +36,11 @@ class AdminService implements AdminServiceInterface
     {
         return $this->adminRepository->update_employee($data);
     }
+    public function update_employee_permission_time($data)
+    {
+        return $this->adminRepository->update_employee_permission_time($data);
+    }
+
 
     public function create_hr($data)
     {
@@ -203,5 +208,28 @@ class AdminService implements AdminServiceInterface
     public function profile()
     {
         return $this->adminRepository->profile();
+    }
+
+    public static function CalculateNumberOfWorkingHours($id)
+    {
+        $user = User::find($id);
+        $user_shifts = $user->shifts;
+        $total_working_hours = 0;
+
+        if ($user_shifts != null) {
+            foreach ($user_shifts as $shift) {
+                $start_time = Carbon::parse($shift->start_time);
+                $end_time = Carbon::parse($shift->end_time);
+                $working_hours = $end_time->diffInHours($start_time);
+                $total_working_hours += $working_hours;
+
+                $start_break_hour = Carbon::parse($shift->start_break_hour);
+                $end_break_hour = Carbon::parse($shift->end_break_hour);
+                $break_hours = $end_break_hour->diffInHours($start_break_hour);
+                $total_working_hours -= $break_hours;
+            }
+        }
+
+        return ceil($total_working_hours);
     }
 }

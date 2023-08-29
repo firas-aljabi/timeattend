@@ -40,6 +40,8 @@ return new class extends Migration
             $table->string('mobile_sim')->nullable();
             $table->text('reason_reject')->nullable();
             $table->text('reason_clearance_reject')->nullable();
+            $table->date('deposit_request_date')->nullable();
+            $table->date('clearance_request_date')->nullable();
             $table->timestamps();
         });
     }

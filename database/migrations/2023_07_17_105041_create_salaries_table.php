@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->decimal('salary', 8, 2);
+            $table->tinyInteger('rewards_type')->nullable();
+            $table->tinyInteger('adversaries_type')->nullable();
             $table->decimal('rewards', 8, 2);
             $table->decimal('adversaries', 8, 2);
             $table->decimal('housing_allowance', 8, 2);

@@ -164,7 +164,7 @@ class PostRepository extends BaseRepositoryImplementation
             DB::commit();
 
             if ($like != null) {
-                return $like->load(['user', 'likes']);
+                return $like->load(['user']);
             } else {
                 return $like;
             }
@@ -200,7 +200,7 @@ class PostRepository extends BaseRepositoryImplementation
             DB::commit();
 
             if ($share != null) {
-                return $share->load(['user']);
+                return $share->load(['user', 'post.user']);
             } else {
                 return $share;
             }

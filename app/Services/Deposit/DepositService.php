@@ -56,6 +56,7 @@ class DepositService implements DepositServiceInterface
         if (auth()->user()->type == UserTypes::EMPLOYEE && auth()->user()->company_id == $deposit['company_id'] && auth()->user()->id == $deposit->user_id) {
 
             $deposit->extra_status = DepositStatus::UN_PAID;
+            $deposit->clearance_request_date = date('Y-m-d');
             $deposit->update();
 
             return ['success' => true, 'data' => $deposit->load('user')];

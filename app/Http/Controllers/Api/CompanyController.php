@@ -29,35 +29,36 @@ class CompanyController extends Controller
     /**
      * Create Company
      *
-     * This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.
+     * This endpoint is used to create a new company. Only super admins can access this API.
      *
-     * @bodyParam name string required Custom Example: Goma Company
-     * @bodyParam email email required Custom Example: goma@goma.com
-     * @bodyParam start_commercial_record date Custom Example: 2023-08-27
-     * @bodyParam end_commercial_record date Custom Example: 2023-08-27
-     * @bodyParam commercial_record file Must not be greater than 2048 kilobytes
-     * @bodyParam longitude number required The longitude of the company location Custom Example: 25.12
-     * @bodyParam latitude number required The latitude of the company location Custom Example: 15.32
-     * @bodyParam radius number required The radius of the company location Custom Example: 15
+     * @bodyParam name string required The name of the company. Custom  Example: Goma Company
+     * @bodyParam email email required The email address of the company. Custom  Example: goma@goma.com
+     * @bodyParam start_commercial_record date The start date of the commercial record. Custom Example: 2023-08-27
+     * @bodyParam end_commercial_record date The end date of the commercial record. Custom  Example: 2023-08-27
+     * @bodyParam commercial_record file The commercial record file. Must not be greater than 2048 kilobytes.
+     * @bodyParam longitude number required The longitude of the company location. Custom  Example: 25.12
+     * @bodyParam latitude number required The latitude of the company location. Custom Example: 15.32
+     * @bodyParam radius number required The radius of the company location. Custom Example: 15
      *
-     * @response 200 scenario="Create New Company"{
-     *"data": {
-     *"id": 1,
-     *"name": "Goma Company",
-     *"email": "goma@goma.com",
-     *"commercial_record": null,
-     * "start_commercial_record": "2023-02-01",
-     *"end_commercial_record": "2023-09-01",
-     *"locations": [
-     *{
-     *"id": 1,
-     *"Longitude": "25.12",
-     *"Latitude": "15.32",
-     * "Radius": "21"
-     *}
-     *],
-     *"admin": null
-     *}
+     * @response 200 {
+     *     "data": {
+     *         "id": 1,
+     *         "name": "Goma Company",
+     *         "email": "goma@goma.com",
+     *         "commercial_record": null,
+     *         "start_commercial_record": "2023-02-01",
+     *         "end_commercial_record": "2023-09-01",
+     *         "locations": [
+     *             {
+     *                 "id": 1,
+     *                 "Longitude": "25.12",
+     *                 "Latitude": "15.32",
+     *                 "Radius": "21"
+     *             }
+     *         ],
+     *         "admin": null
+     *     }
+     * }
      */
     public function store(CreateComapnyRequest $request)
     {
@@ -110,6 +111,18 @@ class CompanyController extends Controller
             return ['message' => $company['message']];
         }
     }
+
+    /**
+     * Show Company Percentage
+     *
+     * This endpoint is used to display the company percentage. Only authenticated admins or HR personnel can access this API. It will show the percentage specific to the authenticated admin or HR personnel.
+     *
+     * @response 200 {
+     *     "data": {
+     *         "percentage": false
+     *     }
+     * }
+     */
     public function show_percenatge_company()
     {
         $company = $this->companyService->show_percenatge_company();
@@ -125,6 +138,18 @@ class CompanyController extends Controller
             return ['message' => $company['message']];
         }
     }
+
+    /**
+     * Update Company Percentage
+     *
+     * This endpoint is used to Update the company percentage. Only authenticated admins or HR personnel can access this API. It will Update the percentage specific to the authenticated admin or HR personnel.
+     *
+     * @response 200 {
+     *     "data": {
+     *         "percentage": true
+     *     }
+     * }
+     */
     public function update_percentage()
     {
         $company = $this->companyService->update_percentage();
@@ -145,32 +170,34 @@ class CompanyController extends Controller
     /**
      * Update Company
      *
-     * This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.
-     * @bodyParam company_id int required Must Be Exists In companies Table
-     * @bodyParam name string required Custom Example: Goma Company
-     * @bodyParam email email required Custom Example: goma@goma.com
-     * @bodyParam start_commercial_record date Custom Example: 2023-08-27
-     * @bodyParam end_commercial_record date Custom Example: 2023-08-27
-     * @bodyParam commercial_record file Must not be greater than 2048 kilobytes
+     * This endpoint is used to update a company. Only super admins can access this API.
      *
-     * @response 200 scenario="Update Company"{
-     *"data": {
-     *"id": 1,
-     *"name": "Goma Company",
-     *"email": "goma@goma.com",
-     *"commercial_record": null,
-     * "start_commercial_record": "2023-02-01",
-     *"end_commercial_record": "2023-09-01",
-     *"locations": [
-     *{
-     *"id": 1,
-     *"Longitude": "25.12",
-     *"Latitude": "15.32",
-     * "Radius": "21"
-     *}
-     *],
-     *"admin": null
-     *}
+     * @bodyParam company_id int required The ID of the company. Must exist in the companies table.
+     * @bodyParam name string required The name of the company. Custom Example: Goma Company
+     * @bodyParam email email required The email address of the company.Custom Example: goma@goma.com
+     * @bodyParam start_commercial_record date The start date of the commercial record.Custom Example: 2023-08-27
+     * @bodyParam end_commercial_record date The end date of the commercial record.Custom Example: 2023-08-27
+     * @bodyParam commercial_record file The commercial record file. Must not be greater than 2048 kilobytes.
+     *
+     * @response 200 {
+     *     "data": {
+     *         "id": 1,
+     *         "name": "Goma Company",
+     *         "email": "goma@goma.com",
+     *         "commercial_record": null,
+     *         "start_commercial_record": "2023-02-01",
+     *         "end_commercial_record": "2023-09-01",
+     *         "locations": [
+     *             {
+     *                 "id": 1,
+     *                 "Longitude": "25.12",
+     *                 "Latitude": "15.32",
+     *                 "Radius": "21"
+     *             }
+     *         ],
+     *         "admin": null
+     *     }
+     * }
      */
     public function update_comapny(UpdateCompanyRequest $request)
     {
@@ -185,12 +212,5 @@ class CompanyController extends Controller
         } else {
             return ['message' => $createdData['message']];
         }
-    }
-
-
-
-
-    public function update_location_company()
-    {
     }
 }

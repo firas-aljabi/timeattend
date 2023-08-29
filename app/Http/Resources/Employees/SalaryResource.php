@@ -11,11 +11,13 @@ class SalaryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'Net_Salary' => floatval($this->salary),
-            'Rewards' => floatval($this->rewards),
-            'Adversaries' => floatval($this->adversaries),
-            'Housing allowance' => floatval($this->housing_allowance),
-            'Transportation Allowance' => floatval($this->transportation_allowance),
+            'net_salary' => floatval($this->salary),
+            'rewards' => floatval($this->rewards),
+            'rewards_type' => intval($this->rewards_type),
+            'adversaries' => floatval($this->adversaries),
+            'adversaries_type' => intval($this->adversaries_type),
+            'housing_allowance' => floatval($this->housing_allowance),
+            'transportation_allowance' => floatval($this->transportation_allowance),
             'date' => $this->date,
             'user' => $this->whenLoaded('user', function () {
                 return [

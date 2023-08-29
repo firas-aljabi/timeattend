@@ -76,12 +76,12 @@ endpoints:
         name: user_id
         description: 'The user ID, must be in the Users table.'
         required: true
-        example: 11
+        example: 17
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      user_id: 11
+      user_id: 17
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -151,12 +151,12 @@ endpoints:
         name: user_id
         description: 'The user ID, must be in the Users table.'
         required: true
-        example: 17
+        example: 19
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      user_id: 17
+      user_id: 19
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:

@@ -36,6 +36,7 @@ class DepositRepository extends BaseRepositoryImplementation
                 if ($data['type'] == DepositType::CAR) {
 
                     $deposit->type = DepositType::CAR;
+                    $deposit->deposit_request_date = date('Y-m-d');
                     $deposit->car_number = $data['car_number'];
                     $deposit->car_model = $data['car_model'];
                     $deposit->manufacturing_year = $data['manufacturing_year'];
@@ -48,6 +49,7 @@ class DepositRepository extends BaseRepositoryImplementation
                     }
                 } elseif ($data['type'] == DepositType::LAPTOP) {
                     $deposit->type = DepositType::LAPTOP;
+                    $deposit->deposit_request_date = date('Y-m-d');
                     $deposit->laptop_type = $data['laptop_type'];
                     $deposit->serial_laptop_number = $data['serial_laptop_number'];
                     $deposit->laptop_color = $data['laptop_color'];
@@ -59,6 +61,7 @@ class DepositRepository extends BaseRepositoryImplementation
                     }
                 } elseif ($data['type'] == DepositType::MOBILE) {
                     $deposit->type = DepositType::MOBILE;
+                    $deposit->deposit_request_date = date('Y-m-d');
                     $deposit->serial_mobile_number = $data['serial_mobile_number'];
                     $deposit->mobile_color = $data['mobile_color'];
                     $deposit->mobile_type = $data['mobile_type'];

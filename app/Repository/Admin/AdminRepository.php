@@ -20,7 +20,9 @@ use App\Notifications\TowFactor;
 use App\Repository\BaseRepositoryImplementation;
 use App\Statuses\AdversariesType;
 use App\Statuses\DepositStatus;
+use App\Statuses\EmployeeStatus;
 use App\Statuses\HolidayTypes;
+use App\Statuses\PermissionType;
 use App\Statuses\RewardsType;
 use App\Statuses\TerminateTime;
 use App\Statuses\UserTypes;
@@ -321,6 +323,52 @@ class AdminRepository extends BaseRepositoryImplementation
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
+    public function update_employee_permission_time($data)
+    {
+        DB::beginTransaction();
+        $user = $this->getById($data['user_id']);
+
+        try {
+
+            if (auth()->user()->type == UserTypes::HR || (auth()->user()->type == UserTypes::ADMIN && auth()->user()->company_id == $user->company_id)) {
+                if (isset($data['entry_time']) && !isset($data['leave_time'])) {
+                    if ($user->permission_to_entry == PermissionType::TRUE) {
+                        $user->update([
+                            'entry_time' => $data['entry_time']
+                        ]);
+                    } else {
+                        return ['success' => false, 'message' => "The employee does not have permission to enter."];
+                    }
+                } elseif (isset($data['leave_time']) && !isset($data['entry_time'])) {
+
+                    if ($user->permission_to_leave == PermissionType::TRUE) {
+                        $user->update([
+                            'leave_time' => $data['leave_time']
+                        ]);
+                    } else {
+                        return ['success' => false, 'message' => "The employee does not have permission to Leave."];
+                    }
+                } elseif (isset($data['leave_time']) && isset($data['entry_time'])) {
+                    return ['success' => false, 'message' => "Choose Entry Time Or Leave Time Not Together"];
+                }
+            } else {
+                return ['success' => false, 'message' => "Unauthorized"];
+            }
+            DB::commit();
+
+            if ($user === null) {
+                return ['success' => false, 'message' => "User was not Updated"];
+            }
+
+            return ['success' => true, 'data' => $user];
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            return ['success' => false, 'message' => $e->getMessage()];
+        }
+    }
+
+
 
     public function create_hr($data)
     {
@@ -501,10 +549,13 @@ class AdminRepository extends BaseRepositoryImplementation
 
         try {
             $user = User::findOrFail($data['user_id']);
+            $salary = Salary::where('user_id', $data['user_id'])->first();
             if (auth()->user()->type == UserTypes::HR || auth()->user()->type == UserTypes::ADMIN && auth()->user()->company_id == $user->company_id) {
-
                 $user->update([
                     'basic_salary' => $data['new_salary'],
+                ]);
+                $salary->update([
+                    'salary' =>  $data['new_salary'],
                 ]);
             } else {
                 return ['success' => false, 'message' => "Unauthorized"];
@@ -673,6 +724,7 @@ class AdminRepository extends BaseRepositoryImplementation
 
         try {
             $userId = auth()->user()->id;
+            $user = auth()->user();
             $date = date('Y-m-d');
             $existingAttendance = Attendance::where('user_id', $userId)
                 ->where('date', $date)
@@ -720,6 +772,11 @@ class AdminRepository extends BaseRepositoryImplementation
                     $attendance->status = $data['check_in'];
                     $attendance->login_time = $current_time->format('H:i:s');
                     $attendance->save();
+
+                    $user->update([
+                        'status' => EmployeeStatus::ON_DUTY,
+                    ]);
+
                     $shiftMatched = true; // set the variable to true if a shift matched the current time
                 }
             }
@@ -745,6 +802,7 @@ class AdminRepository extends BaseRepositoryImplementation
         try {
 
             $userId = auth()->user()->id;
+            $user = auth()->user();
             $date = date('Y-m-d');
 
             $attendance = Attendance::where('user_id', $userId)
@@ -755,6 +813,10 @@ class AdminRepository extends BaseRepositoryImplementation
 
             $attendance->update([
                 'logout_time' => Carbon::now()->format('H:i:s'),
+            ]);
+
+            $user->update([
+                'status' => EmployeeStatus::ABSENT,
             ]);
 
             DB::commit();
@@ -844,6 +906,7 @@ class AdminRepository extends BaseRepositoryImplementation
             $salary->update([
                 'rewards' => $data['rewards'],
                 'salary' =>  $salary->salary + $data['rewards'],
+                'rewards_type' => $data['rewards_type'],
                 'date' => date('Y-m-d'),
             ]);
         } elseif (isset($data['rewards_type']) && $data['rewards_type'] == RewardsType::RATE) {
@@ -856,6 +919,7 @@ class AdminRepository extends BaseRepositoryImplementation
             $salary->update([
                 'rewards' => $data['rewards'],
                 'salary' => $totalSalary,
+                'rewards_type' => $data['rewards_type'],
                 'date' => date('Y-m-d'),
 
             ]);
@@ -864,6 +928,7 @@ class AdminRepository extends BaseRepositoryImplementation
             $salary->update([
                 'adversaries' => $data['adversaries'],
                 'salary' =>  $salary->salary - $data['adversaries'],
+                'adversaries_type' => $data['adversaries_type'],
                 'date' => date('Y-m-d'),
             ]);
         } elseif (isset($data['adversaries_type']) && $data['adversaries_type'] == AdversariesType::RATE) {
@@ -875,6 +940,7 @@ class AdminRepository extends BaseRepositoryImplementation
             $salary->update([
                 'adversaries' => $data['adversaries'],
                 'salary' => $totalSalary,
+                'adversaries_type' => $data['adversaries_type'],
                 'date' => date('Y-m-d'),
             ]);
         } elseif (isset($data['housing_allowance']) && isset($data['transportation_allowance'])) {

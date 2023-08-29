@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Create Company'
-      description: 'This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.'
+      description: 'This endpoint is used to create a new company. Only super admins can access this API.'
       authenticated: true
       custom: []
     headers:
@@ -24,7 +24,7 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: Custom
+        description: 'The name of the company. Custom'
         required: true
         example: 'Goma Company'
         type: string
@@ -32,7 +32,7 @@ endpoints:
         custom: []
       email:
         name: email
-        description: Custom
+        description: 'The email address of the company. Custom'
         required: true
         example: goma@goma.com
         type: email
@@ -40,7 +40,7 @@ endpoints:
         custom: []
       start_commercial_record:
         name: start_commercial_record
-        description: Custom
+        description: 'The start date of the commercial record. Custom'
         required: false
         example: '2023-08-27'
         type: date
@@ -48,7 +48,7 @@ endpoints:
         custom: []
       end_commercial_record:
         name: end_commercial_record
-        description: Custom
+        description: 'The end date of the commercial record. Custom'
         required: false
         example: '2023-08-27'
         type: date
@@ -56,7 +56,7 @@ endpoints:
         custom: []
       commercial_record:
         name: commercial_record
-        description: 'Must not be greater than 2048 kilobytes'
+        description: 'The commercial record file. Must not be greater than 2048 kilobytes.'
         required: false
         example: null
         type: file
@@ -64,7 +64,7 @@ endpoints:
         custom: []
       longitude:
         name: longitude
-        description: 'The longitude of the company location Custom'
+        description: 'The longitude of the company location. Custom'
         required: true
         example: 25.12
         type: number
@@ -72,7 +72,7 @@ endpoints:
         custom: []
       latitude:
         name: latitude
-        description: 'The latitude of the company location Custom'
+        description: 'The latitude of the company location. Custom'
         required: true
         example: 15.32
         type: number
@@ -80,7 +80,7 @@ endpoints:
         custom: []
       radius:
         name: radius
-        description: 'The radius of the company location Custom'
+        description: 'The radius of the company location. Custom'
         required: true
         example: 15.0
         type: number
@@ -101,25 +101,26 @@ endpoints:
         status: 200
         content: |-
           {
-          "data": {
-          "id": 1,
-          "name": "Goma Company",
-          "email": "goma@goma.com",
-          "commercial_record": null,
-          "start_commercial_record": "2023-02-01",
-          "end_commercial_record": "2023-09-01",
-          "locations": [
-          {
-          "id": 1,
-          "Longitude": "25.12",
-          "Latitude": "15.32",
-          "Radius": "21"
-          }
-          ],
-          "admin": null
+              "data": {
+                  "id": 1,
+                  "name": "Goma Company",
+                  "email": "goma@goma.com",
+                  "commercial_record": null,
+                  "start_commercial_record": "2023-02-01",
+                  "end_commercial_record": "2023-09-01",
+                  "locations": [
+                      {
+                          "id": 1,
+                          "Longitude": "25.12",
+                          "Latitude": "15.32",
+                          "Radius": "21"
+                      }
+                  ],
+                  "admin": null
+              }
           }
         headers: []
-        description: 'Create New Company'
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -148,12 +149,12 @@ endpoints:
         name: id
         description: 'Must Be Exists In companies Table'
         required: true
-        example: 19
+        example: 20
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 19
+      id: 20
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -196,7 +197,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Update Company'
-      description: 'This endpoint is used to Create New  Create Company and Super Admin Can Access To This Api.'
+      description: 'This endpoint is used to update a company. Only super admins can access this API.'
       authenticated: true
       custom: []
     headers:
@@ -209,15 +210,15 @@ endpoints:
     bodyParameters:
       company_id:
         name: company_id
-        description: 'Must Be Exists In companies Table'
+        description: 'The ID of the company. Must exist in the companies table.'
         required: true
-        example: 19
+        example: 12
         type: integer
         enumValues: []
         custom: []
       name:
         name: name
-        description: Custom
+        description: 'The name of the company. Custom'
         required: true
         example: 'Goma Company'
         type: string
@@ -225,7 +226,7 @@ endpoints:
         custom: []
       email:
         name: email
-        description: Custom
+        description: 'The email address of the company.Custom'
         required: true
         example: goma@goma.com
         type: email
@@ -233,7 +234,7 @@ endpoints:
         custom: []
       start_commercial_record:
         name: start_commercial_record
-        description: Custom
+        description: 'The start date of the commercial record.Custom'
         required: false
         example: '2023-08-27'
         type: date
@@ -241,7 +242,7 @@ endpoints:
         custom: []
       end_commercial_record:
         name: end_commercial_record
-        description: Custom
+        description: 'The end date of the commercial record.Custom'
         required: false
         example: '2023-08-27'
         type: date
@@ -249,14 +250,14 @@ endpoints:
         custom: []
       commercial_record:
         name: commercial_record
-        description: 'Must not be greater than 2048 kilobytes'
+        description: 'The commercial record file. Must not be greater than 2048 kilobytes.'
         required: false
         example: null
         type: file
         enumValues: []
         custom: []
     cleanBodyParameters:
-      company_id: 19
+      company_id: 12
       name: 'Goma Company'
       email: goma@goma.com
       start_commercial_record: '2023-08-27'
@@ -268,25 +269,108 @@ endpoints:
         status: 200
         content: |-
           {
-          "data": {
-          "id": 1,
-          "name": "Goma Company",
-          "email": "goma@goma.com",
-          "commercial_record": null,
-          "start_commercial_record": "2023-02-01",
-          "end_commercial_record": "2023-09-01",
-          "locations": [
-          {
-          "id": 1,
-          "Longitude": "25.12",
-          "Latitude": "15.32",
-          "Radius": "21"
-          }
-          ],
-          "admin": null
+              "data": {
+                  "id": 1,
+                  "name": "Goma Company",
+                  "email": "goma@goma.com",
+                  "commercial_record": null,
+                  "start_commercial_record": "2023-02-01",
+                  "end_commercial_record": "2023-09-01",
+                  "locations": [
+                      {
+                          "id": 1,
+                          "Longitude": "25.12",
+                          "Latitude": "15.32",
+                          "Radius": "21"
+                      }
+                  ],
+                  "admin": null
+              }
           }
         headers: []
-        description: 'Update Company'
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/show_percenatge_company
+    metadata:
+      groupName: Companies
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show Company Percentage'
+      description: 'This endpoint is used to display the company percentage. Only authenticated admins or HR personnel can access this API. It will show the percentage specific to the authenticated admin or HR personnel.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "percentage": false
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/update_percentage
+    metadata:
+      groupName: Companies
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Company Percentage'
+      description: 'This endpoint is used to Update the company percentage. Only authenticated admins or HR personnel can access this API. It will Update the percentage specific to the authenticated admin or HR personnel.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "percentage": true
+              }
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []

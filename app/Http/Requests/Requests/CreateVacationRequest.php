@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Requests;
 
+use App\Statuses\PaymentType;
 use App\Statuses\VacationRequestTypes;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -32,7 +33,7 @@ class CreateVacationRequest extends FormRequest
             'vacation_type' => ['required', Rule::in(VacationRequestTypes::$statuses)],
             'start_time' => 'required',
             'end_time' => 'required',
-            'payment_type' => 'required'
+            'payment_type' => ['required', Rule::in(PaymentType::$statuses)],
         ];
     }
 }
